@@ -2,3 +2,6 @@
 /go.work
 /go.work.sum
 /coverage.out
+/.taste-skill/
+/.iconify-update/
+/measurements.json

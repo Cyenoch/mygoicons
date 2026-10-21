@@ -1,0 +1,100 @@
+name: Update icons
+
+on:
+  schedule:
+    - cron: '23 6 * * 1'
+  workflow_dispatch:
+    inputs:
+      lucide:
+        description: 'Exact Lucide version (empty checks latest)'
+        type: string
+      twemoji:
+        description: 'Exact Twemoji version (empty checks latest)'
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: update-icons
+  cancel-in-progress: false
+
+jobs:
+  update:
+    if: github.repository == 'Cyenoch/mygoicons'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+      - run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libpangocairo-1.0-0
+      - name: Verify and update pinned collections
+        env:
+          LUCIDE_VERSION: ${{ inputs.lucide }}
+          TWEMOJI_VERSION: ${{ inputs.twemoji }}
+        run: >-
+          go run ./cmd/update-icons
+          -lucide "$LUCIDE_VERSION" -twemoji "$TWEMOJI_VERSION"
+          -summary "$RUNNER_TEMP/icon-summary.txt"
+      - name: Verify generated output and tests
+        env:
+          CGO_ENABLED: '0'
+        run: |
+          go generate ./
+          go run ./cmd/catalog -check
+          go vet ./...
+          go test ./...
+          GOOS=js GOARCH=wasm go build ./...
+      - name: Create or update review PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch=automation/icon-collections
+          if git diff --quiet; then
+            exit 0
+          fi
+          git add sources lucide twemoji examples/native/catalog_gen.go
+          tree=$(git write-tree)
+          changed=true
+          if git ls-remote --exit-code origin "refs/heads/$branch" \
+            > /dev/null 2>&1; then
+            git fetch origin "$branch"
+            if [ "$tree" = "$(git rev-parse 'FETCH_HEAD^{tree}')" ]; then
+              changed=false
+            fi
+            # Preserve existing branch history without force pushes.
+            git reset --soft FETCH_HEAD
+          fi
+          git config user.name 'github-actions[bot]'
+          email='41898282+github-actions[bot]@users.noreply.github.com'
+          git config user.email "$email"
+          if [ "$changed" = true ]; then
+            git checkout -B "$branch"
+            git commit -m 'Update pinned icon collections'
+            git push origin "HEAD:refs/heads/$branch"
+          fi
+          pr=$(gh pr list --head "$branch" --base main \
+            --json number --jq '.[0].number // empty')
+          if [ -n "$pr" ]; then
+            gh pr edit "$pr" --title 'Update pinned icon collections' \
+              --body-file "$RUNNER_TEMP/icon-summary.txt"
+          else
+            gh pr create --head "$branch" --base main \
+              --title 'Update pinned icon collections' \
+              --body-file "$RUNNER_TEMP/icon-summary.txt"
+          fi
+          # Token pushes do not trigger CI; dispatch read-only CI explicitly.
+          gh workflow run ci.yml --ref "$branch"

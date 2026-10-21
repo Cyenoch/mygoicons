@@ -103,6 +103,34 @@ func main() {
 		t.Fatalf("native binary retains %d of %d markers; want only the referenced icon", got, total)
 	}
 	t.Logf("native MyGo application: %d bytes, 1/%d SVG markers (build only)", len(nativeData), total)
+	// A forwarding compatibility accessor must not retain the other caches.
+	previous := []Export{{Name: "LegacyGlyph", ID: "glyph-0000", SHA256: result.Exports[0].SHA256}}
+	compatible, err := Build(input, Options{Package: "glyphs", Previous: previous})
+	if err != nil {
+		t.Fatal(err)
+	}
+	subset, err := Build(input, Options{Package: "glyphs", Icons: []string{"glyph-0000"}, Previous: previous})
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, probe := range []struct {
+		name   string
+		source []byte
+	}{{"compatibility", compatible.Source}, {"single subset", subset.Source}} {
+		writeProbe(t, filepath.Join(dir, "glyphs", "icons_gen.go"), probe.source)
+		writeProbe(t, filepath.Join(dir, "main.go"), bytes.Replace(native, []byte("Glyph0000"), []byte("LegacyGlyph"), 1))
+		if output, err := command("build", "-mod=mod", "-trimpath", "-ldflags=-s -w", "-o", binary, "."); err != nil {
+			t.Fatalf("%s: %v\n%s", probe.name, err, output)
+		}
+		data, err := os.ReadFile(binary)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if got := bytes.Count(data, []byte("MYGO_ICON_LINK_MARKER_")); got != 1 {
+			t.Fatalf("%s retains %d markers", probe.name, got)
+		}
+		t.Logf("%s: %d-byte native executable; exactly one SVG marker", probe.name, len(data))
+	}
 }
 
 func writeProbe(t *testing.T, path string, data []byte) {

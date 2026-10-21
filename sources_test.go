@@ -60,9 +60,24 @@ func TestBundledSources(t *testing.T) {
 			for _, notice := range set.License.Notices {
 				check(notice.File, notice.SHA256, notice.Bytes)
 			}
-			result, err := generate.Build(read(filepath.Join("sources", set.Prefix, "icons.json")), generate.Options{Package: set.Prefix})
+			var exports []generate.Export
+			if err := json.Unmarshal(read(filepath.Join("sources", set.Prefix, "exports.json")), &exports); err != nil {
+				t.Fatal(err)
+			}
+			result, err := generate.Build(read(filepath.Join("sources", set.Prefix, "icons.json")), generate.Options{Package: set.Prefix, Previous: exports})
 			if err != nil {
 				t.Fatal(err)
+			}
+			if len(result.Exports) < len(exports) {
+				t.Fatal("existing public exports were removed")
+			}
+			actual, err := json.Marshal(result.Exports)
+			if err != nil {
+				t.Fatal(err)
+			}
+			expected, err := json.Marshal(exports)
+			if err != nil || !bytes.Equal(actual, expected) {
+				t.Fatal("export manifest is stale", err)
 			}
 			if result.Count != set.Counts.Icons+set.Counts.Aliases {
 				t.Fatalf("generated %d names; source lock expects %d", result.Count, set.Counts.Icons+set.Counts.Aliases)

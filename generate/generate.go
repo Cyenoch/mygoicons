@@ -19,14 +19,18 @@ const Version = "0.1.0"
 type Options struct {
 	Package string
 	Icons   []string
+	// Previous protects existing accessors. Removed names require a unique
+	// identical replacement; naming changes produce forwarding functions.
+	Previous []Export
 }
 
 // Result is a complete generated Go file with the identity of its input.
 type Result struct {
-	Source []byte
-	Prefix string
-	Count  int
-	SHA256 string
+	Source  []byte
+	Prefix  string
+	Count   int
+	SHA256  string
+	Exports []Export
 }
 
 // Build validates a collection and emits deterministic source. It never
@@ -66,6 +70,7 @@ func (cache *iconCache) load(source string) *ui.SVG {
 }
 
 `)
+	exports := make([]Export, 0, len(names))
 	exported := make(map[string]string, len(names))
 	for index, name := range names {
 		if !iconName.MatchString(name) || len(name) > 256 {
@@ -88,12 +93,22 @@ func (cache *iconCache) load(source string) *ui.SVG {
 		if err != nil {
 			return Result{}, fmt.Errorf("%s:%s: %w", c.Prefix, name, err)
 		}
+		exports = append(exports, Export{Name: symbol, ID: name, SHA256: artworkHash(svg)})
 		literal := strconv.QuoteToASCII(svg)
 		if source.Len()+len(literal)+1024 > MaxOutputBytes {
 			return Result{}, fmt.Errorf("generated source exceeds %d bytes", MaxOutputBytes)
 		}
 		fmt.Fprintf(&source, "var icon%d iconCache\n\n// %s is the %s:%s icon.\n", index, symbol, c.Prefix, name)
 		fmt.Fprintf(&source, "func %s() *ui.SVG { return icon%d.load(%s) }\n\n", symbol, index, literal)
+	}
+	exports, aliases, err := compatibleExports(exports, options.Previous)
+	if err != nil {
+		return Result{}, err
+	}
+	for _, e := range exports {
+		if target, ok := aliases[e.Name]; ok {
+			fmt.Fprintf(&source, "// %s is the %s:%s icon.\n// Deprecated: use %s.\nfunc %s() *ui.SVG { return %s() }\n\n", e.Name, c.Prefix, e.ID, target, e.Name, target)
+		}
 	}
 	formatted, err := format.Source(source.Bytes())
 	if err != nil {
@@ -102,5 +117,5 @@ func (cache *iconCache) load(source string) *ui.SVG {
 	if len(formatted) > MaxOutputBytes {
 		return Result{}, fmt.Errorf("formatted source exceeds %d bytes", MaxOutputBytes)
 	}
-	return Result{Source: formatted, Prefix: c.Prefix, Count: len(names), SHA256: sum}, nil
+	return Result{Source: formatted, Prefix: c.Prefix, Count: len(names), SHA256: sum, Exports: exports}, nil
 }

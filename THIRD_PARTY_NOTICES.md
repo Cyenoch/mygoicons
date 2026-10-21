@@ -6,7 +6,7 @@ dependencies retain their own licenses, as described below.
 ## Lucide
 
 The `lucide` generated collection contains the artwork distributed as
-`@iconify-json/lucide` 1.2.145. Its Iconify metadata identifies ISC. The complete
+`@iconify-json/lucide` 1.2.147. Its Iconify metadata identifies ISC. The complete
 upstream [license](sources/lucide/LICENSE) also includes MIT terms and a list of
 Feather-derived icons. Retain that complete notice when redistributing this
 collection or artwork from it.

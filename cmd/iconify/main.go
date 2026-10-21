@@ -3,6 +3,7 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"errors"
 	"flag"
 	"fmt"
@@ -28,6 +29,7 @@ func run(args []string, stdout, stderr io.Writer) error {
 	output := flags.String("out", "", "generated Go file (required)")
 	pkg := flags.String("package", "", "Go package name (required)")
 	icons := flags.String("icons", "", "comma-separated original icon names; empty selects all")
+	manifest := flags.String("manifest", "", "export compatibility manifest to preserve (optional)")
 	check := flags.Bool("check", false, "fail if the output is missing or differs; never write")
 	if err := flags.Parse(args); err != nil {
 		if errors.Is(err, flag.ErrHelp) {
@@ -51,13 +53,30 @@ func run(args []string, stdout, stderr io.Writer) error {
 			options.Icons = append(options.Icons, strings.TrimSpace(name))
 		}
 	}
-	result, err := generate.Build(source, options)
-	if err != nil {
-		return err
-	}
 	existing, err := readBounded(*output, generate.MaxOutputBytes)
 	if err != nil && !errors.Is(err, os.ErrNotExist) {
 		return fmt.Errorf("read output: %w", err)
+	}
+	if err == nil {
+		options.Previous, err = generate.ReadExports(existing)
+		if err != nil {
+			return fmt.Errorf("read existing exports: %w", err)
+		}
+	}
+	if *manifest != "" {
+		data, readErr := readBounded(*manifest, generate.MaxInputBytes)
+		if readErr != nil {
+			return readErr
+		}
+		var previous []generate.Export
+		if err := json.Unmarshal(data, &previous); err != nil {
+			return err
+		}
+		options.Previous = append(options.Previous, previous...)
+	}
+	result, buildErr := generate.Build(source, options)
+	if buildErr != nil {
+		return buildErr
 	}
 	if bytes.Equal(existing, result.Source) {
 		fmt.Fprintf(stdout, "%s: %d icons, unchanged\n", result.Prefix, result.Count)

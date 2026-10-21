@@ -23,6 +23,14 @@ func BenchmarkCachedIcon(b *testing.B) {
 	}
 }
 
+func BenchmarkFirstParse(b *testing.B) {
+	source := []byte(`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>`)
+	b.ReportAllocs()
+	for b.Loop() {
+		benchmarkIcon = ui.MustParseSVG(source)
+	}
+}
+
 func TestConcurrentFirstUse(t *testing.T) {
 	const count = 32
 	var results [count]*ui.SVG

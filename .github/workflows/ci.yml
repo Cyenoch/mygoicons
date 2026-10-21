@@ -29,13 +29,18 @@ jobs:
           go-version-file: go.mod
       - name: Install Pango
         if: runner.os == 'Linux'
-        run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends libpangocairo-1.0-0
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libpangocairo-1.0-0
       - run: go mod download
       - run: go vet ./...
       - run: go test ./...
       - run: go generate ./
       - name: Check generated collections
-        run: git diff --exit-code -- lucide/icons_gen.go twemoji/icons_gen.go
+        run: >-
+          git diff --exit-code -- sources lucide twemoji
+          examples/native/catalog_gen.go
+      - run: go run ./cmd/catalog -check
       - name: Check Go formatting
         if: runner.os == 'Linux'
         run: test -z "$(gofmt -l .)"
@@ -50,3 +55,43 @@ jobs:
           GOOS: js
           GOARCH: wasm
         run: go build ./...
+      - name: Render a real native window
+        if: runner.os == 'macOS'
+        run: go run ./examples/native -capture "$RUNNER_TEMP/browser.png"
+
+  latest-mygo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CGO_ENABLED: '0'
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+      - run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libpangocairo-1.0-0
+      - name: Test latest stable MyGo in a disposable copy
+        run: |
+          cp -R . "$RUNNER_TEMP/latest-mygo"
+          cd "$RUNNER_TEMP/latest-mygo"
+          go get github.com/egoist/mygo@latest
+          go list -m github.com/egoist/mygo
+          go vet ./...
+          go test ./...
+          GOOS=js GOARCH=wasm go build ./...
+
+  consumer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    if: github.event_name == 'push'
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+      - name: Verify public module and pinned generator from another module
+        env:
+          ICONS_VERSION: ${{ github.sha }}
+        run: go run ./cmd/verify-consumer -version "$ICONS_VERSION"

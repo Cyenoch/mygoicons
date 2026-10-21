@@ -1,12 +1,12 @@
 # Pinned Iconify collection inputs
 
-Retrieved and verified on 2026-10-16. These are publisher/generator inputs,
+Retrieval dates and immutable identities are recorded in `lock.json` (latest update: 2026-10-21). These are publisher/generator inputs,
 copied without reformatting from integrity-verified npm archives. No archive,
 Node installation, or npm dependency tree is stored here.
 
 | Directory | Package | Version | Icons | Aliases | Metadata license |
 | --- | --- | --- | ---: | ---: | --- |
-| `lucide/` | `@iconify-json/lucide` | `1.2.145` | 1966 | 220 | ISC |
+| `lucide/` | `@iconify-json/lucide` | `1.2.147` | 1978 | 220 | ISC |
 | `twemoji/` | `@iconify-json/twemoji` | `1.2.5` | 4169 | 559 | CC-BY-4.0 |
 
 Each directory contains the original `icons.json`, `info.json`, and
@@ -16,9 +16,11 @@ they are not the human-facing `info.total` count.
 `lock.json` records exact versioned registry and tarball URLs, npm SHA-512
 integrity, SHA-256 and size of all three input files, raw counts, and notice
 provenance. Each tarball was downloaded with a bounded response size and its
-SHA-512 checked before extracting files. The inputs also match the earlier
-research cache byte for byte. npm signatures and publisher attestations were
-not verified.
+SHA-512 checked before extracting files. npm signatures and publisher
+attestations were not verified. `exports.json` is a separate generated API
+compatibility manifest, not an upstream file. Use the network-enabled
+`go run ./cmd/update-icons` maintenance command described in
+[CONTRIBUTING.md](../CONTRIBUTING.md); ordinary generation remains offline.
 
 ## Notices and their correspondence
 
@@ -31,11 +33,11 @@ they do not pin an original artwork revision. See
 
 The separately retrieved upstream notices are complete, unedited files from
 the immutable revisions recorded in the lock. Their Git blob SHA-1 values were
-checked against the respective GitHub tree, and their SHA-256 values are
+checked against the respective GitHub Git object ID, and their SHA-256 values are
 recorded for subsequent local verification.
 
 - Lucide: `lucide/LICENSE`, from
-  <https://github.com/lucide-icons/lucide/tree/7b0196e249ca09ca27c584c497aca9a8cab8a7f5>.
+  <https://github.com/lucide-icons/lucide/tree/c29c276f16590cf017126671535ad8c792be64d8>.
   This includes ISC terms and the additional MIT terms and icon list for
   Feather-derived artwork. The ISC metadata label alone omits that detail.
 - Twemoji: `twemoji/LICENSE`, `twemoji/LICENSE-GRAPHICS`, and the complete

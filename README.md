@@ -6,10 +6,10 @@
 Typed [Iconify](https://iconify.design) collections for [MyGo](https://github.com/egoist/mygo), with a generator for your own collections. Import a collection, pick a name with editor completion, and pass its `*ui.SVG` to MyGo.
 
 ```sh
-go get github.com/Cyenoch/mygoicons
+go get github.com/Cyenoch/mygoicons@v0.1.0
 ```
 
-Requires Go 1.27.1 or later. MyGo v0.5.5 is the minimum supported version.
+Requires Go 1.27.1 or later. MyGo v0.5.5 is the minimum supported version; CI also checks the latest stable release (v0.6.0 at this release).
 
 ## Use icons
 
@@ -42,7 +42,7 @@ Each function returns a shared SVG, parsed once on first use. Element size and c
 
 | Package | Iconify source | Version | Functions |
 | --- | --- | --- | ---: |
-| `lucide` | `@iconify-json/lucide` | 1.2.145 | 2,186 |
+| `lucide` | `@iconify-json/lucide` | 1.2.147 | 2,198 |
 | `twemoji` | `@iconify-json/twemoji` | 1.2.5 | 4,728 |
 
 Both collections include aliases and hidden names from their pinned source data. Counts describe exported names, not distinct artwork.
@@ -51,12 +51,22 @@ Names use MixedCaps with common Go initialisms: `scan-qr-code` becomes `ScanQRCo
 
 Unused artwork is removed from the executable, but importing a collection still downloads and compiles its generated source. A registry that references every accessor deliberately retains every icon. Generate a subset if download, compilation, or editor indexing costs matter.
 
+## Find and preview icons
+
+```sh
+go run github.com/Cyenoch/mygoicons/examples/native@v0.1.0
+```
+
+The native browser switches between collections, searches Go names and original Iconify IDs, adjusts size and preview background, and copies an accessor or a complete Go application. Check multiple icons and use **Copy -icons list** for a generator selection. Each collection shows its pinned version and license. Arrow keys, Home/End and Tab support keyboard operation; checkboxes toggle with Space. Empty searches and copy actions provide feedback.
+
+The example's generated directory references every accessor, and its virtual list builds only visible rows. The directory is confined to the example; collection packages contain no registry. A desktop window needs at least 960 × 720 logical pixels. From a checkout, run `go run ./examples/native`; `-capture preview.png` opens and captures a native frame, then exits on the ready event.
+
 ## Generate a collection
 
 Run the generator against a local Iconify `icons.json`, from an individual `@iconify-json/{prefix}` package or a private collection:
 
 ```sh
-go run github.com/Cyenoch/mygoicons/cmd/iconify@latest \
+go run github.com/Cyenoch/mygoicons/cmd/iconify@v0.1.0 \
   -input /path/to/icons.json \
   -out internal/appicons/icons_gen.go \
   -package appicons
@@ -66,7 +76,7 @@ Use `-icons search,arrow-right` to select a subset by original name. Omit it to 
 
 Generated packages import only MyGo and the standard library. Commit the output into your application; it does not need to depend on this module. Preserve the source collection's license and attribution alongside the generated artwork.
 
-The CLI validates input before writing, refuses to overwrite handwritten files, and replaces generated output through a temporary file. It reads local JSON only; it does not download collections or ingest raw SVG directories. Pin the generator to a version or commit for reproducible `go:generate` directives.
+The CLI validates input before writing, refuses to overwrite handwritten files, and replaces generated output through a temporary file. Existing generated accessors are checked automatically. Naming policy changes retain forwarding aliases; a removed ID is compatible automatically only when a unique replacement has identical normalized artwork. Missing replacements and identity conflicts fail without writing. `-manifest sources/lucide/exports.json` adds an independently committed compatibility baseline; programmatic callers supply `Options.Previous` and retain `Result.Exports`. To deliberately shrink a custom subset, generate to a new output file and review the API change. It reads local JSON only; it does not download collections or ingest raw SVG directories. Pin the generator to a version or commit for reproducible `go:generate` directives.
 
 For programmatic use:
 
@@ -77,7 +87,7 @@ result, err := generate.Build(data, generate.Options{
 })
 ```
 
-Import `github.com/Cyenoch/mygoicons/generate`. `Build` returns generated source, the collection prefix, icon count, and input SHA-256 without accessing the filesystem or network.
+Import `github.com/Cyenoch/mygoicons/generate`. `Build` returns generated source, an export manifest, the collection prefix, icon count, and input SHA-256 without accessing the filesystem or network.
 
 ## SVG compatibility
 
@@ -96,7 +106,9 @@ go generate ./
 CGO_ENABLED=0 go test ./...
 CGO_ENABLED=0 go vet ./...
 CGO_ENABLED=1 go test -race ./...
-git diff --exit-code -- lucide/icons_gen.go twemoji/icons_gen.go
+go run ./cmd/catalog -check
+git diff --exit-code -- sources lucide twemoji examples/native/catalog_gen.go
+GOOS=js GOARCH=wasm go build ./...
 ```
 
 On Linux, software rendering tests require Pango (`libpangocairo-1.0-0`). Generation and ordinary tests use checked-in data and need no Node.js or icon downloads. Go dependencies must be available before the linker tests, which build subprocesses with the module proxy disabled.
@@ -107,7 +119,9 @@ Tests compare alias resolution and SVG construction with pinned output from offi
 go run ./examples/native
 ```
 
-The example opens a native MyGo window. To export the software rendering test's frame instead, set `MYGO_ICONS_PREVIEW` to a PNG path when running `go test -run TestBundledSoftwareRendering .`.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for safe collection updates, API checks, remote consumer verification and release steps, and [MEASUREMENTS.md](MEASUREMENTS.md) for reproducible cost measurements. Scheduled updates create review PRs only after generation and checks; license changes stop automation for manual review. Releases remain a separate maintainer action.
+
+To export the software rendering test's frame, set `MYGO_ICONS_PREVIEW` to a PNG path when running `go test -run TestBundledSoftwareRendering .`.
 
 ## License
 
