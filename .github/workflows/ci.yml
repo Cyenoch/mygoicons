@@ -47,6 +47,9 @@ jobs:
           git diff --exit-code -- sources lucide twemoji
           examples/native/catalog_gen.go
       - run: go run ./cmd/catalog -check
+      - name: Verify update PR idempotency
+        if: runner.os == 'Linux'
+        run: python3 .github/scripts/test_update_pr.py
       - name: Check module metadata
         if: runner.os == 'Linux'
         run: |

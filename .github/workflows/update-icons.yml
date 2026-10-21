@@ -91,7 +91,12 @@ jobs:
           if git ls-remote --exit-code origin "refs/heads/$branch" \
             > /dev/null 2>&1; then
             git fetch origin "$branch"
-            if [ "$tree" = "$(git rev-parse 'FETCH_HEAD^{tree}')" ]; then
+            identity='.collections | map({prefix,version,integrity})'
+            proposed=$(jq -Sc "$identity" sources/lock.json)
+            existing=$(git show FETCH_HEAD:sources/lock.json |
+              jq -Sc "$identity")
+            if [ "$tree" = "$(git rev-parse 'FETCH_HEAD^{tree}')" ] ||
+              [ "$proposed" = "$existing" ]; then
               changed=false
             fi
             # Preserve existing branch history without force pushes.

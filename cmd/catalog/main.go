@@ -5,31 +5,36 @@ import (
 	"bytes"
 	"flag"
 	"fmt"
-	"github.com/Cyenoch/mygoicons/internal/maint"
 	"os"
 	"path/filepath"
+
+	"github.com/Cyenoch/mygoicons/internal/maint"
 )
 
 func main() {
+	if err := run(); err != nil {
+		fmt.Fprintln(os.Stderr, "catalog:", err)
+		os.Exit(1)
+	}
+}
+
+func run() error {
 	check := flag.Bool("check", false, "check without writing")
 	flag.Parse()
 	data, err := maint.Catalog(".", nil)
 	if err != nil {
-		panic(err)
+		return err
 	}
 	name := filepath.Join("examples", "native", "catalog_gen.go")
 	old, err := os.ReadFile(name)
 	if err != nil && !os.IsNotExist(err) {
-		panic(err)
+		return err
 	}
 	if bytes.Equal(data, old) {
-		return
+		return nil
 	}
 	if *check {
-		fmt.Fprintln(os.Stderr, "native catalog is stale")
-		os.Exit(1)
+		return fmt.Errorf("native catalog is stale")
 	}
-	if err = os.WriteFile(name, data, 0o644); err != nil {
-		panic(err)
-	}
+	return os.WriteFile(name, data, 0o644)
 }
