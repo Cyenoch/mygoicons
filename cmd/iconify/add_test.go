@@ -197,7 +197,7 @@ func TestAddOfflineLifecycle(t *testing.T) {
 }
 
 func TestAddFailureLeavesPackageUnchanged(t *testing.T) {
-	for _, scenario := range []string{"integrity", "notice-download", "notice-hash", "unsupported-license", "svg", "compatibility", "license-metadata", "license-body", "user-file"} {
+	for _, scenario := range []string{"integrity", "notice-download", "notice-hash", "unsupported-license", "svg", "compatibility"} {
 		t.Run(scenario, func(t *testing.T) {
 			dir := filepath.Join(t.TempDir(), "mingcute")
 			failure := ""
@@ -207,12 +207,9 @@ func TestAddFailureLeavesPackageUnchanged(t *testing.T) {
 			if err := add(args, &output, &output, u); err != nil {
 				t.Fatal(err)
 			}
-			if scenario == "user-file" {
-				if err := os.WriteFile(filepath.Join(dir, "custom.go"), []byte("package mingcute"), 0644); err != nil {
-					t.Fatal(err)
-				}
-			} else {
-				failure = scenario
+			failure = scenario
+			if err := os.WriteFile(filepath.Join(dir, "custom.go"), []byte("package mingcute\n"), 0644); err != nil {
+				t.Fatal(err)
 			}
 			before := packageSnapshot(t, dir)
 			args[0] = "mingcute@1.2.9"
@@ -220,7 +217,6 @@ func TestAddFailureLeavesPackageUnchanged(t *testing.T) {
 			expected := map[string]string{
 				"integrity": "integrity mismatch", "notice-download": "500", "notice-hash": "blob hash mismatch",
 				"unsupported-license": "cannot automatically retain", "svg": "unsupported", "compatibility": "unknown icon or alias",
-				"license-metadata": "license metadata changed", "license-body": "license notice changed", "user-file": "user file",
 			}[scenario]
 			if err == nil || !strings.Contains(err.Error(), expected) {
 				t.Fatalf("%s: want %q, got %v", scenario, expected, err)
@@ -232,6 +228,84 @@ func TestAddFailureLeavesPackageUnchanged(t *testing.T) {
 				t.Fatal("failure left a backup", err)
 			}
 		})
+	}
+}
+
+func TestAddPreservesUserFilesAndReportsLicenseChanges(t *testing.T) {
+	for _, scenario := range []string{"unchanged-license", "license-metadata", "license-body"} {
+		t.Run(scenario, func(t *testing.T) {
+			dir := filepath.Join(t.TempDir(), "mingcute")
+			failure := ""
+			u, requests := testImporter(t, &failure)
+			var output, warnings bytes.Buffer
+			args := []string{"mingcute@1.2.8", "-icons", "search-line", "-out", dir}
+			if err := add(args, &output, &warnings, u); err != nil {
+				t.Fatal(err)
+			}
+			userFiles := map[string]string{
+				"custom.go":        "package mingcute\n",
+				"notes/readme.txt": "My notes\n",
+				".gitattributes":   "/source/** -text\n/LICENSE -text\n/NOTICE -text\n*.txt text\n",
+			}
+			for name, content := range userFiles {
+				path := filepath.Join(dir, name)
+				if err := os.MkdirAll(filepath.Dir(path), 0755); err != nil {
+					t.Fatal(err)
+				}
+				if err := os.WriteFile(path, []byte(content), 0644); err != nil {
+					t.Fatal(err)
+				}
+			}
+			count := *requests
+			if err := add([]string{"mingcute", "-out", dir, "-check"}, &output, &warnings, u); err != nil {
+				t.Fatal(err)
+			}
+			if *requests != count {
+				t.Fatal("offline check used network")
+			}
+			failure = scenario
+			args[0] = "mingcute@1.2.9"
+			if err := add(args, &output, &warnings, u); err != nil {
+				t.Fatal(err)
+			}
+			for name, content := range userFiles {
+				raw, err := os.ReadFile(filepath.Join(dir, name))
+				if err != nil || string(raw) != content {
+					t.Fatalf("user file %s changed: %v", name, err)
+				}
+			}
+			if scenario != "unchanged-license" && !strings.Contains(warnings.String(), "changed") {
+				t.Fatal("license change was not reported")
+			}
+			count = *requests
+			if err := add([]string{"mingcute", "-out", dir, "-check"}, &output, &warnings, u); err != nil {
+				t.Fatal(err)
+			}
+			if *requests != count {
+				t.Fatal("updated package check used network")
+			}
+		})
+	}
+}
+
+func TestReplacePackageDoesNotWriteThroughLinks(t *testing.T) {
+	dir := filepath.Join(t.TempDir(), "mingcute")
+	if err := os.Mkdir(dir, 0755); err != nil {
+		t.Fatal(err)
+	}
+	outside := filepath.Join(t.TempDir(), "user.txt")
+	if err := os.WriteFile(outside, []byte("keep"), 0644); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.Symlink(outside, filepath.Join(dir, "LICENSE")); err != nil {
+		t.Skip("symlink unavailable:", err)
+	}
+	if err := replacePackage(dir, map[string][]byte{"LICENSE": []byte("generated")}, true); err == nil {
+		t.Fatal("generated output followed symlink")
+	}
+	raw, err := os.ReadFile(outside)
+	if err != nil || string(raw) != "keep" {
+		t.Fatal("user data changed", err)
 	}
 }
 

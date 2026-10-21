@@ -20,7 +20,7 @@ func main() {
 	}
 }
 func run() error {
-	version := flag.String("version", "v0.2.0", "published tag or full commit")
+	version := flag.String("version", "v0.2.1", "published tag or full commit")
 	addCollection := flag.Bool("add", false, "also verify one-command MingCute import and offline check")
 	flag.Parse()
 	if !regexp.MustCompile(`^(v[0-9]+\.[0-9]+\.[0-9]+|[0-9a-f]{40})$`).MatchString(*version) {

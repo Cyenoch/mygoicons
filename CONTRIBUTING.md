@@ -21,9 +21,9 @@ Run the native browser with `go run ./examples/native`. Its event-based capture 
 
 ## Import a collection into an application
 
-Install `go install github.com/Cyenoch/mygoicons/cmd/iconify@v0.2.0`, then run `iconify add mingcute` from the application module. Add `@1.2.8` to pin the first import, or `-icons search-line,home-1-line` for a subset. The command saves the exact version and selection in `internal/mingcute/source.json`, raw input under `source/`, full applicable license notices, and generated Go. Commit the complete directory. Later `iconify add mingcute` and `iconify add mingcute -check` reuse saved data offline; updating requires an explicit new version.
+Install `go install github.com/Cyenoch/mygoicons/cmd/iconify@v0.2.1`, then run `iconify add mingcute` from the application module. Add `@1.2.8` to pin the first import, or `-icons search-line,home-1-line` for a subset. The command saves the exact version and selection in `internal/mingcute/source.json`, raw input under `source/`, full applicable license notices, and generated Go. Commit the complete directory. Later `iconify add mingcute` and `iconify add mingcute -check` reuse saved data offline; updating requires an explicit new version.
 
-Imports reuse the updater's bounded npm download, SHA-512 verification and archive validation. Automatic notice retrieval supports GitHub file license URLs and records immutable commit identities and file digests. Other license locations require the existing local `-input` workflow. License changes require review and a new output directory. User files, symlinks and unrecognized directories are protected from replacement. `.gitattributes` inside each package preserves the upstream bytes on Windows.
+Imports reuse the updater's bounded npm download, SHA-512 verification and archive validation. Automatic notice retrieval supports GitHub file license URLs and records immutable commit identities and file digests. Other license locations require the existing local `-input` workflow. Application imports report license changes and refresh notices in place. Handwritten Go files, other files, subdirectories and custom `.gitattributes` are preserved during updates. Generated paths cannot redirect writes through symbolic links. The bundled-collection updater keeps its separate license-review gate. `.gitattributes` inside each package preserves the upstream bytes on Windows.
 
 The package is generated in a temporary sibling directory before replacement. A failed final rename restores the previous directory. Process interruption between renames leaves `<directory>.iconify-backup`; restore that directory before retrying. Do not run concurrent writers against the same import directory. Existing local JSON generation and `-check` remain network-free.
 
@@ -90,7 +90,7 @@ No-update runs skip Pango setup, full validation and PR operations. Changed upda
 ## Remote consumer and cost checks
 
 ```sh
-go run ./cmd/verify-consumer -version v0.2.0 -add
+go run ./cmd/verify-consumer -version v0.2.1 -add
 go run ./cmd/measure -out measurements.json
 ```
 
@@ -110,6 +110,6 @@ The consumer check uses an empty module cache, disables `go.work`, GOFLAGS and p
      --notes-file release-notes.md
    ```
 
-5. Wait for tag CI too. Run `go run ./cmd/verify-consumer -version v0.2.0 -add` from the checked checkout; it downloads the remote tag into its own clean module/cache and verifies installation and pinned-generator use. Record release validation and any real limitations. Keep the workspace clean.
+5. Wait for tag CI too. Run `go run ./cmd/verify-consumer -version v0.2.1 -add` from the checked checkout; it downloads the remote tag into its own clean module/cache and verifies installation and pinned-generator use. Record release validation and any real limitations. Keep the workspace clean.
 
 Release notes name the actual npm data versions, Go/MyGo support, API additions and artwork licenses. Do not claim a verified artwork revision when only the npm package and notice snapshots are pinned.

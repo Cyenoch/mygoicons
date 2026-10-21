@@ -89,7 +89,6 @@ func add(args []string, stdout, stderr io.Writer, u *maint.Updater) error {
 		if lock.Prefix != prefix || lock.Package != "@iconify-json/"+prefix || len(lock.Files) != 3 || len(lock.License.Notices) == 0 {
 			return errors.New("saved collection identity mismatch")
 		}
-		allowed := map[string]bool{"source.json": true, "icons_gen.go": true, ".gitattributes": true}
 		for _, name := range []string{"icons.json", "info.json", "package.json"} {
 			d, ok := lock.Files[name]
 			if !ok {
@@ -103,7 +102,6 @@ func add(args []string, stdout, stderr io.Writer, u *maint.Updater) error {
 				return fmt.Errorf("saved %s checksum mismatch", name)
 			}
 			files[filepath.Join("source", name)] = raw
-			allowed[filepath.Join("source", name)] = true
 		}
 		for _, n := range lock.License.Notices {
 			if n.File != "LICENSE" && n.File != "NOTICE" {
@@ -117,7 +115,6 @@ func add(args []string, stdout, stderr io.Writer, u *maint.Updater) error {
 				return errors.New("saved notice checksum mismatch")
 			}
 			files[n.File] = raw
-			allowed[n.File] = true
 		}
 		raw, err = root.ReadFile("icons_gen.go")
 		if err != nil {
@@ -128,32 +125,6 @@ func add(args []string, stdout, stderr io.Writer, u *maint.Updater) error {
 			return err
 		}
 		files["icons_gen.go"] = raw
-		// An imported package is owned by this command; preserve user files by refusing replacement.
-		err = filepath.WalkDir(dir, func(path string, d os.DirEntry, walkErr error) error {
-			if walkErr != nil {
-				return walkErr
-			}
-			relative, err := filepath.Rel(dir, path)
-			if err != nil {
-				return err
-			}
-			if d.Type()&os.ModeSymlink != 0 {
-				return errors.New("symlinks are not allowed in an imported package")
-			}
-			if d.IsDir() {
-				if relative != "." && relative != "source" {
-					return fmt.Errorf("unexpected directory %s", relative)
-				}
-				return nil
-			}
-			if !allowed[relative] {
-				return fmt.Errorf("refusing to replace user file %s", relative)
-			}
-			return nil
-		})
-		if err != nil {
-			return err
-		}
 		if err := root.Close(); err != nil {
 			return err
 		}
@@ -177,17 +148,18 @@ func add(args []string, stdout, stderr io.Writer, u *maint.Updater) error {
 		if err != nil {
 			return err
 		}
-		if statErr == nil && !bytes.Equal(compactJSON(lock.License.Metadata), compactJSON(fetched.License.Metadata)) {
-			return errors.New("license metadata changed; review notices and import to a new -out directory")
-		}
 		if statErr == nil {
-			if len(notices) != len(lock.License.Notices) {
-				return errors.New("license notice set changed; review and import to a new -out directory")
+			if !bytes.Equal(compactJSON(lock.License.Metadata), compactJSON(fetched.License.Metadata)) {
+				fmt.Fprintf(stderr, "iconify: license metadata changed: %s → %s\n", compactJSON(lock.License.Metadata), compactJSON(fetched.License.Metadata))
 			}
+			noticesChanged := len(notices) != len(lock.License.Notices)
 			for _, old := range lock.License.Notices {
 				if !bytes.Equal(files[old.File], notices[old.File]) {
-					return errors.New("license notice changed; review and import to a new -out directory")
+					noticesChanged = true
 				}
+			}
+			if noticesChanged {
+				fmt.Fprintln(stderr, "iconify: license notices changed; see LICENSE, NOTICE and source.json")
 			}
 		}
 		lock.Collection = fetched
@@ -214,7 +186,14 @@ func add(args []string, stdout, stderr io.Writer, u *maint.Updater) error {
 		return err
 	}
 	files["source.json"] = append(raw, '\n')
-	files[".gitattributes"] = []byte("/source/** -text\n/LICENSE -text\n/NOTICE -text\n")
+	attributes, err := os.ReadFile(filepath.Join(dir, ".gitattributes"))
+	if err != nil && !errors.Is(err, os.ErrNotExist) {
+		return err
+	}
+	if len(attributes) == 0 {
+		attributes = []byte("/source/** -text\n/LICENSE -text\n/NOTICE -text\n")
+	}
+	files[".gitattributes"] = attributes
 	unchanged := statErr == nil
 	for name, raw := range files {
 		old, err := os.ReadFile(filepath.Join(dir, name))
@@ -267,8 +246,23 @@ func replacePackage(dir string, files map[string][]byte, exists bool) error {
 	if err := os.Chmod(stage, 0o755); err != nil {
 		return err
 	}
+	if exists {
+		if err := os.CopyFS(stage, os.DirFS(dir)); err != nil {
+			return err
+		}
+	}
 	for name, raw := range files {
 		target := filepath.Join(stage, name)
+		// CopyFS preserves links. Never write generated data through one.
+		for _, path := range []string{filepath.Dir(target), target} {
+			info, err := os.Lstat(path)
+			if err != nil && !errors.Is(err, os.ErrNotExist) {
+				return err
+			}
+			if err == nil && info.Mode()&os.ModeSymlink != 0 {
+				return fmt.Errorf("generated path is a symlink: %s", path)
+			}
+		}
 		if err = os.MkdirAll(filepath.Dir(target), 0o755); err != nil {
 			return err
 		}

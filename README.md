@@ -6,7 +6,7 @@
 Typed [Iconify](https://iconify.design) collections for [MyGo](https://github.com/egoist/mygo), with a generator for your own collections. Import a collection, pick a name with editor completion, and pass its `*ui.SVG` to MyGo.
 
 ```sh
-go get github.com/Cyenoch/mygoicons@v0.2.0
+go get github.com/Cyenoch/mygoicons@v0.2.1
 ```
 
 Requires Go 1.27.1 or later. MyGo v0.5.5 is the minimum supported version; CI also checks the latest stable release (v0.6.0 at this release).
@@ -54,7 +54,7 @@ Unused artwork is removed from the executable, but importing a collection still 
 ## Find and preview icons
 
 ```sh
-go run github.com/Cyenoch/mygoicons/examples/native@v0.2.0
+go run github.com/Cyenoch/mygoicons/examples/native@v0.2.1
 ```
 
 The native browser switches between collections, searches Go names and original Iconify IDs, adjusts size and preview background, and copies an accessor or a complete Go application. Check multiple icons and use **Copy -icons list** for a generator selection. Each collection shows its pinned version and license. Arrow keys, Home/End and Tab support keyboard operation; checkboxes toggle with Space. Empty searches and copy actions provide feedback.
@@ -66,7 +66,7 @@ The example's generated directory references every accessor, and its virtual lis
 Run the generator against a local Iconify `icons.json`, from an individual `@iconify-json/{prefix}` package or a private collection:
 
 ```sh
-go run github.com/Cyenoch/mygoicons/cmd/iconify@v0.2.0 \
+go run github.com/Cyenoch/mygoicons/cmd/iconify@v0.2.1 \
   -input /path/to/icons.json \
   -out internal/appicons/icons_gen.go \
   -package appicons
@@ -83,7 +83,7 @@ The CLI validates input before writing, refuses to overwrite handwritten files, 
 Install the CLI once, then add a collection from your application's Go module:
 
 ```sh
-go install github.com/Cyenoch/mygoicons/cmd/iconify@v0.2.0
+go install github.com/Cyenoch/mygoicons/cmd/iconify@v0.2.1
 iconify add mingcute
 ```
 
@@ -95,7 +95,7 @@ For a reproducible two-icon subset:
 iconify add mingcute@1.2.8 -icons search-line,home-1-line
 ```
 
-Without installing the CLI: `go run github.com/Cyenoch/mygoicons/cmd/iconify@v0.2.0 add mingcute`.
+Without installing the CLI: `go run github.com/Cyenoch/mygoicons/cmd/iconify@v0.2.1 add mingcute`.
 
 Import your own module path and use the generated functions:
 
@@ -109,7 +109,7 @@ ui.Icon(c, mingcute.Home1Line()).Size(24, 24).Label("Home")
 
 Replace `example.com/yourapp` with your module name. Use `iconify add mingcute -check` for an offline check. To update, specify the new version explicitly. `-out path` changes the package directory; names with hyphens use a Go package name with the hyphens removed. Browse original IDs at [Iconify's MingCute directory](https://icon-sets.iconify.design/mingcute/); `-line` and `-fill` are part of those IDs. MingCute 1.2.8 generates 3,364 accessors.
 
-The command verifies npm SHA-512 integrity and archive limits, preserves existing accessors, and stages the whole package before replacement. It refuses to overwrite user files or silently accept changed licenses. Commit the entire generated directory; builds require only MyGo and the standard library, with no runtime downloads or mygoicons dependency.
+The command verifies npm SHA-512 integrity and archive limits, preserves existing accessors, and stages updates before replacing generated files. You can keep handwritten Go files and other files beside the icons; updates preserve them. License changes are reported and the retained notices are updated in place. Commit the entire generated directory; builds require only MyGo and the standard library, with no runtime downloads or mygoicons dependency.
 
 MingCute artwork is by MingCute Design under Apache-2.0. Retain its generated `LICENSE`, applicable attribution and any `NOTICE`, and identify modifications. Automatic license retention currently supports GitHub file URLs; other license locations report an error and can use the local `-input` workflow. Notice snapshots are pinned independently of the artwork revision. Node.js is never required.
 
