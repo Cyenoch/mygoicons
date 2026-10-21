@@ -1,0 +1,6 @@
+* text=auto eol=lf
+
+# Keep upstream bytes unchanged for provenance checks.
+sources/** -text
+testdata/upstream/** -text
+licenses/** -text
