@@ -6,7 +6,7 @@
 Typed [Iconify](https://iconify.design) collections for [MyGo](https://github.com/egoist/mygo), with a generator for your own collections. Import a collection, pick a name with editor completion, and pass its `*ui.SVG` to MyGo.
 
 ```sh
-go get github.com/Cyenoch/mygoicons@v0.1.0
+go get github.com/Cyenoch/mygoicons@v0.2.0
 ```
 
 Requires Go 1.27.1 or later. MyGo v0.5.5 is the minimum supported version; CI also checks the latest stable release (v0.6.0 at this release).
@@ -54,7 +54,7 @@ Unused artwork is removed from the executable, but importing a collection still 
 ## Find and preview icons
 
 ```sh
-go run github.com/Cyenoch/mygoicons/examples/native@v0.1.0
+go run github.com/Cyenoch/mygoicons/examples/native@v0.2.0
 ```
 
 The native browser switches between collections, searches Go names and original Iconify IDs, adjusts size and preview background, and copies an accessor or a complete Go application. Check multiple icons and use **Copy -icons list** for a generator selection. Each collection shows its pinned version and license. Arrow keys, Home/End and Tab support keyboard operation; checkboxes toggle with Space. Empty searches and copy actions provide feedback.
@@ -66,7 +66,7 @@ The example's generated directory references every accessor, and its virtual lis
 Run the generator against a local Iconify `icons.json`, from an individual `@iconify-json/{prefix}` package or a private collection:
 
 ```sh
-go run github.com/Cyenoch/mygoicons/cmd/iconify@v0.1.0 \
+go run github.com/Cyenoch/mygoicons/cmd/iconify@v0.2.0 \
   -input /path/to/icons.json \
   -out internal/appicons/icons_gen.go \
   -package appicons
@@ -76,29 +76,26 @@ Use `-icons search,arrow-right` to select a subset by original name. Omit it to 
 
 Generated packages import only MyGo and the standard library. Commit the output into your application; it does not need to depend on this module. Preserve the source collection's license and attribution alongside the generated artwork.
 
-The CLI validates input before writing, refuses to overwrite handwritten files, and replaces generated output through a temporary file. Existing generated accessors are checked automatically. Naming policy changes retain forwarding aliases; a removed ID is compatible automatically only when a unique replacement has identical normalized artwork. Missing replacements and identity conflicts fail without writing. `-manifest sources/lucide/exports.json` adds an independently committed compatibility baseline; programmatic callers supply `Options.Previous` and retain `Result.Exports`. To deliberately shrink a custom subset, generate to a new output file and review the API change. It reads local JSON only; it does not download collections or ingest raw SVG directories. Pin the generator to a version or commit for reproducible `go:generate` directives.
+The CLI validates input before writing, refuses to overwrite handwritten files, and replaces generated output through a temporary file. Existing generated accessors are checked automatically. Naming policy changes retain forwarding aliases; a removed ID is compatible automatically only when a unique replacement has identical normalized artwork. Missing replacements and identity conflicts fail without writing. `-manifest sources/lucide/exports.json` adds an independently committed compatibility baseline; programmatic callers supply `Options.Previous` and retain `Result.Exports`. To deliberately shrink a custom subset, generate to a new output file and review the API change. The `-input` workflow reads local JSON only; network access is confined to the explicit `add` command. Pin the generator to a version or commit for reproducible `go:generate` directives.
 
 ### Import another collection: MingCute
 
-Only Lucide and Twemoji ship as importable collection packages. For MingCute or another Iconify collection, generate a package inside your application. No change to mygoicons is needed.
-
-From your application's Go module, download the pinned data and retained license, then generate the icons you need:
+Install the CLI once, then add a collection from your application's Go module:
 
 ```sh
-mkdir -p assets/mingcute
-curl -fL 'https://cdn.jsdelivr.net/npm/@iconify-json/mingcute@1.2.8/icons.json' \
-  -o assets/mingcute/icons.json
-curl -fL 'https://cdn.jsdelivr.net/npm/@iconify-json/mingcute@1.2.8/info.json' \
-  -o assets/mingcute/info.json
-curl -fL 'https://raw.githubusercontent.com/mingcute-design/mingcute-icons/ca98bb55513a22ff0dab713aaf7870b512944653/LICENSE' \
-  -o assets/mingcute/LICENSE
-
-go run github.com/Cyenoch/mygoicons/cmd/iconify@v0.1.0 \
-  -input assets/mingcute/icons.json \
-  -out internal/mingcute/icons_gen.go \
-  -package mingcute \
-  -icons search-line,home-1-line
+go install github.com/Cyenoch/mygoicons/cmd/iconify@v0.2.0
+iconify add mingcute
 ```
+
+This creates `internal/mingcute` with generated Go, source JSON, a pinned source record and full license notices. No curl, npm, directory setup or extra flags are needed. Only the first import downloads data; subsequent runs reuse the saved version and selection offline.
+
+For a reproducible two-icon subset:
+
+```sh
+iconify add mingcute@1.2.8 -icons search-line,home-1-line
+```
+
+Without installing the CLI: `go run github.com/Cyenoch/mygoicons/cmd/iconify@v0.2.0 add mingcute`.
 
 Import your own module path and use the generated functions:
 
@@ -110,11 +107,11 @@ ui.Icon(c, mingcute.SearchLine()).Size(24, 24).Label("Search")
 ui.Icon(c, mingcute.Home1Line()).Size(24, 24).Label("Home")
 ```
 
-Replace `example.com/yourapp` with your module name. Omit `-icons` for the full set; MingCute 1.2.8 was verified with v0.1.0 to generate 3,364 accessors. Add `-check` to the same command to verify committed output. Browse original names at [Iconify's MingCute directory](https://icon-sets.iconify.design/mingcute/); `-line` and `-fill` are part of those IDs.
+Replace `example.com/yourapp` with your module name. Use `iconify add mingcute -check` for an offline check. To update, specify the new version explicitly. `-out path` changes the package directory; names with hyphens use a Go package name with the hyphens removed. Browse original IDs at [Iconify's MingCute directory](https://icon-sets.iconify.design/mingcute/); `-line` and `-fill` are part of those IDs. MingCute 1.2.8 generates 3,364 accessors.
 
-The downloaded `icons.json` SHA-256 is `062cd8a1d3bf1f60173784352c0b679a2b747945230aa8dac4d59f66f0787ed7`, checked against the npm SHA-512-verified archive. Keep the JSON and generated Go file in your repository for offline regeneration and builds. The generated package imports only MyGo and the standard library; your application does not need mygoicons as a dependency. A one-time generator invocation still downloads the generator module.
+The command verifies npm SHA-512 integrity and archive limits, preserves existing accessors, and stages the whole package before replacement. It refuses to overwrite user files or silently accept changed licenses. Commit the entire generated directory; builds require only MyGo and the standard library, with no runtime downloads or mygoicons dependency.
 
-MingCute metadata identifies MingCute Design and Apache-2.0. Preserve its full license, applicable attribution and any upstream notices when distributing artwork, and identify modifications. The license URL above pins the retained notice snapshot, not an independently verified exact artwork commit. If you already use npm, `npm install --save-dev --save-exact @iconify-json/mingcute@1.2.8` provides the same local input at `node_modules/@iconify-json/mingcute/icons.json`; commit the npm lockfile and retain artwork notices separately. Node.js is optional for acquiring the input and is never required by the Go generator or application build.
+MingCute artwork is by MingCute Design under Apache-2.0. Retain its generated `LICENSE`, applicable attribution and any `NOTICE`, and identify modifications. Automatic license retention currently supports GitHub file URLs; other license locations report an error and can use the local `-input` workflow. Notice snapshots are pinned independently of the artwork revision. Node.js is never required.
 
 For programmatic use:
 

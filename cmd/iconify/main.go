@@ -1,4 +1,4 @@
-// Command iconify generates a MyGo package from a local Iconify JSON collection.
+// Command iconify imports Iconify collections or generates from local JSON.
 package main
 
 import (
@@ -13,6 +13,7 @@ import (
 	"strings"
 
 	"github.com/Cyenoch/mygoicons/generate"
+	"github.com/Cyenoch/mygoicons/internal/maint"
 )
 
 func main() {
@@ -23,8 +24,15 @@ func main() {
 }
 
 func run(args []string, stdout, stderr io.Writer) error {
+	if len(args) > 0 && args[0] == "add" {
+		return add(args[1:], stdout, stderr, maint.New("."))
+	}
 	flags := flag.NewFlagSet("iconify", flag.ContinueOnError)
 	flags.SetOutput(stderr)
+	flags.Usage = func() {
+		fmt.Fprintln(stderr, "Usage: iconify add <collection>[@version] [-icons id,id]\n       iconify -input icons.json -out icons_gen.go -package name")
+		flags.PrintDefaults()
+	}
 	input := flags.String("input", "", "local Iconify icons.json (required)")
 	output := flags.String("out", "", "generated Go file (required)")
 	pkg := flags.String("package", "", "Go package name (required)")

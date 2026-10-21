@@ -8,7 +8,6 @@ import (
 	"context"
 	"crypto/sha1"
 	"crypto/sha256"
-	"crypto/sha512"
 	"encoding/base64"
 	"encoding/json"
 	"errors"
@@ -89,6 +88,9 @@ func New(root string) *Updater {
 		return nil
 	}}}
 }
+
+var errNotFound = errors.New("upstream file not found")
+
 func (u *Updater) get(ctx context.Context, address string, limit int64) ([]byte, error) {
 	req, err := http.NewRequestWithContext(ctx, "GET", address, nil)
 	if err != nil {
@@ -100,6 +102,9 @@ func (u *Updater) get(ctx context.Context, address string, limit int64) ([]byte,
 		return nil, err
 	}
 	defer resp.Body.Close()
+	if resp.StatusCode == http.StatusNotFound {
+		return nil, fmt.Errorf("GET %s: %w", address, errNotFound)
+	}
 	if resp.StatusCode != http.StatusOK {
 		return nil, fmt.Errorf("GET %s: %s", address, resp.Status)
 	}
@@ -237,67 +242,16 @@ func (u *Updater) Plan(ctx context.Context, versions map[string]string, acceptLi
 			continue
 		}
 		old := *c
-		c.RegistryMetadataURL = u.Registry + "/" + url.PathEscape(c.Package) + "/" + v
-		metadata, err := u.get(ctx, c.RegistryMetadataURL, maxMetadata)
+		fetched, files, err := u.Fetch(ctx, c.Prefix, v)
 		if err != nil {
 			return nil, report.String(), err
 		}
-		var m struct {
-			Name, Version, GitHead string
-			Dist                   struct{ Tarball, Integrity string }
-		}
-		if err = json.Unmarshal(metadata, &m); err != nil {
+		fetched.License.Notices = slices.Clone(old.License.Notices)
+		fetched.License.NoticeCorrespondence = old.License.NoticeCorrespondence
+		*c = fetched
+		var data struct{ Icons, Aliases map[string]json.RawMessage }
+		if err := json.Unmarshal(files["icons.json"], &data); err != nil {
 			return nil, report.String(), err
-		}
-		if m.Name != c.Package || m.Version != v {
-			return nil, report.String(), errors.New("npm metadata identity mismatch")
-		}
-		address, err := url.Parse(m.Dist.Tarball)
-		if err != nil {
-			return nil, report.String(), err
-		}
-		registry, _ := url.Parse(u.Registry)
-		if address.Host != registry.Host || address.Scheme != registry.Scheme || address.User != nil {
-			return nil, report.String(), errors.New("tarball must use registry origin")
-		}
-		archive, err := u.get(ctx, m.Dist.Tarball, maxDownload)
-		if err != nil {
-			return nil, report.String(), err
-		}
-		expected, err := base64.StdEncoding.DecodeString(strings.TrimPrefix(m.Dist.Integrity, "sha512-"))
-		actual := sha512.Sum512(archive)
-		if err != nil || !strings.HasPrefix(m.Dist.Integrity, "sha512-") || !bytes.Equal(expected, actual[:]) {
-			return nil, report.String(), errors.New("npm SHA-512 integrity mismatch")
-		}
-		files, err := unpack(archive)
-		if err != nil {
-			return nil, report.String(), err
-		}
-		var pkg struct{ Name, Version string }
-		if err = json.Unmarshal(files["package.json"], &pkg); err != nil {
-			return nil, report.String(), err
-		}
-		if pkg.Name != m.Name || pkg.Version != m.Version {
-			return nil, report.String(), errors.New("archive package identity mismatch")
-		}
-		var info struct {
-			License json.RawMessage `json:"license"`
-		}
-		if err = json.Unmarshal(files["info.json"], &info); err != nil {
-			return nil, report.String(), err
-		}
-		if len(info.License) == 0 || bytes.Equal(info.License, []byte("null")) {
-			return nil, report.String(), errors.New("missing artwork license metadata")
-		}
-		var data struct {
-			Prefix         string
-			Icons, Aliases map[string]json.RawMessage
-		}
-		if err = json.Unmarshal(files["icons.json"], &data); err != nil {
-			return nil, report.String(), err
-		}
-		if data.Prefix != c.Prefix {
-			return nil, report.String(), errors.New("collection prefix mismatch")
 		}
 		manifestPath := filepath.Join("sources", c.Prefix, "exports.json")
 		manifest, err := os.ReadFile(filepath.Join(u.Root, manifestPath))
@@ -312,18 +266,9 @@ func (u *Updater) Plan(ctx context.Context, versions map[string]string, acceptLi
 		if err != nil {
 			return nil, report.String(), err
 		}
-		c.Version = v
-		c.Integrity = m.Dist.Integrity
-		c.IntegrityVerified = true
-		c.TarballURL = m.Dist.Tarball
-		c.PackageGitHead = m.GitHead
-		c.Files = map[string]Digest{}
 		for name, raw := range files {
-			c.Files[name] = Digest{SHA256: digest(raw), Bytes: len(raw), ArchivePath: "package/" + name}
 			changes[filepath.Join("sources", c.Prefix, name)] = raw
 		}
-		c.Counts.Icons = len(data.Icons)
-		c.Counts.Aliases = len(data.Aliases)
 		changes[manifestPath] = marshal(result.Exports)
 		changes[filepath.Join(c.Prefix, "icons_gen.go")] = result.Source
 		fmt.Fprintf(&report, "\n%s %s → %s\n", c.Prefix, old.Version, v)
@@ -345,8 +290,7 @@ func (u *Updater) Plan(ctx context.Context, versions map[string]string, acceptLi
 			newNames = append(newNames, e.Name)
 		}
 		summarize(&report, "exports", oldNames, newNames)
-		licenseChanged := !jsonEqual(old.License.Metadata, info.License)
-		c.License.Metadata = info.License
+		licenseChanged := !jsonEqual(old.License.Metadata, c.License.Metadata)
 		// The npm data does not identify an exact upstream artwork revision. Fetch
 		// complete notices from an immutable commit without asserting correspondence.
 		repo := "lucide-icons/lucide"
@@ -401,7 +345,7 @@ func (u *Updater) Plan(ctx context.Context, versions map[string]string, acceptLi
 			n.Bytes = len(raw)
 			changes[filepath.Join("sources", c.Prefix, n.File)] = raw
 		}
-		fmt.Fprintf(&report, "license metadata: %s → %s; notice correspondence remains unverified\n", bytes.TrimSpace(old.License.Metadata), bytes.TrimSpace(info.License))
+		fmt.Fprintf(&report, "license metadata: %s → %s; notice correspondence remains unverified\n", bytes.TrimSpace(old.License.Metadata), bytes.TrimSpace(c.License.Metadata))
 		if licenseChanged && !acceptLicense {
 			return nil, report.String(), errors.New("license/notice changes require review; rerun with -accept-license after reviewing upstream files")
 		}

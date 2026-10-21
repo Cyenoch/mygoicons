@@ -20,7 +20,8 @@ func main() {
 	}
 }
 func run() error {
-	version := flag.String("version", "v0.1.0", "published tag or full commit")
+	version := flag.String("version", "v0.2.0", "published tag or full commit")
+	addCollection := flag.Bool("add", false, "also verify one-command MingCute import and offline check")
 	flag.Parse()
 	if !regexp.MustCompile(`^(v[0-9]+\.[0-9]+\.[0-9]+|[0-9a-f]{40})$`).MatchString(*version) {
 		return fmt.Errorf("use a fixed release or full commit")
@@ -106,6 +107,32 @@ func run() error {
 	}
 	if _, err = command("build", "-trimpath", "-o", filepath.Join(dir, "subset-app"), "."); err != nil {
 		return err
+	}
+	if *addCollection {
+		if _, err = command("run", "github.com/Cyenoch/mygoicons/cmd/iconify@"+*version, "add", "mingcute@1.2.8", "-icons", "search-line,home-1-line"); err != nil {
+			return err
+		}
+		if _, err = command("run", "github.com/Cyenoch/mygoicons/cmd/iconify@"+*version, "add", "mingcute", "-check"); err != nil {
+			return err
+		}
+		source := strings.Replace(nativeMain("example.com/iconconsumer/internal/mingcute", "mingcute"), "mingcute.Search()", "mingcute.SearchLine()", 1)
+		if err = write("main.go", source); err != nil {
+			return err
+		}
+		if _, err = command("mod", "tidy"); err != nil {
+			return err
+		}
+		if _, err = command("build", "-trimpath", "-o", filepath.Join(dir, "imported-app"), "."); err != nil {
+			return err
+		}
+		mods, err = command("list", "-m", "all")
+		if err != nil {
+			return err
+		}
+		if bytes.Contains(mods, []byte("github.com/Cyenoch/mygoicons")) {
+			return fmt.Errorf("imported package retains generator dependency")
+		}
+		fmt.Println("One-command MingCute import, saved-selection offline check and standalone native build passed.")
 	}
 	zip, err := os.Stat(mod.Zip)
 	if err != nil {

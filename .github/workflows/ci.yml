@@ -57,7 +57,7 @@ jobs:
           git diff --exit-code -- go.mod go.sum
       - name: Check Go formatting
         if: runner.os == 'Linux'
-        run: test -z "$(gofmt -l .)"
+        run: test -z "$(gofmt -l cmd examples generate internal ./*.go)"
       - name: Test for data races
         if: runner.os == 'Linux'
         env:

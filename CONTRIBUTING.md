@@ -19,6 +19,14 @@ Tests cover full regeneration and raw-source hashes, the pinned official Iconify
 
 Run the native browser with `go run ./examples/native`. Its event-based capture mode, `go run ./examples/native -capture preview.png`, exercises a real native window; CI runs that on macOS. Headless interaction tests exercise the same public MyGo view. The browser supports desktop windows of at least 960 × 720 logical pixels.
 
+## Import a collection into an application
+
+Install `go install github.com/Cyenoch/mygoicons/cmd/iconify@v0.2.0`, then run `iconify add mingcute` from the application module. Add `@1.2.8` to pin the first import, or `-icons search-line,home-1-line` for a subset. The command saves the exact version and selection in `internal/mingcute/source.json`, raw input under `source/`, full applicable license notices, and generated Go. Commit the complete directory. Later `iconify add mingcute` and `iconify add mingcute -check` reuse saved data offline; updating requires an explicit new version.
+
+Imports reuse the updater's bounded npm download, SHA-512 verification and archive validation. Automatic notice retrieval supports GitHub file license URLs and records immutable commit identities and file digests. Other license locations require the existing local `-input` workflow. License changes require review and a new output directory. User files, symlinks and unrecognized directories are protected from replacement. `.gitattributes` inside each package preserves the upstream bytes on Windows.
+
+The package is generated in a temporary sibling directory before replacement. A failed final rename restores the previous directory. Process interruption between renames leaves `<directory>.iconify-backup`; restore that directory before retrying. Do not run concurrent writers against the same import directory. Existing local JSON generation and `-check` remain network-free.
+
 ## Update collections
 
 ```sh
@@ -82,11 +90,11 @@ No-update runs skip Pango setup, full validation and PR operations. Changed upda
 ## Remote consumer and cost checks
 
 ```sh
-go run ./cmd/verify-consumer -version v0.1.0
+go run ./cmd/verify-consumer -version v0.2.0 -add
 go run ./cmd/measure -out measurements.json
 ```
 
-The consumer check uses an empty module cache, disables `go.work`, GOFLAGS and per-user Go configuration, uses the public proxy/checksum database, imports the published path and builds a native app. It runs the fixed generator twice (including `-check`), drops mygoicons from the consumer requirements, and builds a standalone subset that depends only on MyGo and the standard library. There is no local `replace`. A full pushed commit SHA can be checked before tagging. See [MEASUREMENTS.md](MEASUREMENTS.md) for separate download, compile, binary and runtime costs.
+The consumer check uses an empty module cache, disables `go.work`, GOFLAGS and per-user Go configuration, uses the public proxy/checksum database, imports the published path and builds a native app. It runs the fixed generator twice (including `-check`), drops mygoicons from the consumer requirements, and builds a standalone subset that depends only on MyGo and the standard library. With `-add`, it also imports MingCute, checks the remembered selection offline and builds the imported package without a generator dependency. There is no local `replace`. A full pushed commit SHA can be checked before tagging. See [MEASUREMENTS.md](MEASUREMENTS.md) for separate download, compile, binary and runtime costs.
 
 ## Release
 
@@ -102,6 +110,6 @@ The consumer check uses an empty module cache, disables `go.work`, GOFLAGS and p
      --notes-file release-notes.md
    ```
 
-5. Wait for tag CI too. Run `go run ./cmd/verify-consumer -version v0.1.0` from the checked checkout; it downloads the remote tag into its own clean module/cache and verifies installation and pinned-generator use. Record release validation and any real limitations. Keep the workspace clean.
+5. Wait for tag CI too. Run `go run ./cmd/verify-consumer -version v0.2.0 -add` from the checked checkout; it downloads the remote tag into its own clean module/cache and verifies installation and pinned-generator use. Record release validation and any real limitations. Keep the workspace clean.
 
 Release notes name the actual npm data versions, Go/MyGo support, API additions and artwork licenses. Do not claim a verified artwork revision when only the npm package and notice snapshots are pinned.
