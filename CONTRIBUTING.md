@@ -66,7 +66,7 @@ Project code stays MIT. Lucide retains ISC plus Feather MIT terms; Twemoji graph
 
 ## Automated update PRs
 
-`Update icons` runs weekly and supports manual dispatch with optional exact versions. Only trusted default-branch code runs with write permissions. It generates, vets, tests and builds WASM before committing. One `automation/icon-collections` branch and PR is reused; an identical tree produces no commit. Existing branch history is preserved without force pushes. No updates produce no empty PR. It neither merges nor publishes updates. License changes and incompatible exports stop the workflow for review.
+`Update icons` runs weekly and supports manual dispatch with optional exact versions. Only trusted default-branch code runs with write permissions. It generates, vets, tests and builds WASM before committing. One `automation/icon-collections` branch and PR is reused; an identical tree produces no commit. Existing branch history is preserved without force pushes. Release identities (collection version and npm integrity) deduplicate the same batch even when retrieval dates differ; failed PR creation is retried without an extra commit. No updates produce no empty PR. It neither merges nor publishes updates. License changes and incompatible exports stop the workflow for review.
 
 The repository allows Actions to create PRs. If that setting is disabled, a maintainer can enable it with:
 
@@ -77,7 +77,7 @@ gh api -X PUT repos/Cyenoch/mygoicons/actions/permissions/workflow \
 
 The update job needs `contents: write` and `pull-requests: write`. It also uses `actions: write` solely to dispatch read-only CI on the update branch, because pushes made with `GITHUB_TOKEN` do not trigger new CI runs. Other jobs use read-only repository permissions. Checkout credentials are not persisted; only the final PR step enables authenticated Git operations. The update job accepts only default-branch triggers and does not restore executable build caches. Actions are pinned to immutable commits; GitHub Dependabot groups weekly pin updates into reviewable PRs. No third-party service or extra secret is required. Review the PR and its explicitly dispatched CI before merging it.
 
-No-update runs skip Pango setup, full validation and PR operations. Changed updates still pass every pre-commit gate. CI runs on main pushes, version tags, PRs and explicit dispatch, avoiding duplicate branch-push/PR runs. It keeps all supported platforms, latest-stable MyGo, race and WASM coverage. Pango installation is conditional on its absence, and module metadata is checked without raising the minimum MyGo version. Tests shuffle their order to reveal shared state.
+No-update runs skip Pango setup, full validation and PR operations. Changed updates still pass every pre-commit gate. CI runs on main pushes, version tags, PRs and explicit dispatch, avoiding duplicate branch-push/PR runs. It keeps all supported platforms, latest-stable MyGo, race and WASM coverage. Pango installation is conditional on its absence, and module metadata is checked without raising the minimum MyGo version. Tests shuffle their order to reveal shared state. Linux also runs `python3 .github/scripts/test_update_pr.py`: a temporary local Git remote and a fake GitHub CLI exercise the actual workflow script's PR-failure recovery, cross-date deduplication and preserved branch history without external access.
 
 ## Remote consumer and cost checks
 
