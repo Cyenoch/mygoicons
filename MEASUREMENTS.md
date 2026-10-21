@@ -16,6 +16,7 @@ go run ./cmd/verify-consumer -version v0.1.0
 | Lucide generated Go source | 1,124,575 bytes |
 | Twemoji generated Go source | 12,281,508 bytes |
 | Source JSON, manifests and retained notices (`sources/`) | 11,964,440 bytes |
+| Published v0.1.0 compressed Go module zip | 4,321,390 bytes |
 | Generated one-icon Lucide subset | 926 bytes |
 | Full Lucide, cold build, one referenced icon | 3.331 s |
 | One-icon subset, cold build | 2.927 s |

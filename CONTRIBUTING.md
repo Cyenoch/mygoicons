@@ -75,7 +75,9 @@ gh api -X PUT repos/Cyenoch/mygoicons/actions/permissions/workflow \
   -F default_workflow_permissions=read -F can_approve_pull_request_reviews=true
 ```
 
-The update job needs `contents: write` and `pull-requests: write`. It also uses `actions: write` solely to dispatch read-only CI on the update branch, because pushes made with `GITHUB_TOKEN` do not trigger new CI runs. Other jobs use read-only repository permissions. No third-party service or extra secret is required. Review the PR and its explicitly dispatched CI before merging it.
+The update job needs `contents: write` and `pull-requests: write`. It also uses `actions: write` solely to dispatch read-only CI on the update branch, because pushes made with `GITHUB_TOKEN` do not trigger new CI runs. Other jobs use read-only repository permissions. Checkout credentials are not persisted; only the final PR step enables authenticated Git operations. The update job accepts only default-branch triggers and does not restore executable build caches. Actions are pinned to immutable commits; GitHub Dependabot groups weekly pin updates into reviewable PRs. No third-party service or extra secret is required. Review the PR and its explicitly dispatched CI before merging it.
+
+No-update runs skip Pango setup, full validation and PR operations. Changed updates still pass every pre-commit gate. CI runs on main pushes, version tags, PRs and explicit dispatch, avoiding duplicate branch-push/PR runs. It keeps all supported platforms, latest-stable MyGo, race and WASM coverage. Pango installation is conditional on its absence, and module metadata is checked without raising the minimum MyGo version. Tests shuffle their order to reveal shared state.
 
 ## Remote consumer and cost checks
 

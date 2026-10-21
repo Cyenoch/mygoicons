@@ -2,6 +2,8 @@ name: CI
 
 on:
   push:
+    branches: [main]
+    tags: ['v*']
   pull_request:
   workflow_dispatch:
 
@@ -21,34 +23,43 @@ jobs:
     runs-on: ${{ matrix.os }}
     timeout-minutes: 15
     env:
-      CGO_ENABLED: "0"
+      CGO_ENABLED: '0'
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-go@v6
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
         with:
           go-version-file: go.mod
-      - name: Install Pango
+      - name: Install Pango if missing
         if: runner.os == 'Linux'
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends libpangocairo-1.0-0
+          if ! dpkg-query -W libpangocairo-1.0-0 > /dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y --no-install-recommends libpangocairo-1.0-0
+          fi
       - run: go mod download
       - run: go vet ./...
-      - run: go test ./...
+      - run: go test -shuffle=on ./...
       - run: go generate ./
       - name: Check generated collections
         run: >-
           git diff --exit-code -- sources lucide twemoji
           examples/native/catalog_gen.go
       - run: go run ./cmd/catalog -check
+      - name: Check module metadata
+        if: runner.os == 'Linux'
+        run: |
+          go mod tidy
+          git diff --exit-code -- go.mod go.sum
       - name: Check Go formatting
         if: runner.os == 'Linux'
         run: test -z "$(gofmt -l .)"
       - name: Test for data races
         if: runner.os == 'Linux'
         env:
-          CGO_ENABLED: "1"
-        run: go test -race ./...
+          CGO_ENABLED: '1'
+        run: go test -race -shuffle=on ./...
       - name: Build for browsers
         if: runner.os == 'Linux'
         env:
@@ -65,13 +76,18 @@ jobs:
     env:
       CGO_ENABLED: '0'
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-go@v6
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
         with:
           go-version-file: go.mod
-      - run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends libpangocairo-1.0-0
+      - name: Install Pango if missing
+        run: |
+          if ! dpkg-query -W libpangocairo-1.0-0 > /dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y --no-install-recommends libpangocairo-1.0-0
+          fi
       - name: Test latest stable MyGo in a disposable copy
         run: |
           cp -R . "$RUNNER_TEMP/latest-mygo"
@@ -79,7 +95,7 @@ jobs:
           go get github.com/egoist/mygo@latest
           go list -m github.com/egoist/mygo
           go vet ./...
-          go test ./...
+          go test -shuffle=on ./...
           GOOS=js GOARCH=wasm go build ./...
 
   consumer:
@@ -87,8 +103,10 @@ jobs:
     timeout-minutes: 20
     if: github.event_name == 'push'
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-go@v6
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
         with:
           go-version-file: go.mod
       - name: Verify public module and pinned generator from another module

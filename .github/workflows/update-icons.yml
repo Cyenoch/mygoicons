@@ -21,7 +21,9 @@ concurrency:
 
 jobs:
   update:
-    if: github.repository == 'Cyenoch/mygoicons'
+    if: >-
+      github.repository == 'Cyenoch/mygoicons' &&
+      github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
@@ -29,16 +31,16 @@ jobs:
       pull-requests: write
       actions: write
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           ref: main
           fetch-depth: 0
-      - uses: actions/setup-go@v6
+          persist-credentials: false
+      - uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6
         with:
           go-version-file: go.mod
-      - run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends libpangocairo-1.0-0
+          # A write-enabled job does not restore executable build caches.
+          cache: false
       - name: Verify and update pinned collections
         env:
           LUCIDE_VERSION: ${{ inputs.lucide }}
@@ -47,16 +49,33 @@ jobs:
           go run ./cmd/update-icons
           -lucide "$LUCIDE_VERSION" -twemoji "$TWEMOJI_VERSION"
           -summary "$RUNNER_TEMP/icon-summary.txt"
+      - name: Detect data changes
+        id: changes
+        run: |
+          if git diff --quiet; then
+            echo 'changed=false' >> "$GITHUB_OUTPUT"
+          else
+            echo 'changed=true' >> "$GITHUB_OUTPUT"
+          fi
+      - name: Install Pango if missing
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          if ! dpkg-query -W libpangocairo-1.0-0 > /dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y --no-install-recommends libpangocairo-1.0-0
+          fi
       - name: Verify generated output and tests
+        if: steps.changes.outputs.changed == 'true'
         env:
           CGO_ENABLED: '0'
         run: |
           go generate ./
           go run ./cmd/catalog -check
           go vet ./...
-          go test ./...
+          go test -shuffle=on ./...
           GOOS=js GOARCH=wasm go build ./...
       - name: Create or update review PR
+        if: steps.changes.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -78,6 +97,7 @@ jobs:
             # Preserve existing branch history without force pushes.
             git reset --soft FETCH_HEAD
           fi
+          gh auth setup-git
           git config user.name 'github-actions[bot]'
           email='41898282+github-actions[bot]@users.noreply.github.com'
           git config user.email "$email"
