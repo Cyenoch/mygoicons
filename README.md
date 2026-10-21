@@ -78,6 +78,44 @@ Generated packages import only MyGo and the standard library. Commit the output 
 
 The CLI validates input before writing, refuses to overwrite handwritten files, and replaces generated output through a temporary file. Existing generated accessors are checked automatically. Naming policy changes retain forwarding aliases; a removed ID is compatible automatically only when a unique replacement has identical normalized artwork. Missing replacements and identity conflicts fail without writing. `-manifest sources/lucide/exports.json` adds an independently committed compatibility baseline; programmatic callers supply `Options.Previous` and retain `Result.Exports`. To deliberately shrink a custom subset, generate to a new output file and review the API change. It reads local JSON only; it does not download collections or ingest raw SVG directories. Pin the generator to a version or commit for reproducible `go:generate` directives.
 
+### Import another collection: MingCute
+
+Only Lucide and Twemoji ship as importable collection packages. For MingCute or another Iconify collection, generate a package inside your application. No change to mygoicons is needed.
+
+From your application's Go module, download the pinned data and retained license, then generate the icons you need:
+
+```sh
+mkdir -p assets/mingcute
+curl -fL 'https://cdn.jsdelivr.net/npm/@iconify-json/mingcute@1.2.8/icons.json' \
+  -o assets/mingcute/icons.json
+curl -fL 'https://cdn.jsdelivr.net/npm/@iconify-json/mingcute@1.2.8/info.json' \
+  -o assets/mingcute/info.json
+curl -fL 'https://raw.githubusercontent.com/mingcute-design/mingcute-icons/ca98bb55513a22ff0dab713aaf7870b512944653/LICENSE' \
+  -o assets/mingcute/LICENSE
+
+go run github.com/Cyenoch/mygoicons/cmd/iconify@v0.1.0 \
+  -input assets/mingcute/icons.json \
+  -out internal/mingcute/icons_gen.go \
+  -package mingcute \
+  -icons search-line,home-1-line
+```
+
+Import your own module path and use the generated functions:
+
+```go
+import "example.com/yourapp/internal/mingcute"
+
+// Inside a MyGo view:
+ui.Icon(c, mingcute.SearchLine()).Size(24, 24).Label("Search")
+ui.Icon(c, mingcute.Home1Line()).Size(24, 24).Label("Home")
+```
+
+Replace `example.com/yourapp` with your module name. Omit `-icons` for the full set; MingCute 1.2.8 was verified with v0.1.0 to generate 3,364 accessors. Add `-check` to the same command to verify committed output. Browse original names at [Iconify's MingCute directory](https://icon-sets.iconify.design/mingcute/); `-line` and `-fill` are part of those IDs.
+
+The downloaded `icons.json` SHA-256 is `062cd8a1d3bf1f60173784352c0b679a2b747945230aa8dac4d59f66f0787ed7`, checked against the npm SHA-512-verified archive. Keep the JSON and generated Go file in your repository for offline regeneration and builds. The generated package imports only MyGo and the standard library; your application does not need mygoicons as a dependency. A one-time generator invocation still downloads the generator module.
+
+MingCute metadata identifies MingCute Design and Apache-2.0. Preserve its full license, applicable attribution and any upstream notices when distributing artwork, and identify modifications. The license URL above pins the retained notice snapshot, not an independently verified exact artwork commit. If you already use npm, `npm install --save-dev --save-exact @iconify-json/mingcute@1.2.8` provides the same local input at `node_modules/@iconify-json/mingcute/icons.json`; commit the npm lockfile and retain artwork notices separately. Node.js is optional for acquiring the input and is never required by the Go generator or application build.
+
 For programmatic use:
 
 ```go

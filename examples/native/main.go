@@ -56,7 +56,7 @@ func (b *browser) copy(c *ui.Context, text, description string) {
 	b.status = "Copied " + description
 	c.Announce(b.status)
 }
-func (b *browser) selectedIDs() string {
+func (b *browser) selectedIDs() []string {
 	var ids []string
 	prefix := collections[b.set].Prefix + ":"
 	for key := range b.chosen {
@@ -65,14 +65,34 @@ func (b *browser) selectedIDs() string {
 		}
 	}
 	slices.Sort(ids)
-	return strings.Join(ids, ",")
+	return ids
 }
 func usage(set string, e entry, size int) string {
 	widget := "Icon"
 	if set == "twemoji" {
 		widget = "Image"
 	}
-	return fmt.Sprintf("package main\n\nimport (\n    \"log\"\n    \"github.com/egoist/mygo\"\n    \"github.com/egoist/mygo/ui\"\n    \"github.com/Cyenoch/mygoicons/%s\"\n)\n\nfunc main() {\n    mygo.App.WhenReady(func() {\n        w := mygo.NewWindow(mygo.WindowOptions{Title: \"Icon\", Width: 320, Height: 240,\n            Content: ui.View(func(c *ui.Context) {\n                ui.%s(c, %s.%s()).Size(%d, %d).Label(%q)\n            }),\n        })\n        w.Show()\n    })\n    if err := mygo.App.Run(); err != nil { log.Fatal(err) }\n}\n", set, widget, set, e.Name, size, size, e.ID)
+	return fmt.Sprintf(`package main
+
+import (
+    "log"
+    "github.com/egoist/mygo"
+    "github.com/egoist/mygo/ui"
+    "github.com/Cyenoch/mygoicons/%s"
+)
+
+func main() {
+    mygo.App.WhenReady(func() {
+        w := mygo.NewWindow(mygo.WindowOptions{Title: "Icon", Width: 320, Height: 240,
+            Content: ui.View(func(c *ui.Context) {
+                ui.%s(c, %s.%s()).Size(%d, %d).Label(%q)
+            }),
+        })
+        w.Show()
+    })
+    if err := mygo.App.Run(); err != nil { log.Fatal(err) }
+}
+`, set, widget, set, e.Name, size, size, e.ID)
 }
 func showIcon(c *ui.Context, set string, e entry, size float32) {
 	if set == "twemoji" {
@@ -100,17 +120,17 @@ func (b *browser) view(c *ui.Context) {
 			ui.Spacer(c)
 			ui.Button(c, "Copy -icons list").OnClick(func() {
 				ids := b.selectedIDs()
-				if ids == "" {
+				if len(ids) == 0 {
 					b.status = "Select icons with the checkboxes first"
 					return
 				}
-				b.copy(c, ids, "selected Iconify IDs")
+				b.copy(c, strings.Join(ids, ","), "selected Iconify IDs")
 			})
 		})
 		ui.Text(c, fmt.Sprintf("%s %s · %s", set.Prefix, set.Version, set.License)).FontSize(14)
 		ui.Row(c).Gap(12).AlignItems(ui.Center).Children(func() {
 			ui.TextInput(c, &b.query).Label("Search icons").Placeholder("Go function or Iconify ID").Width(360).AutoFocus()
-			ui.Text(c, fmt.Sprintf("%d results · %d selected", len(b.results), len(strings.FieldsFunc(b.selectedIDs(), func(r rune) bool { return r == ',' })))).FontSize(14)
+			ui.Text(c, fmt.Sprintf("%d results · %d selected", len(b.results), len(b.selectedIDs()))).FontSize(14)
 			ui.Button(c, "Clear selection").OnClick(func() { b.chosen = map[string]bool{}; b.status = "Selection cleared" })
 		})
 		// 24px outer margins, a flexible list, a 12px gutter and 360px detail pane.
