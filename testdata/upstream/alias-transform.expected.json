@@ -1,0 +1,249 @@
+{
+  "schemaVersion": 1,
+  "results": [
+    {
+      "id": "collection-and-implicit-defaults",
+      "resolved": {
+        "left": 5,
+        "top": -3,
+        "width": 30.5,
+        "body": "<path fill=\"none\" stroke=\"currentColor\" d=\"M0 0h4\"/>"
+      },
+      "svg": {
+        "attributes": {
+          "width": "1.91em",
+          "height": "1em",
+          "viewBox": "5 -3 30.5 16"
+        },
+        "viewBox": [
+          5,
+          -3,
+          30.5,
+          16
+        ],
+        "body": "<path fill=\"none\" stroke=\"currentColor\" d=\"M0 0h4\"/>"
+      }
+    },
+    {
+      "id": "fractional-nonsquare-origin",
+      "resolved": {
+        "hFlip": true,
+        "rotate": 1,
+        "left": 1.5,
+        "top": -2.25,
+        "width": 20.5,
+        "height": 10.25,
+        "body": "<path fill=\"currentColor\" d=\"M1 2h8v3H1z\"/>"
+      },
+      "svg": {
+        "attributes": {
+          "width": "0.5em",
+          "height": "1em",
+          "viewBox": "0 0 10.25 20.5"
+        },
+        "viewBox": [
+          0,
+          0,
+          10.25,
+          20.5
+        ],
+        "body": "<g transform=\"rotate(90 5.125 5.125) translate(22 2.25) scale(-1 1)\"><path fill=\"currentColor\" d=\"M1 2h8v3H1z\"/></g>"
+      }
+    },
+    {
+      "id": "explicit-zero-and-transform-cancellation",
+      "resolved": {
+        "left": 0,
+        "top": 0,
+        "width": 20.5,
+        "height": 10.25,
+        "body": "<path fill=\"currentColor\" d=\"M1 2h8v3H1z\"/>"
+      },
+      "svg": {
+        "attributes": {
+          "width": "2em",
+          "height": "1em",
+          "viewBox": "0 0 20.5 10.25"
+        },
+        "viewBox": [
+          0,
+          0,
+          20.5,
+          10.25
+        ],
+        "body": "<path fill=\"currentColor\" d=\"M1 2h8v3H1z\"/>"
+      }
+    },
+    {
+      "id": "alias-chain-and-negative-rotation",
+      "resolved": {
+        "hFlip": true,
+        "vFlip": true,
+        "rotate": 3,
+        "left": 0,
+        "top": 0,
+        "width": 31.25,
+        "height": 9.5,
+        "body": "<path fill=\"currentColor\" d=\"M1 2h8v3H1z\"/>"
+      },
+      "svg": {
+        "attributes": {
+          "width": "0.31em",
+          "height": "1em",
+          "viewBox": "0 0 9.5 31.25"
+        },
+        "viewBox": [
+          0,
+          0,
+          9.5,
+          31.25
+        ],
+        "body": "<g transform=\"rotate(90 4.75 4.75)\"><path fill=\"currentColor\" d=\"M1 2h8v3H1z\"/></g>"
+      }
+    },
+    {
+      "id": "alias-chain-flip-xor-and-rotation-addition",
+      "resolved": {
+        "left": 0,
+        "top": 0,
+        "width": 31.25,
+        "height": 9.5,
+        "body": "<path fill=\"currentColor\" d=\"M1 2h8v3H1z\"/>"
+      },
+      "svg": {
+        "attributes": {
+          "width": "3.29em",
+          "height": "1em",
+          "viewBox": "0 0 31.25 9.5"
+        },
+        "viewBox": [
+          0,
+          0,
+          31.25,
+          9.5
+        ],
+        "body": "<path fill=\"currentColor\" d=\"M1 2h8v3H1z\"/>"
+      }
+    },
+    {
+      "id": "dual-flip-becomes-half-turn",
+      "resolved": {
+        "hFlip": true,
+        "vFlip": true,
+        "rotate": 3,
+        "left": 1.5,
+        "top": -2.25,
+        "width": 20.5,
+        "height": 10.25,
+        "body": "<path fill=\"currentColor\" d=\"M1 2h8v3H1z\"/>"
+      },
+      "svg": {
+        "attributes": {
+          "width": "0.5em",
+          "height": "1em",
+          "viewBox": "-2.25 1.5 10.25 20.5"
+        },
+        "viewBox": [
+          -2.25,
+          1.5,
+          10.25,
+          20.5
+        ],
+        "body": "<g transform=\"rotate(90 2.875 2.875)\"><path fill=\"currentColor\" d=\"M1 2h8v3H1z\"/></g>"
+      }
+    },
+    {
+      "id": "negative-quarter-turn",
+      "resolved": {
+        "hFlip": true,
+        "rotate": -1,
+        "left": 1.5,
+        "top": -2.25,
+        "width": 20.5,
+        "height": 10.25,
+        "body": "<path fill=\"currentColor\" d=\"M1 2h8v3H1z\"/>"
+      },
+      "svg": {
+        "attributes": {
+          "width": "0.5em",
+          "height": "1em",
+          "viewBox": "0 0 10.25 20.5"
+        },
+        "viewBox": [
+          0,
+          0,
+          10.25,
+          20.5
+        ],
+        "body": "<g transform=\"rotate(-90 10.25 10.25) translate(22 2.25) scale(-1 1)\"><path fill=\"currentColor\" d=\"M1 2h8v3H1z\"/></g>"
+      }
+    },
+    {
+      "id": "definitions-stay-outside-transform",
+      "resolved": {
+        "hFlip": true,
+        "rotate": 1,
+        "left": 0,
+        "top": 0,
+        "width": 12.5,
+        "height": 7.25,
+        "body": "<defs><linearGradient id=\"paint\"><stop stop-color=\"#f00\"/><stop offset=\"1\" stop-color=\"#00f\"/></linearGradient></defs><rect x=\"1\" y=\"2\" width=\"6\" height=\"3\" fill=\"url(#paint)\"/>"
+      },
+      "svg": {
+        "attributes": {
+          "width": "0.58em",
+          "height": "1em",
+          "viewBox": "0 0 7.25 12.5"
+        },
+        "viewBox": [
+          0,
+          0,
+          7.25,
+          12.5
+        ],
+        "body": "<defs><linearGradient id=\"paint\"><stop stop-color=\"#f00\"/><stop offset=\"1\" stop-color=\"#00f\"/></linearGradient></defs><g transform=\"rotate(90 3.625 3.625) translate(12.5 0) scale(-1 1)\"><rect x=\"1\" y=\"2\" width=\"6\" height=\"3\" fill=\"url(#paint)\"/></g>"
+      }
+    },
+    {
+      "id": "customisations-are-a-second-transform-stage",
+      "resolved": {
+        "hFlip": true,
+        "rotate": 1,
+        "left": 1.5,
+        "top": -2.25,
+        "width": 20.5,
+        "height": 10.25,
+        "body": "<path fill=\"currentColor\" d=\"M1 2h8v3H1z\"/>"
+      },
+      "svg": {
+        "attributes": {
+          "width": "20.5",
+          "height": "10.25",
+          "viewBox": "0 0 20.5 10.25"
+        },
+        "viewBox": [
+          0,
+          0,
+          20.5,
+          10.25
+        ],
+        "body": "<g transform=\"rotate(-90 5.125 5.125)\"><g transform=\"rotate(90 5.125 5.125) translate(22 2.25) scale(-1 1)\"><path fill=\"currentColor\" d=\"M1 2h8v3H1z\"/></g></g>"
+      }
+    },
+    {
+      "id": "missing-icon",
+      "resolved": null,
+      "svg": null
+    },
+    {
+      "id": "missing-alias-parent",
+      "resolved": null,
+      "svg": null
+    },
+    {
+      "id": "circular-aliases",
+      "resolved": null,
+      "svg": null
+    }
+  ]
+}

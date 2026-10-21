@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-16",
+  "runtime": {
+    "name": "Node.js",
+    "version": "v24.22.0"
+  },
+  "package": {
+    "name": "@iconify/utils",
+    "version": "3.1.7",
+    "registryMetadataURL": "https://registry.npmjs.org/@iconify%2futils/3.1.7",
+    "tarballURL": "https://registry.npmjs.org/@iconify/utils/-/utils-3.1.7.tgz",
+    "integrity": "sha512-JZHlwdID+dy+lTgbYC8NEC4zeugqeYsc6jewvzb4c58kHauJn+X7rNwQjxz5p2qSjqaEeQoLkCIQ9v/H4PK0/w==",
+    "integrityVerified": true
+  },
+  "entrypoints": [
+    {
+      "path": "lib/icon-set/get-icon.js",
+      "sha256": "a7d7d02e0e4384ab9fd9d64a2687b4044881525f91d028ab90e8286db4175c9b"
+    },
+    {
+      "path": "lib/svg/build.js",
+      "sha256": "c7161aabbab6a20bd75958fd5e0823fb44a0b403d915253f0b1615f82fd5f825"
+    }
+  ],
+  "files": {
+    "alias-transform.input.json": {
+      "sha256": "9fbb933c130273a9afa5284feacc2b667a5da4251522b72319225e9244f5b6c1",
+      "bytes": 2882
+    },
+    "alias-transform.expected.json": {
+      "sha256": "9de36b1c264e3073c662aa6e3d93444820e84d3e5f9c471c501066ace927f209",
+      "bytes": 6310
+    },
+    "generate-oracle.mjs": {
+      "sha256": "55fc58662c836e413ba4dfbf637a9a2e5e9afc374a93ce755db0c5eb037b57eb",
+      "bytes": 1293
+    },
+    "LICENSE-iconify-utils.txt": {
+      "sha256": "a86793ac023162ce98b91899601c15f6712f44943163c4f92a0a4bf89152b3bf",
+      "bytes": 1083,
+      "archivePath": "package/license.txt"
+    }
+  },
+  "caseCount": 12,
+  "successfulCases": 9,
+  "unresolvedCases": 3,
+  "limitations": [
+    "Package tarball integrity was verified against npm metadata; publisher signatures and attestations were not verified.",
+    "No published npm-to-Git-source commit equivalence is asserted; the executed oracle is the verified published JavaScript.",
+    "This is a data/body/viewBox oracle, not a MyGo rendering or visual oracle."
+  ]
+}

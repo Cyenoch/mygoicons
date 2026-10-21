@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "retrievedAt": "2026-10-16",
+  "collections": [
+    {
+      "prefix": "lucide",
+      "package": "@iconify-json/lucide",
+      "version": "1.2.145",
+      "registryMetadataURL": "https://registry.npmjs.org/@iconify-json%2flucide/1.2.145",
+      "tarballURL": "https://registry.npmjs.org/@iconify-json/lucide/-/lucide-1.2.145.tgz",
+      "integrity": "sha512-eYBZipY6g4bbJNyKBAEq1wBy3mJ2jKtI4O2K30ArO2lMpVDOEuQfu5aDZhiimj1+Q/mIrn3ZxnDeX1BbILxkwQ==",
+      "integrityVerified": true,
+      "packageGitHead": "3bbeb4b2368d2f2b8281bb6d062433dd2c731129",
+      "files": {
+        "icons.json": {
+          "sha256": "f1561dacdad3fbe03bca231afec6ceb77cf1984cadc496c2f53176ddf3a627ea",
+          "bytes": 623856,
+          "archivePath": "package/icons.json"
+        },
+        "info.json": {
+          "sha256": "17e554ab1a11f697e01f7c3bc1411a58f61ed8d0504fbaec5c2b3b5a225fcb3a",
+          "bytes": 504,
+          "archivePath": "package/info.json"
+        },
+        "package.json": {
+          "sha256": "76d8fc07a66deaf791755fee406d36b4ada08d1887408ceca1e0a8b313634aba",
+          "bytes": 626,
+          "archivePath": "package/package.json"
+        }
+      },
+      "counts": {
+        "icons": 1966,
+        "aliases": 220
+      },
+      "license": {
+        "metadata": {
+          "title": "ISC",
+          "spdx": "ISC",
+          "url": "https://github.com/lucide-icons/lucide/blob/main/LICENSE"
+        },
+        "noticeCorrespondence": "Notice files are verified at the pinned upstream revision; their correspondence to the exact artwork revision behind this npm package has not been independently established.",
+        "notices": [
+          {
+            "file": "LICENSE",
+            "upstreamRepository": "https://github.com/lucide-icons/lucide",
+            "upstreamRevision": "7b0196e249ca09ca27c584c497aca9a8cab8a7f5",
+            "upstreamPath": "LICENSE",
+            "url": "https://raw.githubusercontent.com/lucide-icons/lucide/7b0196e249ca09ca27c584c497aca9a8cab8a7f5/LICENSE",
+            "sha256": "b495047bd93a9b06913511076f504daba17d5bbeb3e0650f3bb53a4220329c57",
+            "gitBlobSHA1": "718bb3f0e44153809972abed31839375804bf652",
+            "bytes": 3208
+          }
+        ]
+      }
+    },
+    {
+      "prefix": "twemoji",
+      "package": "@iconify-json/twemoji",
+      "version": "1.2.5",
+      "registryMetadataURL": "https://registry.npmjs.org/@iconify-json%2ftwemoji/1.2.5",
+      "tarballURL": "https://registry.npmjs.org/@iconify-json/twemoji/-/twemoji-1.2.5.tgz",
+      "integrity": "sha512-uKpuIEV0v6K5BW3Mjdyl+XKFVAbbcPxAgifKvEMtZoUZB5+YiY5zaMm2uNNCxyXzAWU9yNLlj41WU6/mvgALsw==",
+      "integrityVerified": true,
+      "packageGitHead": "c54a344ba22a7d15ed9bae8534aac1138152769e",
+      "files": {
+        "icons.json": {
+          "sha256": "5d5d820790565b764f2728675d487c9ee4c1fc83916d8567d5aca8ba7527c242",
+          "bytes": 10187099,
+          "archivePath": "package/icons.json"
+        },
+        "info.json": {
+          "sha256": "9a7a0a6533a8a43588a463bfa88282620e560eeb2c1f1980ce30ada153358642",
+          "bytes": 484,
+          "archivePath": "package/info.json"
+        },
+        "package.json": {
+          "sha256": "f8befdaa9ab60d0ca136c846053d385ad66bb1cd44d750908f1130c112c831ca",
+          "bytes": 769,
+          "archivePath": "package/package.json"
+        }
+      },
+      "counts": {
+        "icons": 4169,
+        "aliases": 559
+      },
+      "license": {
+        "metadata": {
+          "title": "CC BY 4.0",
+          "spdx": "CC-BY-4.0",
+          "url": "https://creativecommons.org/licenses/by/4.0/"
+        },
+        "noticeCorrespondence": "Notice files are verified at the pinned upstream revision; their correspondence to the exact artwork revision behind this npm package has not been independently established.",
+        "notices": [
+          {
+            "file": "LICENSE",
+            "upstreamRepository": "https://github.com/jdecked/twemoji",
+            "upstreamRevision": "b6b55fef1e8636b540a6d016a4729ca8cdf2e60b",
+            "upstreamPath": "LICENSE",
+            "url": "https://raw.githubusercontent.com/jdecked/twemoji/b6b55fef1e8636b540a6d016a4729ca8cdf2e60b/LICENSE",
+            "sha256": "5076b7ec0f98f95aa87a3103bebdcd3852acd88d61fbd99307b8d953024acb67",
+            "gitBlobSHA1": "d2e3436a80c2643be6822e4672e69f4d75cbef3a",
+            "bytes": 1134
+          },
+          {
+            "file": "LICENSE-GRAPHICS",
+            "upstreamRepository": "https://github.com/jdecked/twemoji",
+            "upstreamRevision": "b6b55fef1e8636b540a6d016a4729ca8cdf2e60b",
+            "upstreamPath": "LICENSE-GRAPHICS",
+            "url": "https://raw.githubusercontent.com/jdecked/twemoji/b6b55fef1e8636b540a6d016a4729ca8cdf2e60b/LICENSE-GRAPHICS",
+            "sha256": "8ae9438818c26e4873b91d8c6ad620526c011e27e125677f13031eda903f007c",
+            "gitBlobSHA1": "dc8853a70cfa9d7e8933c080caa147815c659fab",
+            "bytes": 18524
+          },
+          {
+            "file": "UPSTREAM-README.md",
+            "upstreamRepository": "https://github.com/jdecked/twemoji",
+            "upstreamRevision": "b6b55fef1e8636b540a6d016a4729ca8cdf2e60b",
+            "upstreamPath": "README.md",
+            "url": "https://raw.githubusercontent.com/jdecked/twemoji/b6b55fef1e8636b540a6d016a4729ca8cdf2e60b/README.md",
+            "sha256": "15103e6888388c6a07b729a7d5bbd69c4c5ae71adb5d6f45288d1e7c014e8db8",
+            "gitBlobSHA1": "75ce2c9bdb30ab9e301fbae08aac0bb0f243948c",
+            "bytes": 11932
+          }
+        ]
+      }
+    }
+  ]
+}

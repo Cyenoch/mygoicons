@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "collection": {
+    "prefix": "oracle",
+    "left": 5,
+    "top": -3,
+    "width": 30.5,
+    "icons": {
+      "inherited": {
+        "body": "<path fill=\"none\" stroke=\"currentColor\" d=\"M0 0h4\"/>"
+      },
+      "base": {
+        "body": "<path fill=\"currentColor\" d=\"M1 2h8v3H1z\"/>",
+        "left": 1.5,
+        "top": -2.25,
+        "width": 20.5,
+        "height": 10.25,
+        "hFlip": true,
+        "rotate": 1
+      },
+      "definitions": {
+        "body": "<defs><linearGradient id=\"paint\"><stop stop-color=\"#f00\"/><stop offset=\"1\" stop-color=\"#00f\"/></linearGradient></defs><rect x=\"1\" y=\"2\" width=\"6\" height=\"3\" fill=\"url(#paint)\"/>",
+        "left": 0,
+        "top": 0,
+        "width": 12.5,
+        "height": 7.25
+      }
+    },
+    "aliases": {
+      "zero": {
+        "parent": "base",
+        "left": 0,
+        "top": 0,
+        "hFlip": true,
+        "rotate": 3
+      },
+      "chain": {
+        "parent": "zero",
+        "width": 31.25,
+        "height": 9.5,
+        "hFlip": true,
+        "vFlip": true,
+        "rotate": -1
+      },
+      "chain-cancel": {
+        "parent": "chain",
+        "hFlip": true,
+        "vFlip": true,
+        "rotate": 1
+      },
+      "dual-flip": {
+        "parent": "base",
+        "vFlip": true,
+        "rotate": 2
+      },
+      "negative-turn": {
+        "parent": "base",
+        "rotate": -2
+      },
+      "defs-turn": {
+        "parent": "definitions",
+        "hFlip": true,
+        "rotate": 1
+      },
+      "missing-parent": {
+        "parent": "does-not-exist"
+      },
+      "cycle-a": {
+        "parent": "cycle-b"
+      },
+      "cycle-b": {
+        "parent": "cycle-a"
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "collection-and-implicit-defaults",
+      "icon": "inherited"
+    },
+    {
+      "id": "fractional-nonsquare-origin",
+      "icon": "base"
+    },
+    {
+      "id": "explicit-zero-and-transform-cancellation",
+      "icon": "zero"
+    },
+    {
+      "id": "alias-chain-and-negative-rotation",
+      "icon": "chain"
+    },
+    {
+      "id": "alias-chain-flip-xor-and-rotation-addition",
+      "icon": "chain-cancel"
+    },
+    {
+      "id": "dual-flip-becomes-half-turn",
+      "icon": "dual-flip"
+    },
+    {
+      "id": "negative-quarter-turn",
+      "icon": "negative-turn"
+    },
+    {
+      "id": "definitions-stay-outside-transform",
+      "icon": "defs-turn"
+    },
+    {
+      "id": "customisations-are-a-second-transform-stage",
+      "icon": "base",
+      "customisations": {
+        "hFlip": true,
+        "vFlip": true,
+        "rotate": 1,
+        "width": "auto",
+        "height": "auto"
+      }
+    },
+    {
+      "id": "missing-icon",
+      "icon": "absent"
+    },
+    {
+      "id": "missing-alias-parent",
+      "icon": "missing-parent"
+    },
+    {
+      "id": "circular-aliases",
+      "icon": "cycle-a"
+    }
+  ]
+}
