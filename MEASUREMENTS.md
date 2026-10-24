@@ -1,6 +1,6 @@
 # Cost measurements
 
-These observations describe Go 1.27.2 on macOS/arm64 (Apple M5 Pro), with MyGo v0.5.5 and Lucide 1.2.147 / Twemoji 1.2.5. They are not performance promises or CI thresholds. Keep runtime, build, executable and module-download costs separate.
+These observations describe Go 1.27.3 on macOS/arm64 (Apple M5 Pro), with MyGo v0.6.3 and Lucide 1.2.147 / Twemoji 1.2.5. They are not performance promises or CI thresholds. Keep runtime, build, executable and module-download costs separate.
 
 ```sh
 go run ./cmd/measure -out measurements.json
@@ -15,16 +15,16 @@ go run ./cmd/verify-consumer -version v0.1.0
 | --- | ---: |
 | Lucide generated Go source | 1,124,575 bytes |
 | Twemoji generated Go source | 12,281,508 bytes |
-| Source JSON, manifests and retained notices (`sources/`) | 11,964,440 bytes |
+| Source JSON, manifests and retained notices (`sources/`) | 11,964,695 bytes |
 | Published v0.1.0 compressed Go module zip | 4,321,390 bytes |
 | Generated one-icon Lucide subset | 926 bytes |
-| Full Lucide, cold build, one referenced icon | 3.331 s |
-| One-icon subset, cold build | 2.927 s |
+| Full Lucide, cold build, one referenced icon | 3.269 s |
+| One-icon subset, cold build | 3.114 s |
 | Full Lucide, executable with one referenced icon | 3,450,562 bytes |
 | One-icon subset, same executable | 3,450,562 bytes |
-| Native MyGo probe, full / compatibility alias / subset | 9,283,170 bytes each |
-| Cached `lucide.Search()` | 1.678–1.865 ns/op, 0 B/op, 0 allocs/op |
-| Fresh representative SVG parse | 3.610–3.868 µs/op, 6,240 B/op, 89 allocs/op |
+| Native MyGo probe, full / compatibility alias / subset | 9,452,594 bytes each |
+| Cached `lucide.Search()` | 1.678–1.709 ns/op, 0 B/op, 0 allocs/op |
+| Fresh representative SVG parse | 3.640–3.726 µs/op, 6,240 B/op, 89 allocs/op |
 
 The parse benchmark runs `ui.MustParseSVG` on a small search-shaped SVG every iteration; it measures parsing, not process startup or a collection-wide cache. First accessor use adds its `sync.Once` operation. Cached calls return the shared pointer and allocate nothing. The full and single-icon packages retain exactly one SVG marker in both a console probe and a native MyGo application; compatibility forwarding functions are checked too. Actual binary size varies by target, MyGo version, build flags and application imports.
 

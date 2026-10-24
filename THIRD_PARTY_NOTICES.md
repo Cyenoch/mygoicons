@@ -34,7 +34,7 @@ Source: [Twemoji](https://github.com/jdecked/twemoji).
 
 ## MyGo and test oracle
 
-MyGo v0.5.5 is a Go module dependency, under MIT. Its
+MyGo v0.6.3 is a Go module dependency, under MIT. Its
 [license](licenses/MyGo-LICENSE) is retained here. MyGo and its transitive
 dependencies remain subject to their own notices; inventory actual binary
 dependencies before distributing an application.

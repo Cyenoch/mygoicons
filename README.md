@@ -9,7 +9,7 @@ Typed [Iconify](https://iconify.design) collections for [MyGo](https://github.co
 go get github.com/Cyenoch/mygoicons@v0.2.1
 ```
 
-Requires Go 1.27.1 or later. MyGo v0.5.5 is the minimum supported version; CI also checks the latest stable release (v0.6.0 at this release).
+Requires Go 1.27.1 or later. MyGo v0.6.3 is the minimum supported version; CI also checks the latest stable release.
 
 ## Use icons
 
