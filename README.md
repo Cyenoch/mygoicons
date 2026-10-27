@@ -11,6 +11,8 @@ go get github.com/Cyenoch/mygoicons@v0.2.1
 
 Requires Go 1.27.1 or later. MyGo v0.6.3 is the minimum supported version; CI also checks the latest stable release.
 
+The MyGo requirement in `go.mod` is a [minimum version](https://go.dev/ref/mod#go-mod-file-require), not an exact version pin or a bounded range. Applications can select a newer MyGo release. CI checks the declared minimum and latest stable, not every intervening version; newer releases can still introduce breaking changes while MyGo is at v0.
+
 ## Use icons
 
 ```go

@@ -1,6 +1,6 @@
 # Maintaining mygoicons
 
-Use Go 1.27.1 or newer. The checked-in `go.mod` intentionally requires MyGo v0.6.3; the latest-stable compatibility job uses a disposable copy. On Linux install `libpangocairo-1.0-0` for software rendering. No Node.js or npm installation is needed.
+Use Go 1.27.1 or newer. The checked-in `go.mod` intentionally requires MyGo v0.6.3; the latest-stable compatibility job uses a disposable copy. Raise the minimum only when required by APIs or fixes the project depends on, not merely because a newer release exists. On Linux install `libpangocairo-1.0-0` for software rendering. No Node.js or npm installation is needed.
 
 ## Validate a checkout
 
