@@ -330,6 +330,16 @@
     "sha256": "c102ba4e9be199fb6babb7e5c6fff0380bb7e2d26f54fdb79fb83f1e1f4fb0a6"
   },
   {
+    "name": "ArchiveArrowDown",
+    "id": "archive-arrow-down",
+    "sha256": "739ce33d90f6a6135137c302a3cad20f5844829a156fd9d3aa73009a545fbffa"
+  },
+  {
+    "name": "ArchiveArrowUp",
+    "id": "archive-arrow-up",
+    "sha256": "cb09eedb048068bfa8ca3791e03e4b79d0c4fed2b5eb71fa240b613f5433fcfe"
+  },
+  {
     "name": "ArchiveRestore",
     "id": "archive-restore",
     "sha256": "cb09eedb048068bfa8ca3791e03e4b79d0c4fed2b5eb71fa240b613f5433fcfe"
@@ -780,6 +790,11 @@
     "sha256": "2386ff8bc0bbf2a895af19c338cba18ffdc33c4f6319a4f6d21d83fe21b8c673"
   },
   {
+    "name": "AzerbaijaniManat",
+    "id": "azerbaijani-manat",
+    "sha256": "57a9464b803ff1a12e54a5f160b9ade401bcf99ef5ebd2e80f2095af27b98d5c"
+  },
+  {
     "name": "Baby",
     "id": "baby",
     "sha256": "8c84b874385a047276fcd0c9c86954477a20f350681d24db472343c57c0e7a35"
@@ -893,6 +908,11 @@
     "name": "BaggageClaim",
     "id": "baggage-claim",
     "sha256": "4c43ad4dbcdedee33c91da12592027a085b049077328881bc574c45c6997b04b"
+  },
+  {
+    "name": "BallWave",
+    "id": "ball-wave",
+    "sha256": "3a7d90333ecc73bc7c112f10f9ae6808f8281329949a44fac04bf500a3a08b42"
   },
   {
     "name": "Balloon",
@@ -1480,6 +1500,11 @@
     "sha256": "f12263f387df974bd8d7d098e66ef51191cad13c06f3d65cd2a51b567cf9ac56"
   },
   {
+    "name": "BoxesLinked",
+    "id": "boxes-linked",
+    "sha256": "3caf8d43eee9171f4a28fdf8e5d188e6044b495ce524f72bba1619504afcecba"
+  },
+  {
     "name": "Braces",
     "id": "braces",
     "sha256": "8f343f2a22d3d517d962a3fea5ab866b5cfbe66e7912e74ca11ec56aab1e4781"
@@ -1683,6 +1708,16 @@
     "name": "CalendarArrowDown",
     "id": "calendar-arrow-down",
     "sha256": "3e69872c0caf3bcb377158ac186dc7059a14741e8d79034f06521a787fd12456"
+  },
+  {
+    "name": "CalendarArrowLeft",
+    "id": "calendar-arrow-left",
+    "sha256": "57188f2a70d3cfb83458719de8ed1a37ca67bd57ee5542b1ba58f7f96c71440c"
+  },
+  {
+    "name": "CalendarArrowRight",
+    "id": "calendar-arrow-right",
+    "sha256": "f69b985b5bbecbbb4e88c01cf19cfe18da7da91cfbfbad39bbf59d3bb564d01a"
   },
   {
     "name": "CalendarArrowUp",
@@ -1975,6 +2010,11 @@
     "sha256": "a896b3b99ff28f3c319113090b1fbd0350681c402c26d97f57bf5aae3b7ed638"
   },
   {
+    "name": "ChartBellCurve",
+    "id": "chart-bell-curve",
+    "sha256": "dbf1f2de90b26b3a8e31dd596d005eca30d9f6ab738221e1113803eb4d31d662"
+  },
+  {
     "name": "ChartCandlestick",
     "id": "chart-candlestick",
     "sha256": "9fe7219f6cd293442b32ab0e722a508e41f6e2b6762dced1fc331d13c9548862"
@@ -2048,6 +2088,16 @@
     "name": "ChartPie",
     "id": "chart-pie",
     "sha256": "d325765142f85ddb8b8eea2c65decfce8824a9cab37c837b0f623422a1fa00a1"
+  },
+  {
+    "name": "ChartQuadrant",
+    "id": "chart-quadrant",
+    "sha256": "e9623870b1c5459d8cfb397209a86580efe4387541da0c774bcf795d0050da86"
+  },
+  {
+    "name": "ChartRadar",
+    "id": "chart-radar",
+    "sha256": "104240262d24070fa0b8dc483030a0fe5dc53adef7d1ded2606e3a4b417c882d"
   },
   {
     "name": "ChartScatter",
@@ -2445,6 +2495,141 @@
     "sha256": "5ee7e98511793240f15f333b0dabd0c72b91e80bd09ce103998d492bb476235a"
   },
   {
+    "name": "CircleLetterA",
+    "id": "circle-letter-a",
+    "sha256": "4a5978d829964d502aefae9c749d041d1e10a1e841abc350c62af66c65206b26"
+  },
+  {
+    "name": "CircleLetterB",
+    "id": "circle-letter-b",
+    "sha256": "c2f1cd9f105dae614e58cf48acfe05b6c9ae54dcd29597220b897a51536e8c84"
+  },
+  {
+    "name": "CircleLetterC",
+    "id": "circle-letter-c",
+    "sha256": "46c27582f836f723ef4af538e754c7b9156c0f5f9e7cabac909c9c1f3024931c"
+  },
+  {
+    "name": "CircleLetterD",
+    "id": "circle-letter-d",
+    "sha256": "42621d65daecada6ce2aee286d864f7df6de9d4b152dc0e43cb157d3464f932c"
+  },
+  {
+    "name": "CircleLetterE",
+    "id": "circle-letter-e",
+    "sha256": "24e4daee2a1221d36e3eac23e1d7c6419750bf4637021d7c96679181298cd87c"
+  },
+  {
+    "name": "CircleLetterF",
+    "id": "circle-letter-f",
+    "sha256": "ad897f290907a7550295476328e5ecbd1a5aa287da740b355586ceffdeb29022"
+  },
+  {
+    "name": "CircleLetterG",
+    "id": "circle-letter-g",
+    "sha256": "80463972a177c05b0592fb77a46c4a7a0f0632d83608a49a56db248ce7a18250"
+  },
+  {
+    "name": "CircleLetterH",
+    "id": "circle-letter-h",
+    "sha256": "68a94d8a19fc088e8afed2182d402d7a680096f991912fa5c2ecf190d1d84f00"
+  },
+  {
+    "name": "CircleLetterI",
+    "id": "circle-letter-i",
+    "sha256": "eaf3e5ca5fced736c061457b79c70eb27bf8bba5e50fd21eefe01c0e326c9a69"
+  },
+  {
+    "name": "CircleLetterJ",
+    "id": "circle-letter-j",
+    "sha256": "6f1d89fdcb38e76e4eacce858b6e19b73c01bac91b1df1c247c1b1bbe77aa24f"
+  },
+  {
+    "name": "CircleLetterK",
+    "id": "circle-letter-k",
+    "sha256": "bd8b9a45a1b6c0eafb4222070c08e9ac7144398319aebbcdc4732efd6978d5c9"
+  },
+  {
+    "name": "CircleLetterL",
+    "id": "circle-letter-l",
+    "sha256": "ae9adb260695cd3f9c2e72936e465e58f7a5e38406618dc0c359a4058e13295d"
+  },
+  {
+    "name": "CircleLetterM",
+    "id": "circle-letter-m",
+    "sha256": "f0fa87ed2aff891f86cde3840401966908a10119d88fe9e4feb135a96aff6181"
+  },
+  {
+    "name": "CircleLetterN",
+    "id": "circle-letter-n",
+    "sha256": "1cc7e56395c186d4d1e617580d3ecbb88d347064b937b8e7d71fbd49d17065c3"
+  },
+  {
+    "name": "CircleLetterO",
+    "id": "circle-letter-o",
+    "sha256": "7611a51a90acedb5f60d8bcdceea2a930157bdc9f08d2dedf87449d6656b1c7c"
+  },
+  {
+    "name": "CircleLetterP",
+    "id": "circle-letter-p",
+    "sha256": "f272364a70fd2ec460104a66d7fc6f7336ab5adaebdbf6876c68e67aa939c469"
+  },
+  {
+    "name": "CircleLetterPOff",
+    "id": "circle-letter-p-off",
+    "sha256": "143cd5729cbdb6c0d628ad825e52a8656cf1a963896b78816cc98002872226ff"
+  },
+  {
+    "name": "CircleLetterQ",
+    "id": "circle-letter-q",
+    "sha256": "ff90fda4ffabe96dec0ffcf1e9172583d9fbb700a5db47dcf5aea40f331ddaa7"
+  },
+  {
+    "name": "CircleLetterR",
+    "id": "circle-letter-r",
+    "sha256": "6ceda99170d2afed301ce368bcd9d7e34dc94d1fd763ae8acc0334f9af06cf90"
+  },
+  {
+    "name": "CircleLetterS",
+    "id": "circle-letter-s",
+    "sha256": "9b40a5807b7c00af70771a7e7bce90d3372bd8d62bcd76da826ba9af28dafd49"
+  },
+  {
+    "name": "CircleLetterT",
+    "id": "circle-letter-t",
+    "sha256": "c687b41894b9434556b696f3e20089ecc0c4fcbb6024b11c50a6dd09f6c07789"
+  },
+  {
+    "name": "CircleLetterU",
+    "id": "circle-letter-u",
+    "sha256": "4e7b7e2784b0870add36520ce1c2700dc7a10d1323a23552111361dd85102c72"
+  },
+  {
+    "name": "CircleLetterV",
+    "id": "circle-letter-v",
+    "sha256": "3a406a10350dac6b99fa341b853395e1438ee6ac36089ee81f8edb3876c231a5"
+  },
+  {
+    "name": "CircleLetterW",
+    "id": "circle-letter-w",
+    "sha256": "dd5c706d7502bc3c3d9448497e35794b8f8fe3b2ca8cc141e74a77d52352abbf"
+  },
+  {
+    "name": "CircleLetterX",
+    "id": "circle-letter-x",
+    "sha256": "6b715e9342eefe786282cfa1919cb3be9d608579580a1cd851519fb50839c695"
+  },
+  {
+    "name": "CircleLetterY",
+    "id": "circle-letter-y",
+    "sha256": "ad96641c4f6841c5fa8f29401e6ed63d704f65008987b4bdec447793869f3749"
+  },
+  {
+    "name": "CircleLetterZ",
+    "id": "circle-letter-z",
+    "sha256": "770becf78a882ee0e3472448b8589b389522d4dd318d28e94e38af81861b48cc"
+  },
+  {
     "name": "CircleMinus",
     "id": "circle-minus",
     "sha256": "3df14027e936778a55af2bbe4c0beff4eb7b5c6bc2007a81cb177d710943b96b"
@@ -2462,7 +2647,7 @@
   {
     "name": "CircleParkingOff",
     "id": "circle-parking-off",
-    "sha256": "2e350d2f468e546eca4a6a2558a82c5f422d0517a9b31dc8ef6c5ae2ddcf1df5"
+    "sha256": "143cd5729cbdb6c0d628ad825e52a8656cf1a963896b78816cc98002872226ff"
   },
   {
     "name": "CirclePause",
@@ -3225,6 +3410,11 @@
     "sha256": "9ebb9b5c4e8b0e6c78829ca21bb8406e4a2840c98f959d95eae7041973bbc96c"
   },
   {
+    "name": "DatabaseCog",
+    "id": "database-cog",
+    "sha256": "e98b80d5c4fede60fbb49aa04c8e60f697169fa4c29b245b86dba3f3f6dc2a43"
+  },
+  {
     "name": "DatabaseMinus",
     "id": "database-minus",
     "sha256": "75df6e81a6812bc934e045712e7b45fc02436cb77cf5bba64296b142f6256d2b"
@@ -3392,7 +3582,7 @@
   {
     "name": "DollarSign",
     "id": "dollar-sign",
-    "sha256": "387b9aec2fd636dd8094378a1e07d5d3dd210e7bb2578d002ae05a873738c71f"
+    "sha256": "ff6c234342162c611ae71e8400cf13c08a8194aa1c69fa6aeed4d8017c468890"
   },
   {
     "name": "Dome",
@@ -3520,6 +3710,16 @@
     "sha256": "6b54f20c6b5de681d0fdfb43ef67141b3f734e433b261f106be69ae101b6bb47"
   },
   {
+    "name": "Earbuds",
+    "id": "earbuds",
+    "sha256": "19268235a774a7a77531fa86e48eb24f7a169a158ff9fb08f3c4971fd41b8214"
+  },
+  {
+    "name": "EarbudsOff",
+    "id": "earbuds-off",
+    "sha256": "37aee521cbd5346234a08e6cd4f25f8c1f2523dba26759a66e022aa3021f601d"
+  },
+  {
     "name": "Earth",
     "id": "earth",
     "sha256": "543aba34e9615582ecf9a42e3378bf69e3c7b711ec491329a0e51fae08240777"
@@ -3593,6 +3793,11 @@
     "name": "EllipsisVertical",
     "id": "ellipsis-vertical",
     "sha256": "ce4b0a5d693757dcf38de9e0ddaaa777da15a25f967cd789e33ff871af21b676"
+  },
+  {
+    "name": "EmiratiDirham",
+    "id": "emirati-dirham",
+    "sha256": "00954c1c267deab6fad567a482b5e427f22c4e8ec1bdaf0be29b6e34ac881d85"
   },
   {
     "name": "Engine",
@@ -3883,6 +4088,11 @@
     "name": "FileCog2",
     "id": "file-cog-2",
     "sha256": "7c1e850df4918678ba86ee4e34804cba8b7b57809668f7f13295b84feebadc6c"
+  },
+  {
+    "name": "FileDatabase",
+    "id": "file-database",
+    "sha256": "15665dfb47878b6ecb395dfbac74a1d0e25af9ef8d0187cf6462e85f481073f3"
   },
   {
     "name": "FileDiff",
@@ -4677,7 +4887,7 @@
   {
     "name": "GeorgianLari",
     "id": "georgian-lari",
-    "sha256": "b5df824be54b771b00f28638b0cc3adebe66e8c306e1c2afcdde04fc4af03549"
+    "sha256": "698627b9649786bf834f31dbaeb32845c26b9538049253045e83c4407ed1f379"
   },
   {
     "name": "Germ",
@@ -5220,6 +5430,11 @@
     "sha256": "737b1f8c275b904510d4e270c73ac833eeb77d81d22431d4e979b5894966dcc8"
   },
   {
+    "name": "HockeyStick",
+    "id": "hockey-stick",
+    "sha256": "24f8a377be67950d56138f302a818043b7da85dccbe2aa68a91b8c52ba5c3c8d"
+  },
+  {
     "name": "Home",
     "id": "home",
     "sha256": "be35feb6a37bf6318f808fd8b97e16436fc6c0b31336584ef4c1e6bdc6eb6c2a"
@@ -5238,6 +5453,11 @@
     "name": "Hospital",
     "id": "hospital",
     "sha256": "8f6c52fdd2825aefbf81903943bf5e257208ea444df7f945970190e9db4d0eb5"
+  },
+  {
+    "name": "HotAirBalloon",
+    "id": "hot-air-balloon",
+    "sha256": "b444a6d48e283a344c4acb6046865577103a1f17dcb7b414ab6c6513c6497774"
   },
   {
     "name": "Hotel",
@@ -5392,7 +5612,7 @@
   {
     "name": "IndianRupee",
     "id": "indian-rupee",
-    "sha256": "29a28980594d39708d9c4870b60a1b941e7f1df8ee356397097d00369614246f"
+    "sha256": "220ec31c7a2c0a6e59c90685a6818395f9cbcbf77ef4f0a58de151fb9d48949c"
   },
   {
     "name": "Infinity",
@@ -5442,12 +5662,12 @@
   {
     "name": "JapaneseYen",
     "id": "japanese-yen",
-    "sha256": "bad6699b9b7539ca1aae590735778419fc3c714c645fd6364d78e9e5cf139806"
+    "sha256": "803395368cd8beec6ab418f680004cc71da1a6a9110312bbfd38ea814908b212"
   },
   {
     "name": "JerseyPound",
     "id": "jersey-pound",
-    "sha256": "bad6699b9b7539ca1aae590735778419fc3c714c645fd6364d78e9e5cf139806"
+    "sha256": "803395368cd8beec6ab418f680004cc71da1a6a9110312bbfd38ea814908b212"
   },
   {
     "name": "Joystick",
@@ -5578,6 +5798,11 @@
     "name": "LaptopMinimalCheck",
     "id": "laptop-minimal-check",
     "sha256": "68662c48acb45d1e27aeb5c7cb8fff2341d54a55f6d43cbc2de9907b6a421d4b"
+  },
+  {
+    "name": "Laser",
+    "id": "laser",
+    "sha256": "4caf9263ef71926d7a7a0350b019ee375e9b148cee727616b84309f548d3158a"
   },
   {
     "name": "Lasso",
@@ -5725,14 +5950,144 @@
     "sha256": "3f355754ca5579ad70c3f4c2a93cead1c7ab5fdf2b31c0c54a37aa50b7bae5ed"
   },
   {
+    "name": "LetterA",
+    "id": "letter-a",
+    "sha256": "c84b9ed2f5d07bf57b76055dcca1a6d00f5d547864315c0eb08d54a594152c94"
+  },
+  {
+    "name": "LetterB",
+    "id": "letter-b",
+    "sha256": "9e309e908735ce1fe9b9463e649346acff3a2977551ad3555803125756907aff"
+  },
+  {
+    "name": "LetterC",
+    "id": "letter-c",
+    "sha256": "ada6acf88bf2b7fae1222fb891ca1537eceafc633f925b0fbd35f671a90fa8c5"
+  },
+  {
+    "name": "LetterD",
+    "id": "letter-d",
+    "sha256": "657d884e6e8a000e65bef1b68f0894d802e547a1fe74d467614c8b6560ffa1d1"
+  },
+  {
+    "name": "LetterE",
+    "id": "letter-e",
+    "sha256": "60db836dcfd3da9d280d533e81d23e67be25a4a54fa6fbd246405585a0ea6f50"
+  },
+  {
+    "name": "LetterF",
+    "id": "letter-f",
+    "sha256": "0e1459e385091fcf19e14787b4d95672174ab9fc70c4979339607f22e20e250f"
+  },
+  {
+    "name": "LetterG",
+    "id": "letter-g",
+    "sha256": "aeb4fb0b144aab917066a6f05eb74144165e8c613a2942e5e9f6b7ad8288818d"
+  },
+  {
+    "name": "LetterH",
+    "id": "letter-h",
+    "sha256": "465c12d3f97f18ebd32a3585f1760fadca6cca8c7e280bd1c3ee53740c55c4ee"
+  },
+  {
+    "name": "LetterI",
+    "id": "letter-i",
+    "sha256": "8332d6af2c53b3f4f4ea9679d4b7d63bd41ac8d258cda8b29d2ed04c3fdd8a17"
+  },
+  {
+    "name": "LetterJ",
+    "id": "letter-j",
+    "sha256": "ad904aeb00f016b885c3d8c4f912a0947d44eb365c5d297363f0db6ff6dd6d77"
+  },
+  {
+    "name": "LetterK",
+    "id": "letter-k",
+    "sha256": "43c5867c7acb4e9a8fdb53c103ed86e94bdd5dfa4ba4662fde0e792228933753"
+  },
+  {
+    "name": "LetterL",
+    "id": "letter-l",
+    "sha256": "f81bee0c786fca10c3481665511ee06c52749a33a27a4e66906dbd3bf05c71d4"
+  },
+  {
+    "name": "LetterM",
+    "id": "letter-m",
+    "sha256": "118ef52c3653f4a4a18c99c67a1a18b8e477ac9a895e4ec16ae9159b498e820f"
+  },
+  {
+    "name": "LetterN",
+    "id": "letter-n",
+    "sha256": "16de2d28d2c12eeec053381562e03728e77c74e97399e0c0e6e2f8dc7048ff40"
+  },
+  {
+    "name": "LetterO",
+    "id": "letter-o",
+    "sha256": "f4a830ee9e911b105d7ae64ea53c781902c50218b0979950b9ca2fcb0f553e86"
+  },
+  {
+    "name": "LetterP",
+    "id": "letter-p",
+    "sha256": "368da4035a2aa0d57ca8eb89311651e9f192c5a36df23040de65296ce74dc622"
+  },
+  {
+    "name": "LetterQ",
+    "id": "letter-q",
+    "sha256": "c48d765c4fda4eee1c3581d3c416dc256bb9c4991c315400d43506b7fb9cd725"
+  },
+  {
+    "name": "LetterR",
+    "id": "letter-r",
+    "sha256": "b0ffd9aff02d2ff19f8cefa02ed376e6fb7b232ea851103b638d7d816c46c26b"
+  },
+  {
+    "name": "LetterS",
+    "id": "letter-s",
+    "sha256": "5492fa4aab0c23eb2b661f56cec55dea8380a594c015afad015f0d2924f596c2"
+  },
+  {
     "name": "LetterSpacing",
     "id": "letter-spacing",
     "sha256": "febf5f6808613ff11a9806ef6bef57bff8cd6e9b8f7928542f7d2e0c24097e5e"
   },
   {
+    "name": "LetterT",
+    "id": "letter-t",
+    "sha256": "3736ef4ac84df634dc7843f613fee9e2eb433910d0e65a163b2016912e937268"
+  },
+  {
     "name": "LetterText",
     "id": "letter-text",
     "sha256": "988e1d95ec75c97636584e72aaae13655cc40f074fd951f1d101dcb0311dc27b"
+  },
+  {
+    "name": "LetterU",
+    "id": "letter-u",
+    "sha256": "c2173909f3fe4fc1549507085a5816c32daa0f16093e9681342c330f556b3015"
+  },
+  {
+    "name": "LetterV",
+    "id": "letter-v",
+    "sha256": "ca2c6ad4a9c33c53c6390f6e08d7e3a17e1bb19ece2fde03a45d532b97c885a6"
+  },
+  {
+    "name": "LetterW",
+    "id": "letter-w",
+    "sha256": "e8ed1759f1a7f31a9f33c5a9649de39cb335a01c8ead986d466b8b9b7325b4f4"
+  },
+  {
+    "name": "LetterX",
+    "id": "letter-x",
+    "sha256": "d3dc0dba7c8ebac12e2387996ddcf6eb7a1381e89e97a36a7d990b09f0e55211"
+  },
+  {
+    "name": "LetterY",
+    "id": "letter-y",
+    "sha256": "33d54c974852bfbb9683915d120e2b0270250dc0c47bf2b01abbe831e0af9ec9"
+  },
+  {
+    "name": "LetterZ",
+    "id": "letter-z",
+    "sha256": "bcfb6195c5f9c733ae0fb2b99fabfa7392e24b5808172f4db2c3e239565daa33"
   },
   {
     "name": "Letters",
@@ -6220,6 +6575,41 @@
     "sha256": "adc241dcf5f8e94d7ab57ab36ecf3fcdb0c68865ea14842b676d27833256c237"
   },
   {
+    "name": "Margin",
+    "id": "margin",
+    "sha256": "9900fb66ca53fb77ec3fc33fa1137f55495f301903009ef4311d112244e26777"
+  },
+  {
+    "name": "MarginBottom",
+    "id": "margin-bottom",
+    "sha256": "2b1441211734d34a1dfc6f89fe563193083409b9f1a5fb6208ac78fdda6396ba"
+  },
+  {
+    "name": "MarginHorizontal",
+    "id": "margin-horizontal",
+    "sha256": "a406b8edf9ae9981fdc2d6c89c1374f9a500fed77c625476d392cbdd8304f40c"
+  },
+  {
+    "name": "MarginLeft",
+    "id": "margin-left",
+    "sha256": "38723778943f6026453049bf6b598bfdd97428a1a0f67446f843e07606084fb0"
+  },
+  {
+    "name": "MarginRight",
+    "id": "margin-right",
+    "sha256": "bc6ae0d6a33bf0e3800c160f75e0c645fb61225efd6c4ca2df1f8b3a8c0d5927"
+  },
+  {
+    "name": "MarginTop",
+    "id": "margin-top",
+    "sha256": "5d582cce57d5452af7920f106776fc82d081ee1e92961ecd57982eaee4dfe59b"
+  },
+  {
+    "name": "MarginVertical",
+    "id": "margin-vertical",
+    "sha256": "f61ede6ad3f681a8b98d63fbfce86223763a700cf0eb7a56b3964f9c06204492"
+  },
+  {
     "name": "Mars",
     "id": "mars",
     "sha256": "c70382a87da743932ef836014f91e55cc49ba7c0ce90c24452fae50e0a93b63f"
@@ -6565,6 +6955,11 @@
     "sha256": "a1729a82787014d1c803958551778a553397525d08f883388286d656d4ccc278"
   },
   {
+    "name": "MonitorActivity",
+    "id": "monitor-activity",
+    "sha256": "c84fbfd67303c271a0d24169d1b59401d0da4cb501514d056c63cad83b0bbd66"
+  },
+  {
     "name": "MonitorCheck",
     "id": "monitor-check",
     "sha256": "e54568ba22fbde5a60753b59f7f56a6b16e88be9e1fff2431931055dded8e23d"
@@ -6872,7 +7267,7 @@
   {
     "name": "NepaliRupee",
     "id": "nepali-rupee",
-    "sha256": "c66d79d9af9b9e00423ca4d3de8dfc436c25707ded0feaa9f3908e510da8bcc2"
+    "sha256": "f2d7778756c33331b9d8bac513eb81b314b17bebed18c09a52ed18c94111147a"
   },
   {
     "name": "Network",
@@ -6923,6 +7318,11 @@
     "name": "NotepadTextDashed",
     "id": "notepad-text-dashed",
     "sha256": "e92e58ede2501c0ef35c14fb44f8808cb2bc0f6f96489c39f610a44ce4a3799c"
+  },
+  {
+    "name": "Numbers",
+    "id": "numbers",
+    "sha256": "7478ef57266a33fd49e26ba04e536361777625740e7365c5e0fab4c1cb0aabb6"
   },
   {
     "name": "Nut",
@@ -7232,7 +7632,7 @@
   {
     "name": "ParkingCircleOff",
     "id": "parking-circle-off",
-    "sha256": "2e350d2f468e546eca4a6a2558a82c5f422d0517a9b31dc8ef6c5ae2ddcf1df5"
+    "sha256": "143cd5729cbdb6c0d628ad825e52a8656cf1a963896b78816cc98002872226ff"
   },
   {
     "name": "ParkingMeter",
@@ -7247,7 +7647,7 @@
   {
     "name": "ParkingSquareOff",
     "id": "parking-square-off",
-    "sha256": "23be2ebca07158d2f2b1ab4a13ce1f30a784641d9da273d3b14d0457f10f0300"
+    "sha256": "ccaae9f895a9b9fba963262bc76395a8d1163cdf56bb3c5939cd5b44396e58bf"
   },
   {
     "name": "PartyPopper",
@@ -7377,7 +7777,7 @@
   {
     "name": "PhilippinePeso",
     "id": "philippine-peso",
-    "sha256": "402388675da12d372f3fa37506885530e10ad2724868c4cf2424b821c2aa45b2"
+    "sha256": "5d5a437204fbf1ba5b77a0c96308c01caf409f3ec6da763924ea141c3471fef0"
   },
   {
     "name": "Phone",
@@ -7642,7 +8042,7 @@
   {
     "name": "PoundSterling",
     "id": "pound-sterling",
-    "sha256": "e3af17b054b0683db224e8eb1b8c47e7e017b558b193c13e4692f6d5d193095c"
+    "sha256": "57b51413cb06ec35f3720ea370716a8bd183e036a703c29910f99782c179863a"
   },
   {
     "name": "Power",
@@ -8107,7 +8507,7 @@
   {
     "name": "RussianRuble",
     "id": "russian-ruble",
-    "sha256": "c905c0dceff132c3ed33c335062081b7523036eb0807bf046e7aa4b28a81a891"
+    "sha256": "ec475357bad894397836620db8d99c53e0931a702927eb1f24c614f7d55135b7"
   },
   {
     "name": "Sailboat",
@@ -8137,7 +8537,7 @@
   {
     "name": "SaudiRiyal",
     "id": "saudi-riyal",
-    "sha256": "fbb91666164693ef3da5954783a822c10f9688c5ea842f5430ad0e49ffe619e0"
+    "sha256": "a76d2606320cbfedf3e344ae1042358c53993f36731e4a538cb3bb354f3b0286"
   },
   {
     "name": "Save",
@@ -8705,6 +9105,11 @@
     "sha256": "b40dad3b41fd52540f27390dba84b2efa325abaf04fd088ffcbb50bcb929ed34"
   },
   {
+    "name": "SirenOff",
+    "id": "siren-off",
+    "sha256": "ae99c5c453529e4ca8d4b3095a9763f6e2d5c0686bb55fcfc4777047a967cefe"
+  },
+  {
     "name": "SixteenthNotes",
     "id": "sixteenth-notes",
     "sha256": "0cd79036e60e20127229102c994989b5b1c46148f012a17b4bc25b73378833b7"
@@ -9060,6 +9465,26 @@
     "sha256": "f55e776b35a5e8e0ac0e6dd5f521dfdbb191ea89d7277db379e4d56e0d00adb5"
   },
   {
+    "name": "SquareChevronsDown",
+    "id": "square-chevrons-down",
+    "sha256": "c5c0d8684862d5fe5f148a3051ac9fb186ca1b0fe356598bb09a0b29861561bd"
+  },
+  {
+    "name": "SquareChevronsLeft",
+    "id": "square-chevrons-left",
+    "sha256": "3d6a4211b05b3a243eff1cb4e537972bfe804276a427188cfba6f108be837ba2"
+  },
+  {
+    "name": "SquareChevronsRight",
+    "id": "square-chevrons-right",
+    "sha256": "6429317ff202233688f4bd414ef6ef43479d314aa9b23433e33324de1d60e212"
+  },
+  {
+    "name": "SquareChevronsUp",
+    "id": "square-chevrons-up",
+    "sha256": "15b049cccdf2915365fa2420fb0710546768ad488f73a66f5e5803ecc4192863"
+  },
+  {
     "name": "SquareCode",
     "id": "square-code",
     "sha256": "35e13ae4a55fd99ffbbdd200c12050864a4f8c3554f777fef265dc2a03785785"
@@ -9165,6 +9590,146 @@
     "sha256": "0950a0c4af20b2832b55bfa9b26b4943f16345dc3431f6359b3fa4441219b48d"
   },
   {
+    "name": "SquareKanbanPlus",
+    "id": "square-kanban-plus",
+    "sha256": "1782dc6a782ad1748847115067b36ab5f3e51b5db57e2f23ad4ea133b64757ad"
+  },
+  {
+    "name": "SquareLetterA",
+    "id": "square-letter-a",
+    "sha256": "43d8b279c998c5b2c73d20be60422b7293c1165a580260a5d6f3e53fb8242b26"
+  },
+  {
+    "name": "SquareLetterB",
+    "id": "square-letter-b",
+    "sha256": "37d2f042df8d923fae96ef4152965b6491b6cd7f56ff7ca274d9ea96a6cedb69"
+  },
+  {
+    "name": "SquareLetterC",
+    "id": "square-letter-c",
+    "sha256": "5b2e8ca64980fda675937e3deb7f143eee88bc2799b491153ac3e8ec19dc3073"
+  },
+  {
+    "name": "SquareLetterD",
+    "id": "square-letter-d",
+    "sha256": "b8d017b54ac8381dfad2073462d7eb86c2c8e220dbbf2a66e47379a29b2d8903"
+  },
+  {
+    "name": "SquareLetterE",
+    "id": "square-letter-e",
+    "sha256": "44131df822f87cc8e6975b37f377d16ccd157be549e40ff69771de96042e4fbc"
+  },
+  {
+    "name": "SquareLetterF",
+    "id": "square-letter-f",
+    "sha256": "77d8d32f6e0f6c1dc22f426f532a31e2a65179451babd93515a306208d824b90"
+  },
+  {
+    "name": "SquareLetterG",
+    "id": "square-letter-g",
+    "sha256": "9b5a3bec9fa641e6566fec2104aa1e443b97b65df4686ecd80e4e0361892476d"
+  },
+  {
+    "name": "SquareLetterH",
+    "id": "square-letter-h",
+    "sha256": "638a5ade21d01cdd7d6915a94b23048af50a375065fff1affff332bbaa0746c2"
+  },
+  {
+    "name": "SquareLetterI",
+    "id": "square-letter-i",
+    "sha256": "dd6482b13a0a77d4051377a5c7e8eef1df5fa91220d9de55d9cd99f3f934e7b6"
+  },
+  {
+    "name": "SquareLetterJ",
+    "id": "square-letter-j",
+    "sha256": "bb098ce97841a875ab61ed19f42074764ef541d340e19fb3adaee9b4d6099c13"
+  },
+  {
+    "name": "SquareLetterK",
+    "id": "square-letter-k",
+    "sha256": "70f23837d1c5ef0e7da56f4c8b54ac364e7bce1ee55a2be3e26b61b5e3878ec7"
+  },
+  {
+    "name": "SquareLetterL",
+    "id": "square-letter-l",
+    "sha256": "f257863020f31110438f844a7fb4433344e3cee7748a3d907701bb9c8066f76a"
+  },
+  {
+    "name": "SquareLetterM",
+    "id": "square-letter-m",
+    "sha256": "596314b3eb156ac32aa83b00ec0082b5eceaed83a29a0a08583335edc0e7f87f"
+  },
+  {
+    "name": "SquareLetterN",
+    "id": "square-letter-n",
+    "sha256": "02a930d0e299db80575faae9c4fc2503d9d481bbea667c35b77298a2fcaa0173"
+  },
+  {
+    "name": "SquareLetterO",
+    "id": "square-letter-o",
+    "sha256": "9610d2a11cf36408f4cc0b9cf063b5fb0749b26160e0078cb9eba4c6ca2187d5"
+  },
+  {
+    "name": "SquareLetterP",
+    "id": "square-letter-p",
+    "sha256": "7f67c3370eec6d7400003c301bdfc580974e99dd89f2a4fee88ac5ebb621fd57"
+  },
+  {
+    "name": "SquareLetterPOff",
+    "id": "square-letter-p-off",
+    "sha256": "ccaae9f895a9b9fba963262bc76395a8d1163cdf56bb3c5939cd5b44396e58bf"
+  },
+  {
+    "name": "SquareLetterQ",
+    "id": "square-letter-q",
+    "sha256": "d6303cf3c146a1e368ad4d7c96574b8450a05a6457d4a2c96396dfec7e52a659"
+  },
+  {
+    "name": "SquareLetterR",
+    "id": "square-letter-r",
+    "sha256": "3e8ad25121a1f70882f81b36a06a4017af0f7bcae4d02a4cc860809cf9f6c0ac"
+  },
+  {
+    "name": "SquareLetterS",
+    "id": "square-letter-s",
+    "sha256": "7f84009a61864d9bc22e18f84c101efcfe1e5f51d70eec73881ae53fa74b3d8a"
+  },
+  {
+    "name": "SquareLetterT",
+    "id": "square-letter-t",
+    "sha256": "cad1282101dfee6102a3e6b2c80d688a78c92c572519cea50b96121dd103de78"
+  },
+  {
+    "name": "SquareLetterU",
+    "id": "square-letter-u",
+    "sha256": "783cce7b33ebd325ba4c7be3c9a2de3a344c3c69962a211e4a68f5dd536a39d8"
+  },
+  {
+    "name": "SquareLetterV",
+    "id": "square-letter-v",
+    "sha256": "709c3f95aee509bdcc0945568d82c6200686138ea6cd12a0572f8456ef1c5378"
+  },
+  {
+    "name": "SquareLetterW",
+    "id": "square-letter-w",
+    "sha256": "151c5decc26c3d9ac4c12ab318c5f65e929057ae3b4110d44a0a0727c36554bf"
+  },
+  {
+    "name": "SquareLetterX",
+    "id": "square-letter-x",
+    "sha256": "3765814a35f32ef83f9a05cdfb6644503de6b162305b9d1bbf2bf59391b13424"
+  },
+  {
+    "name": "SquareLetterY",
+    "id": "square-letter-y",
+    "sha256": "a9c374cba5a7f678daceb24ed7d65d1d7e653621393a7b78ba4171550dced388"
+  },
+  {
+    "name": "SquareLetterZ",
+    "id": "square-letter-z",
+    "sha256": "7cc23452a5702ac18a8c30b440d7f8b30f27ed7ac86ffa00603f4dfaba08f24a"
+  },
+  {
     "name": "SquareLibrary",
     "id": "square-library",
     "sha256": "2018227c12138f336b43e6b6e1fa07316c64ce6d5b7d41df985769584736336e"
@@ -9195,6 +9760,41 @@
     "sha256": "28bdfb92cf8c0cc6caa6ad5cf4b7367701bb75b2f48edbd668ddf1f5ec7bc9dc"
   },
   {
+    "name": "SquarePadding",
+    "id": "square-padding",
+    "sha256": "7558f3b96d1fc0b9ca1b8ed114eae4fd90e00d5a5473403877f2bc8b8cd33542"
+  },
+  {
+    "name": "SquarePaddingBottom",
+    "id": "square-padding-bottom",
+    "sha256": "2bcdd621bd80bde3c8143ed08be061c98af093cb9e7f81d47bce74b66540cfd0"
+  },
+  {
+    "name": "SquarePaddingHorizontal",
+    "id": "square-padding-horizontal",
+    "sha256": "d4bec309722faf4c63f6367d50971d9589206f6dd602cf1549e13ed444d2b2e2"
+  },
+  {
+    "name": "SquarePaddingLeft",
+    "id": "square-padding-left",
+    "sha256": "43f631ecad899ccd9dde67bd629e654221125319b60589c5c8df963e89729f60"
+  },
+  {
+    "name": "SquarePaddingRight",
+    "id": "square-padding-right",
+    "sha256": "07915c863511a1d2248049e5d12e2115709754aadc3f4aa39d3557da5b482ae5"
+  },
+  {
+    "name": "SquarePaddingTop",
+    "id": "square-padding-top",
+    "sha256": "8aa8e63919c714e298e0ac332f080efb88e0f22d4ff0832a219f7a19cf5c571f"
+  },
+  {
+    "name": "SquarePaddingVertical",
+    "id": "square-padding-vertical",
+    "sha256": "1a19b2dec18bd90cae764b1c444e8ecfe4d9607d96cf441c0f394c4a5bbedee3"
+  },
+  {
     "name": "SquareParking",
     "id": "square-parking",
     "sha256": "e7b7bba62aee05950538f8043e1527f8589a9b15386977b10865a34b090d00c4"
@@ -9202,7 +9802,7 @@
   {
     "name": "SquareParkingOff",
     "id": "square-parking-off",
-    "sha256": "23be2ebca07158d2f2b1ab4a13ce1f30a784641d9da273d3b14d0457f10f0300"
+    "sha256": "ccaae9f895a9b9fba963262bc76395a8d1163cdf56bb3c5939cd5b44396e58bf"
   },
   {
     "name": "SquarePause",
@@ -9557,7 +10157,7 @@
   {
     "name": "SwissFranc",
     "id": "swiss-franc",
-    "sha256": "9aa69c4aa2009f15ed74cde678a608d10d7b826641f53671952d3412fd42b49a"
+    "sha256": "40ec03585822c474ffcb60c93dcbc8b20aec886f4d1a59107d87fb3c9b4b32ed"
   },
   {
     "name": "SwitchCamera",
@@ -10167,7 +10767,7 @@
   {
     "name": "TurkishLira",
     "id": "turkish-lira",
-    "sha256": "d546d40bb485528dbf53f436261cf2636ded1c20c8fb4efe31aff0088ce8b332"
+    "sha256": "234154bf9bfbd3dc000bc381dc5924323c789687659797e38aef58b6199ab7bf"
   },
   {
     "name": "Turntable",
@@ -10423,6 +11023,11 @@
     "name": "UserRoundSearch",
     "id": "user-round-search",
     "sha256": "33f91536da0331770df8408eb89d10f1b15d1615ec80c251a74e3dc856aa4ad2"
+  },
+  {
+    "name": "UserRoundShield",
+    "id": "user-round-shield",
+    "sha256": "7fd0105b918c82076329442443a4e0f0098bac199f672bc1103c8609ce7656c0"
   },
   {
     "name": "UserRoundStar",
