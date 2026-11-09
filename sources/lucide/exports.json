@@ -840,6 +840,11 @@
     "sha256": "4ad962e91c79648083c3f581464b8b545eb6288f072e20b8a8b5666ef0b1de60"
   },
   {
+    "name": "BadgeExclamationPoint",
+    "id": "badge-exclamation-point",
+    "sha256": "8544be48fa5b5825f308f3bda1df0c37b0121e09f73f5d1f7d05f70183865b11"
+  },
+  {
     "name": "BadgeHelp",
     "id": "badge-help",
     "sha256": "80e81c8d1cc47de3afc28cd975a5a1e26465f4fa72b4cb871a6c023986051a0a"
@@ -1028,6 +1033,11 @@
     "name": "BatteryCharging",
     "id": "battery-charging",
     "sha256": "ae4f01bfa5ccd74ff845eb44456495a8ae641281fe427f4ba8f702cc0541ae3c"
+  },
+  {
+    "name": "BatteryExclamationPoint",
+    "id": "battery-exclamation-point",
+    "sha256": "abb381fe938835566cb010a2dae21d10def149265c68044fde876d714cfb703e"
   },
   {
     "name": "BatteryFull",
@@ -1328,6 +1338,11 @@
     "name": "BookDown",
     "id": "book-down",
     "sha256": "2d7870df28ee0dab778ee72361da83ed1b6353b812058a2218cb6db952989a27"
+  },
+  {
+    "name": "BookExclamationPoint",
+    "id": "book-exclamation-point",
+    "sha256": "410f33d7baa245e62962881801071014a9666ac2ad361192cc1ffdb4cc4a4910"
   },
   {
     "name": "BookHeadphones",
@@ -2147,7 +2162,7 @@
   {
     "name": "ChefHat",
     "id": "chef-hat",
-    "sha256": "75d10a2f3ea3e8c5033e2014718a643ad3b226b7a9917dceb29554dce62d5540"
+    "sha256": "675e3e2d9d4e0dbb9d5166240a018245616e6243ac5a0be5166aa361166e9922"
   },
   {
     "name": "Cherry",
@@ -2470,9 +2485,19 @@
     "sha256": "71131bb0b60a8f83e95c62892e20d1ef77571bdf8ff7216623c67dbff17785b7"
   },
   {
+    "name": "CircleExclamationPoint",
+    "id": "circle-exclamation-point",
+    "sha256": "83f2e2c1018aed5d1e152191930d18e195aed7f6e188e37bbbc8755b31c54603"
+  },
+  {
     "name": "CircleFadingArrowUp",
     "id": "circle-fading-arrow-up",
     "sha256": "f9a570c753350725faecc9c05272e90ad5a3ee47fcb9011b9abe2881d4b216c2"
+  },
+  {
+    "name": "CircleFadingCheck",
+    "id": "circle-fading-check",
+    "sha256": "240638377ce011f221f7e1315bb3dd0a07060c8ef1ad45d5e52e4c7e44f6acb7"
   },
   {
     "name": "CircleFadingPlay",
@@ -2542,7 +2567,7 @@
   {
     "name": "CircleLetterJ",
     "id": "circle-letter-j",
-    "sha256": "6f1d89fdcb38e76e4eacce858b6e19b73c01bac91b1df1c247c1b1bbe77aa24f"
+    "sha256": "63b7247efac720be2fbcbcd46b4ff9a459f5c19cacef1ca2b8f65c3149576d71"
   },
   {
     "name": "CircleLetterK",
@@ -2930,6 +2955,11 @@
     "sha256": "2b326d99c4d35c865b312425dbab8d85f1e15f028b1db4796a2ba1b77dac6b31"
   },
   {
+    "name": "ClockExclamationPoint",
+    "id": "clock-exclamation-point",
+    "sha256": "00e012cc427f3fe503c7499322c00d98124d6bc8a1a0be003f6e24b8bdc883e8"
+  },
+  {
     "name": "ClockFading",
     "id": "clock-fading",
     "sha256": "414fbcab8fccd3c8b13b531488c2b67a6b8755a2e5fa862b03a6dd7d0dd788a8"
@@ -2978,6 +3008,11 @@
     "name": "CloudDrizzle",
     "id": "cloud-drizzle",
     "sha256": "8f1ad87ebe1b3d6f47a085f84bc74ffacb26d36974bc57c67a2c8246d3543698"
+  },
+  {
+    "name": "CloudExclamationPoint",
+    "id": "cloud-exclamation-point",
+    "sha256": "86eeb77ec9d642ab27141805b4b4710086066c193e99df92918428643e6ceb6a"
   },
   {
     "name": "CloudFog",
@@ -3458,6 +3493,16 @@
     "name": "Dessert",
     "id": "dessert",
     "sha256": "e27ee5847fc21f1b0091d31957b37daa26a93adb5f60949263db42d5f5a90ce0"
+  },
+  {
+    "name": "DiagramFlowHorizontal",
+    "id": "diagram-flow-horizontal",
+    "sha256": "b8c923a8ab47f9c1688282d3704cbbb13e29ebcff45f643c2a0ee8cc11e0c8bf"
+  },
+  {
+    "name": "DiagramFlowVertical",
+    "id": "diagram-flow-vertical",
+    "sha256": "7b38159369f46a536c043d27bb72bf6a69e1f91dec3525f62a422fafb2acd290"
   },
   {
     "name": "Diameter",
@@ -5030,6 +5075,11 @@
     "sha256": "543aba34e9615582ecf9a42e3378bf69e3c7b711ec491329a0e51fae08240777"
   },
   {
+    "name": "GlobeBan",
+    "id": "globe-ban",
+    "sha256": "0bfa323606f58328162e73411a1c269d31e0e8e5b7e2afd383a63d880102034d"
+  },
+  {
     "name": "GlobeCheck",
     "id": "globe-check",
     "sha256": "b7b5cf102a599af3d89f038f11dc457d02b744eccdbf118024616ab233be66e8"
@@ -5048,6 +5098,11 @@
     "name": "GlobeOff",
     "id": "globe-off",
     "sha256": "b5564f9c1623985315a5d4a9bfe1184b81e7bec4b73da6654762a59b5e7a2772"
+  },
+  {
+    "name": "GlobePlus",
+    "id": "globe-plus",
+    "sha256": "935da603119d2e1b1f15699034a75a5bd0c47cef431d93d1f341427b6a6b240b"
   },
   {
     "name": "GlobeX",
@@ -5143,6 +5198,11 @@
     "name": "Grid3x3",
     "id": "grid-3x3",
     "sha256": "c41daa3c638123f02e1a6299be0384b3507cd1b49ae8a5bc76569ce5394b6717"
+  },
+  {
+    "name": "Grid3x3Off",
+    "id": "grid-3x3-off",
+    "sha256": "89069f85bec36dd070f675640093f425bd06d4231f393b474e0668b441161739"
   },
   {
     "name": "Grip",
@@ -6435,6 +6495,11 @@
     "sha256": "bcd2eb82ef79042d725093c43e1632fe42ffc74d603c0559844940f5ffe53dcb"
   },
   {
+    "name": "MailExclamationPoint",
+    "id": "mail-exclamation-point",
+    "sha256": "1f592f6033f5283d4512fbd72e4877fe89ae532e9f3d19d47ef49e849689030a"
+  },
+  {
     "name": "MailMinus",
     "id": "mail-minus",
     "sha256": "903a324899bf566112a85663e5632b4b76c46a0ab152e144df2c7424e8eec091"
@@ -6488,6 +6553,11 @@
     "name": "Mails",
     "id": "mails",
     "sha256": "340b8999213d3b61d44b568637fc1561b167110fc39068beefd65720523d36d0"
+  },
+  {
+    "name": "Mango",
+    "id": "mango",
+    "sha256": "c7418c731bb29afd432d122bac0ecd0eae602883737cd2c5ea32efa35670d7f1"
   },
   {
     "name": "Map",
@@ -6700,6 +6770,11 @@
     "sha256": "9709e5460450093ad9eb2b73adf9e57104322be08810a205e74c35b6c24f2620"
   },
   {
+    "name": "MessageCircleExclamationPoint",
+    "id": "message-circle-exclamation-point",
+    "sha256": "88d08cdf705aa76f548bc051a8e0b71b402365e7c5339b91444a29e7cb1b05a1"
+  },
+  {
     "name": "MessageCircleHeart",
     "id": "message-circle-heart",
     "sha256": "ea12f0ffa6967fbb816f3684a946f84d12987d19efda08483df03ce946f692f9"
@@ -6778,6 +6853,11 @@
     "name": "MessageSquareDot",
     "id": "message-square-dot",
     "sha256": "fc7d1dee0545d3e186fe1a5c07cfd5f6968260137e94177d7e2d33c1848f3644"
+  },
+  {
+    "name": "MessageSquareExclamationPoint",
+    "id": "message-square-exclamation-point",
+    "sha256": "84de80ed793a134f6e9fc4a1a81f2488766b4a6b34625db3fcff4e9d3f9ad406"
   },
   {
     "name": "MessageSquareHeart",
@@ -7048,6 +7128,11 @@
     "name": "MopSparkles",
     "id": "mop-sparkles",
     "sha256": "e034b13235ed6acc5a30164ca1da36b456c525f0ffbd8e2ded2515761ca8cf43"
+  },
+  {
+    "name": "Moped",
+    "id": "moped",
+    "sha256": "7f5df52e33cf4a04fbe4203b90e5f356670557a4574bb0be5429be375caf727f"
   },
   {
     "name": "MoreHorizontal",
@@ -7345,6 +7430,11 @@
     "sha256": "47940188c737b6f8a9770ebaa49bcd0ebdf50e00e976b44d9168f8b299b0edf0"
   },
   {
+    "name": "OctagonExclamationPoint",
+    "id": "octagon-exclamation-point",
+    "sha256": "47940188c737b6f8a9770ebaa49bcd0ebdf50e00e976b44d9168f8b299b0edf0"
+  },
+  {
     "name": "OctagonMinus",
     "id": "octagon-minus",
     "sha256": "c6e98a3421a8c03d151310e18d6f7d9f21478618afc57f68783e3e96a627e271"
@@ -7363,6 +7453,11 @@
     "name": "Omega",
     "id": "omega",
     "sha256": "6c46dc78aaa5f830a7b1e0f5635c19e638f8dab80e038e0e34f2b36d6979e7f3"
+  },
+  {
+    "name": "Opacity",
+    "id": "opacity",
+    "sha256": "e867e59213566131ac7b6ef9186c0e90f4b86f2c662400ec86c8656cf9a5bb95"
   },
   {
     "name": "Option",
@@ -7410,9 +7505,19 @@
     "sha256": "c1592554f40557045f09508d81967bd9a352dc807d97d0b0bb4fc3ac5932510f"
   },
   {
+    "name": "PackagePen",
+    "id": "package-pen",
+    "sha256": "781f5bf8834aaea3f2d361856a058b91dd5876b558e609de86e06d2763f3b009"
+  },
+  {
     "name": "PackagePlus",
     "id": "package-plus",
     "sha256": "949f1d1a97ef39001551dd781d1f44edfe43557b3bae5807319212489769277d"
+  },
+  {
+    "name": "PackageQuestionMark",
+    "id": "package-question-mark",
+    "sha256": "c9c8c43179c5c17801458450fc10607f484e7ce5b057fb5dab0b0b1618d776b7"
   },
   {
     "name": "PackageSearch",
@@ -8735,6 +8840,11 @@
     "sha256": "517e3385732b1ce7729e8fb2d40e9d3e506ea9e7375aeb3c482f35c94f0859db"
   },
   {
+    "name": "SearchExclamationPoint",
+    "id": "search-exclamation-point",
+    "sha256": "8765422851029c3e182a3ca7c7fd547a8da713b8172270e2d07c97412e33dfd0"
+  },
+  {
     "name": "SearchLarge",
     "id": "search-large",
     "sha256": "6bd482ac4a09c55ace5f488bc444e3f6c44991b9fdf1b5b9e159247fadb4c61b"
@@ -8893,6 +9003,11 @@
     "name": "ShieldEllipsis",
     "id": "shield-ellipsis",
     "sha256": "48d63b28003c9495fcb375e323aa38b755a1761edece1c0cf271473e2eaff447"
+  },
+  {
+    "name": "ShieldExclamationPoint",
+    "id": "shield-exclamation-point",
+    "sha256": "58b10c92fa5892b329cffa83d15c775570c552e5a29255c32a39b4a50f786cd3"
   },
   {
     "name": "ShieldHalf",
@@ -9520,6 +9635,11 @@
     "sha256": "12fc6b2e863857b514078311be85510c4a64806ec7b6bcb4810a1794ccb18d6f"
   },
   {
+    "name": "SquareDashedSearch",
+    "id": "square-dashed-search",
+    "sha256": "0a71c230a69dde0a34f86d920e9d0692e82d2113dad23a593f58542d16d65325"
+  },
+  {
     "name": "SquareDashedText",
     "id": "square-dashed-text",
     "sha256": "3701ea759a81d3110a8e2ff229cc5dbbe1b76e33ad4bccf218afd3a12d4c71f8"
@@ -9642,7 +9762,7 @@
   {
     "name": "SquareLetterJ",
     "id": "square-letter-j",
-    "sha256": "bb098ce97841a875ab61ed19f42074764ef541d340e19fb3adaee9b4d6099c13"
+    "sha256": "f70a0c3dd411f259fcd45aa587cdd01efe23912218db58865baaf3cfacf09538"
   },
   {
     "name": "SquareLetterK",
@@ -10730,6 +10850,11 @@
     "sha256": "ed25cd14f787f6b49d192d5add8f0130f8bea9eb1bb242d3faa74941373ecada"
   },
   {
+    "name": "TriangleExclamationPoint",
+    "id": "triangle-exclamation-point",
+    "sha256": "c2611828ef58be5268d80ce04231f652d3fd3a5ae33717b935f4db8b97bdf2ec"
+  },
+  {
     "name": "TriangleRight",
     "id": "triangle-right",
     "sha256": "c57dc44be55cdafa9f427b0f1d0334513db0178b656fb610a37b02e92cddfc46"
@@ -10935,6 +11060,11 @@
     "sha256": "d22cf7aa6d6fde2ef972e7af839fde8b364577c18bcacbbcc5f95f5b2bcc5d2e"
   },
   {
+    "name": "UserExclamationPoint",
+    "id": "user-exclamation-point",
+    "sha256": "a78afc9ab633b9a44bbe62de02cee1762eec5996f144d0bb7a927db3ca3d4b09"
+  },
+  {
     "name": "UserGroup",
     "id": "user-group",
     "sha256": "edae5b82b39c876530dae7a8c3578b696cb6faa6a3fa883c5e8375b652dd31d6"
@@ -10993,6 +11123,11 @@
     "name": "UserRoundCog",
     "id": "user-round-cog",
     "sha256": "d22cf7aa6d6fde2ef972e7af839fde8b364577c18bcacbbcc5f95f5b2bcc5d2e"
+  },
+  {
+    "name": "UserRoundExclamationPoint",
+    "id": "user-round-exclamation-point",
+    "sha256": "4cae0084b420f682d86a7e631f274a56cc73c509bc3fcddf100218248cea3a56"
   },
   {
     "name": "UserRoundGroup",
