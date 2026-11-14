@@ -73,7 +73,7 @@ func fixture(t *testing.T) (string, Lock) {
 		lock.Collections = append(lock.Collections, c)
 	}
 	put(t, root, "sources/lock.json", marshal(lock))
-	put(t, root, "examples/native/catalog_gen.go", []byte("old catalog"))
+	put(t, root, "catalog/catalog_gen.go", []byte("old catalog"))
 	return root, lock
 }
 func TestPlanOfflineAndConsistency(t *testing.T) {

@@ -6,7 +6,7 @@
 Typed [Iconify](https://iconify.design) collections for [MyGo](https://github.com/egoist/mygo), with a generator for your own collections. Import a collection, pick a name with editor completion, and pass its `*ui.SVG` to MyGo.
 
 ```sh
-go get github.com/Cyenoch/mygoicons@v0.2.1
+go get github.com/Cyenoch/mygoicons@v0.3.0
 ```
 
 Requires Go 1.27.1 or later. MyGo v0.6.3 is the minimum supported version; CI also checks the latest stable release.
@@ -36,7 +36,7 @@ func toolbar(c *ui.Context) {
 Each function returns a shared SVG, parsed once on first use. Element size and color remain independent at each use. Treat returned SVGs as immutable.
 
 - Ordinary Go functions provide completion, documentation with the original Iconify ID, and compiler errors for misspelled names.
-- Each icon has its own lazy cache. There is no runtime collection registry, so Go's linker can remove unused icons.
+- Each icon has its own lazy cache. The collection packages hold no registry, so Go's linker removes unused icons. Package `catalog` lists them all for programs that want every icon.
 - Generated source is committed. Application builds need no generator, JavaScript runtime, network requests, or asset server.
 - The generator checks aliases, name collisions, SVG syntax, and compatibility with MyGo's supported SVG features.
 
@@ -44,37 +44,56 @@ Each function returns a shared SVG, parsed once on first use. Element size and c
 
 | Package | Iconify source | Version | Functions |
 | --- | --- | --- | ---: |
-| `lucide` | `@iconify-json/lucide` | 1.2.147 | 2,198 |
+| `lucide` | `@iconify-json/lucide` | 1.2.154 | 2,377 |
 | `twemoji` | `@iconify-json/twemoji` | 1.2.5 | 4,728 |
 
 Both collections include aliases and hidden names from their pinned source data. Counts describe exported names, not distinct artwork.
 
 Names use MixedCaps with common Go initialisms: `scan-qr-code` becomes `ScanQRCode`. A leading digit gets `Icon`, as in `Icon1stPlaceMedal`. Adjacent numeric segments retain an underscore: `arrow-down-0-1` becomes `ArrowDown0_1`, while `arrow-down-01` becomes `ArrowDown01`. Other name collisions fail generation and identify both original IDs.
 
-Unused artwork is removed from the executable, but importing a collection still downloads and compiles its generated source. A registry that references every accessor deliberately retains every icon. Generate a subset if download, compilation, or editor indexing costs matter.
+Unused artwork is removed from the executable, but importing a collection still downloads and compiles its generated source. Generate a subset if download, compilation, or editor indexing costs matter.
+
+## List every icon
+
+An icon browser, picker or documentation page needs the whole collection. Package `catalog` lists it:
+
+```go
+import "github.com/Cyenoch/mygoicons/catalog"
+
+set := catalog.Lucide() // or catalog.Twemoji(), catalog.All()
+for _, icon := range set.Icons {
+    if icon.AliasOf != "" {
+        continue // the same drawing under an older name
+    }
+    ui.Icon(c, icon.SVG()).Size(20, 20).Label(icon.ID)
+}
+```
+
+Each `Icon` has its Go `Name`, Iconify `ID`, `SVG` accessor and, for a repeated drawing, the name it is an `AliasOf`. A `Collection` carries its `Title`, pinned `Version`, `License` and whether it is `Colored` (draw with `ui.Image`) or follows the text color (`ui.Icon`).
+
+Calling `catalog.Lucide()` keeps all of Lucide in the executable, and only Lucide: collections you do not list are still left out.
 
 ## Find and preview icons
 
 ```sh
-go run github.com/Cyenoch/mygoicons/examples/native@v0.2.1
+go run github.com/Cyenoch/mygoicons/examples/native@v0.3.0
 ```
 
 The native browser switches between collections, searches Go names and original Iconify IDs, adjusts size and preview background, and copies an accessor or a complete Go application. Check multiple icons and use **Copy -icons list** for a generator selection. Each collection shows its pinned version and license. Arrow keys, Home/End and Tab support keyboard operation; checkboxes toggle with Space. Empty searches and copy actions provide feedback.
 
-The example's generated directory references every accessor, and its virtual list builds only visible rows. The directory is confined to the example; collection packages contain no registry. A desktop window needs at least 960 × 720 logical pixels. From a checkout, run `go run ./examples/native`; `-capture preview.png` opens and captures a native frame, then exits on the ready event.
+The example lists icons through package `catalog`, and its virtual list builds only visible rows. A desktop window needs at least 960 × 720 logical pixels. From a checkout, run `go run ./examples/native`; `-capture preview.png` opens and captures a native frame, then exits on the ready event.
 
 ## Generate a collection
 
 Run the generator against a local Iconify `icons.json`, from an individual `@iconify-json/{prefix}` package or a private collection:
 
 ```sh
-go run github.com/Cyenoch/mygoicons/cmd/iconify@v0.2.1 \
+go run github.com/Cyenoch/mygoicons/cmd/iconify@v0.3.0 \
   -input /path/to/icons.json \
-  -out internal/appicons/icons_gen.go \
-  -package appicons
+  -out internal/appicons/icons_gen.go
 ```
 
-Use `-icons search,arrow-right` to select a subset by original name. Omit it to generate the entire collection. Use `-check` with the same arguments to detect stale or missing output without writing.
+The package is named after the output directory; `-package` overrides it. Use `-icons search,arrow-right` to select a subset by original name. Omit it to generate the entire collection. Use `-check` with the same arguments to detect stale or missing output without writing.
 
 Generated packages import only MyGo and the standard library. Commit the output into your application; it does not need to depend on this module. Preserve the source collection's license and attribution alongside the generated artwork.
 
@@ -85,7 +104,7 @@ The CLI validates input before writing, refuses to overwrite handwritten files, 
 Install the CLI once, then add a collection from your application's Go module:
 
 ```sh
-go install github.com/Cyenoch/mygoicons/cmd/iconify@v0.2.1
+go install github.com/Cyenoch/mygoicons/cmd/iconify@v0.3.0
 iconify add mingcute
 ```
 
@@ -97,7 +116,7 @@ For a reproducible two-icon subset:
 iconify add mingcute@1.2.8 -icons search-line,home-1-line
 ```
 
-Without installing the CLI: `go run github.com/Cyenoch/mygoicons/cmd/iconify@v0.2.1 add mingcute`.
+Without installing the CLI: `go run github.com/Cyenoch/mygoicons/cmd/iconify@v0.3.0 add mingcute`.
 
 Import your own module path and use the generated functions:
 
@@ -109,7 +128,7 @@ ui.Icon(c, mingcute.SearchLine()).Size(24, 24).Label("Search")
 ui.Icon(c, mingcute.Home1Line()).Size(24, 24).Label("Home")
 ```
 
-Replace `example.com/yourapp` with your module name. Use `iconify add mingcute -check` for an offline check. To update, specify the new version explicitly. `-out path` changes the package directory; names with hyphens use a Go package name with the hyphens removed. Browse original IDs at [Iconify's MingCute directory](https://icon-sets.iconify.design/mingcute/); `-line` and `-fill` are part of those IDs. MingCute 1.2.8 generates 3,364 accessors.
+Replace `example.com/yourapp` with your module name. Use `iconify add mingcute -check` for an offline check. A later `add` keeps the saved selection; `-icons all` returns to the whole collection. To update, specify the new version explicitly. `-out path` changes the package directory; names with hyphens use a Go package name with the hyphens removed. Browse original IDs at [Iconify's MingCute directory](https://icon-sets.iconify.design/mingcute/); `-line` and `-fill` are part of those IDs. MingCute 1.2.8 generates 3,364 accessors.
 
 The command verifies npm SHA-512 integrity and archive limits, preserves existing accessors, and stages updates before replacing generated files. You can keep handwritten Go files and other files beside the icons; updates preserve them. License changes are reported and the retained notices are updated in place. Commit the entire generated directory; builds require only MyGo and the standard library, with no runtime downloads or mygoicons dependency.
 
@@ -144,7 +163,7 @@ CGO_ENABLED=0 go test ./...
 CGO_ENABLED=0 go vet ./...
 CGO_ENABLED=1 go test -race ./...
 go run ./cmd/catalog -check
-git diff --exit-code -- sources lucide twemoji examples/native/catalog_gen.go
+git diff --exit-code -- sources lucide twemoji catalog/catalog_gen.go
 GOOS=js GOARCH=wasm go build ./...
 ```
 

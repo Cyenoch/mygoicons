@@ -24,6 +24,9 @@ func (u *Updater) Fetch(ctx context.Context, prefix, version string) (Collection
 	}
 	if version == "" {
 		raw, err := u.get(ctx, u.Registry+"/"+url.PathEscape(c.Package)+"/latest", maxMetadata)
+		if errors.Is(err, errNotFound) {
+			return c, nil, fmt.Errorf("npm has no Iconify collection %q (%s)", prefix, c.Package)
+		}
 		if err != nil {
 			return c, nil, err
 		}
@@ -39,6 +42,9 @@ func (u *Updater) Fetch(ctx context.Context, prefix, version string) (Collection
 	c.Version = version
 	c.RegistryMetadataURL = u.Registry + "/" + url.PathEscape(c.Package) + "/" + version
 	raw, err := u.get(ctx, c.RegistryMetadataURL, maxMetadata)
+	if errors.Is(err, errNotFound) {
+		return c, nil, fmt.Errorf("npm has no %s version %s", c.Package, version)
+	}
 	if err != nil {
 		return c, nil, err
 	}

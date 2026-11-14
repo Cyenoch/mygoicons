@@ -34,7 +34,7 @@ with tempfile.TemporaryDirectory(prefix="mygoicons-pr-check-") as tmp:
     run("git", "config", "user.email", "test@example.invalid", cwd=seed)
     run("git", "checkout", "-b", "main", cwd=seed)
     for name in ["sources/lock.json", "lucide/icons_gen.go", "twemoji/icons_gen.go",
-                 "examples/native/catalog_gen.go"]:
+                 "catalog/catalog_gen.go"]:
         target = seed / name
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(lock("1.0.0", "2026-01-01") if name.endswith(".json") else "fixture")

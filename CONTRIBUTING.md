@@ -12,7 +12,7 @@ CGO_ENABLED=0 go vet ./...
 CGO_ENABLED=0 go test ./...
 CGO_ENABLED=1 go test -race ./...
 GOOS=js GOARCH=wasm go build ./...
-git diff --exit-code -- sources lucide twemoji examples/native/catalog_gen.go
+git diff --exit-code -- sources lucide twemoji catalog/catalog_gen.go
 ```
 
 Tests cover full regeneration and raw-source hashes, the pinned official Iconify oracle, concurrent first-use caches, software rendering of color/size/clip/rotation/gradients, native browser interactions and clipboard contents, virtualized row construction, and linking full, compatibility-alias and one-icon packages. The linker tests run with the module proxy disabled after dependencies have been downloaded. Their context deadlines guard hung subprocesses; no timing threshold decides correctness.
@@ -21,7 +21,7 @@ Run the native browser with `go run ./examples/native`. Its event-based capture 
 
 ## Import a collection into an application
 
-Install `go install github.com/Cyenoch/mygoicons/cmd/iconify@v0.2.1`, then run `iconify add mingcute` from the application module. Add `@1.2.8` to pin the first import, or `-icons search-line,home-1-line` for a subset. The command saves the exact version and selection in `internal/mingcute/source.json`, raw input under `source/`, full applicable license notices, and generated Go. Commit the complete directory. Later `iconify add mingcute` and `iconify add mingcute -check` reuse saved data offline; updating requires an explicit new version.
+Install `go install github.com/Cyenoch/mygoicons/cmd/iconify@v0.3.0`, then run `iconify add mingcute` from the application module. Add `@1.2.8` to pin the first import, or `-icons search-line,home-1-line` for a subset. The command saves the exact version and selection in `internal/mingcute/source.json`, raw input under `source/`, full applicable license notices, and generated Go. Commit the complete directory. Later `iconify add mingcute` and `iconify add mingcute -check` reuse saved data offline; updating requires an explicit new version.
 
 Imports reuse the updater's bounded npm download, SHA-512 verification and archive validation. Automatic notice retrieval supports GitHub file license URLs and records immutable commit identities and file digests. Other license locations require the existing local `-input` workflow. Application imports report license changes and refresh notices in place. Handwritten Go files, other files, subdirectories and custom `.gitattributes` are preserved during updates. Generated paths cannot redirect writes through symbolic links. The bundled-collection updater keeps its separate license-review gate. `.gitattributes` inside each package preserves the upstream bytes on Windows.
 
@@ -38,10 +38,10 @@ go run ./cmd/update-icons -versions twemoji
 go run ./cmd/update-icons -check
 
 # An exact reproducible selection (the versions shipped in v0.1.0).
-go run ./cmd/update-icons -lucide 1.2.147 -twemoji 1.2.5 -check
+go run ./cmd/update-icons -lucide 1.2.154 -twemoji 1.2.5 -check
 
 # Apply the selection or omit version flags to check current npm releases.
-go run ./cmd/update-icons -lucide 1.2.147 -twemoji 1.2.5
+go run ./cmd/update-icons -lucide 1.2.154 -twemoji 1.2.5
 ```
 
 The network-enabled tool resolves `latest` only as a discovery step, then fetches exact version metadata and its registry-origin archive. It checks package name/version and SHA-512 integrity before parsing. HTTP responses are bounded to 32 MiB for archives and 8 MiB for metadata, with a 60-second request timeout and at most five HTTPS redirects. Archives allow at most 128 regular-file/directory entries, 64 MiB per entry and 96 MiB total expanded data; JSON metadata entries allow 8 MiB. Links, special entries, duplicate entries and escaping paths fail. Generator limits apply afterward.
@@ -90,7 +90,7 @@ No-update runs skip Pango setup, full validation and PR operations. Changed upda
 ## Remote consumer and cost checks
 
 ```sh
-go run ./cmd/verify-consumer -version v0.2.1 -add
+go run ./cmd/verify-consumer -version v0.3.0 -add
 go run ./cmd/measure -out measurements.json
 ```
 
@@ -110,6 +110,6 @@ The consumer check uses an empty module cache, disables `go.work`, GOFLAGS and p
      --notes-file release-notes.md
    ```
 
-5. Wait for tag CI too. Run `go run ./cmd/verify-consumer -version v0.2.1 -add` from the checked checkout; it downloads the remote tag into its own clean module/cache and verifies installation and pinned-generator use. Record release validation and any real limitations. Keep the workspace clean.
+5. Wait for tag CI too. Run `go run ./cmd/verify-consumer -version v0.3.0 -add` from the checked checkout; it downloads the remote tag into its own clean module/cache and verifies installation and pinned-generator use. Record release validation and any real limitations. Keep the workspace clean.
 
 Release notes name the actual npm data versions, Go/MyGo support, API additions and artwork licenses. Do not claim a verified artwork revision when only the npm package and notice snapshots are pinned.

@@ -45,7 +45,7 @@ jobs:
       - name: Check generated collections
         run: >-
           git diff --exit-code -- sources lucide twemoji
-          examples/native/catalog_gen.go
+          catalog/catalog_gen.go
       - run: go run ./cmd/catalog -check
       - name: Verify update PR idempotency
         if: runner.os == 'Linux'
