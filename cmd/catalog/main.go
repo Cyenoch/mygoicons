@@ -1,4 +1,4 @@
-// Command catalog regenerates the development-only icon directory.
+// Command catalog regenerates the catalog package's listing.
 package main
 
 import (
@@ -25,7 +25,7 @@ func run() error {
 	if err != nil {
 		return err
 	}
-	name := filepath.Join("examples", "native", "catalog_gen.go")
+	name := filepath.Join("catalog", "catalog_gen.go")
 	old, err := os.ReadFile(name)
 	if err != nil && !os.IsNotExist(err) {
 		return err
@@ -34,7 +34,7 @@ func run() error {
 		return nil
 	}
 	if *check {
-		return fmt.Errorf("native catalog is stale")
+		return fmt.Errorf("catalog/catalog_gen.go is stale")
 	}
 	return os.WriteFile(name, data, 0o644)
 }

@@ -1,12 +1,12 @@
 # Pinned Iconify collection inputs
 
-Retrieval dates and immutable identities are recorded in `lock.json` (latest update: 2026-10-21). These are publisher/generator inputs,
+Retrieval dates and immutable identities are recorded in `lock.json` (latest update: 2026-11-14). These are publisher/generator inputs,
 copied without reformatting from integrity-verified npm archives. No archive,
 Node installation, or npm dependency tree is stored here.
 
 | Directory | Package | Version | Icons | Aliases | Metadata license |
 | --- | --- | --- | ---: | ---: | --- |
-| `lucide/` | `@iconify-json/lucide` | `1.2.147` | 1978 | 220 | ISC |
+| `lucide/` | `@iconify-json/lucide` | `1.2.154` | 2132 | 245 | ISC |
 | `twemoji/` | `@iconify-json/twemoji` | `1.2.5` | 4169 | 559 | CC-BY-4.0 |
 
 Each directory contains the original `icons.json`, `info.json`, and

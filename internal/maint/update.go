@@ -357,7 +357,7 @@ func (u *Updater) Plan(ctx context.Context, versions map[string]string, acceptLi
 		if err != nil {
 			return nil, report.String(), err
 		}
-		changes[filepath.Join("examples", "native", "catalog_gen.go")] = catalog
+		changes[filepath.Join("catalog", "catalog_gen.go")] = catalog
 	}
 	for file, data := range changes {
 		old, err := os.ReadFile(filepath.Join(u.Root, file))

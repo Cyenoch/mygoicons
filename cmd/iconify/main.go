@@ -30,12 +30,12 @@ func run(args []string, stdout, stderr io.Writer) error {
 	flags := flag.NewFlagSet("iconify", flag.ContinueOnError)
 	flags.SetOutput(stderr)
 	flags.Usage = func() {
-		fmt.Fprintln(stderr, "Usage: iconify add <collection>[@version] [-icons id,id]\n       iconify -input icons.json -out icons_gen.go -package name")
+		fmt.Fprintln(stderr, "Usage: iconify add <collection>[@version] [-icons id,id] [-out directory]\n       iconify -input icons.json -out icons_gen.go [-package name]")
 		flags.PrintDefaults()
 	}
 	input := flags.String("input", "", "local Iconify icons.json (required)")
 	output := flags.String("out", "", "generated Go file (required)")
-	pkg := flags.String("package", "", "Go package name (required)")
+	pkg := flags.String("package", "", "Go package name; default: the name of -out's directory")
 	icons := flags.String("icons", "", "comma-separated original icon names; empty selects all")
 	manifest := flags.String("manifest", "", "export compatibility manifest to preserve (optional)")
 	check := flags.Bool("check", false, "fail if the output is missing or differs; never write")
@@ -45,22 +45,34 @@ func run(args []string, stdout, stderr io.Writer) error {
 		}
 		return err
 	}
-	if flags.NArg() != 0 || *input == "" || *output == "" || *pkg == "" {
-		return errors.New("use -input icons.json -out icons_gen.go -package name; see -help")
+	if flags.NArg() != 0 {
+		return fmt.Errorf("unexpected argument %q; see -help", flags.Arg(0))
+	}
+	var missing []string
+	if *input == "" {
+		missing = append(missing, "-input")
+	}
+	if *output == "" {
+		missing = append(missing, "-out")
+	}
+	if len(missing) != 0 {
+		return fmt.Errorf("missing %s; use -input icons.json -out icons_gen.go, see -help", strings.Join(missing, " and "))
 	}
 	if !strings.HasSuffix(*output, ".go") || strings.HasSuffix(*output, "_test.go") {
 		return errors.New("-out must be a non-test Go source file")
+	}
+	if *pkg == "" {
+		absolute, err := filepath.Abs(*output)
+		if err != nil {
+			return err
+		}
+		*pkg = filepath.Base(filepath.Dir(absolute))
 	}
 	source, err := readBounded(*input, generate.MaxInputBytes)
 	if err != nil {
 		return fmt.Errorf("read input: %w", err)
 	}
-	options := generate.Options{Package: *pkg}
-	if *icons != "" {
-		for name := range strings.SplitSeq(*icons, ",") {
-			options.Icons = append(options.Icons, strings.TrimSpace(name))
-		}
-	}
+	options := generate.Options{Package: *pkg, Icons: iconList(*icons)}
 	existing, err := readBounded(*output, generate.MaxOutputBytes)
 	if err != nil && !errors.Is(err, os.ErrNotExist) {
 		return fmt.Errorf("read output: %w", err)
@@ -74,11 +86,11 @@ func run(args []string, stdout, stderr io.Writer) error {
 	if *manifest != "" {
 		data, readErr := readBounded(*manifest, generate.MaxInputBytes)
 		if readErr != nil {
-			return readErr
+			return fmt.Errorf("read manifest: %w", readErr)
 		}
 		var previous []generate.Export
 		if err := json.Unmarshal(data, &previous); err != nil {
-			return err
+			return fmt.Errorf("manifest %s: %w", *manifest, err)
 		}
 		options.Previous = append(options.Previous, previous...)
 	}
@@ -98,6 +110,17 @@ func run(args []string, stdout, stderr io.Writer) error {
 	}
 	fmt.Fprintf(stdout, "%s: generated %d icons in %s\n", result.Prefix, result.Count, *output)
 	return nil
+}
+
+// iconList splits a comma-separated -icons value, ignoring blanks.
+func iconList(value string) []string {
+	var names []string
+	for name := range strings.SplitSeq(value, ",") {
+		if name = strings.TrimSpace(name); name != "" {
+			names = append(names, name)
+		}
+	}
+	return names
 }
 
 func readBounded(path string, limit int64) ([]byte, error) {

@@ -74,7 +74,10 @@ func TestBrowserInteractions(t *testing.T) {
 	if b.built > 50 {
 		t.Fatalf("built %d rows", b.built)
 	}
-	click("Icon results")
+	// A row takes the click on every MyGo version; the list's own area
+	// belongs to its rows from v0.9.
+	first := collections[b.set].Icons[b.results[0]]
+	click(first.Name + " · " + first.ID)
 	tester.Key(0, ui.KeyEnd)
 	if b.selected != len(b.results)-1 {
 		t.Fatalf("keyboard End: %d", b.selected)

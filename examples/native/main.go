@@ -9,9 +9,14 @@ import (
 	"slices"
 	"strings"
 
+	"github.com/Cyenoch/mygoicons/catalog"
 	"github.com/egoist/mygo"
 	"github.com/egoist/mygo/ui"
 )
+
+type entry = catalog.Icon
+
+var collections = catalog.All()
 
 type browser struct {
 	set              int
@@ -67,9 +72,9 @@ func (b *browser) selectedIDs() []string {
 	slices.Sort(ids)
 	return ids
 }
-func usage(set string, e entry, size int) string {
+func usage(set catalog.Collection, e entry, size int) string {
 	widget := "Icon"
-	if set == "twemoji" {
+	if set.Colored {
 		widget = "Image"
 	}
 	return fmt.Sprintf(`package main
@@ -92,10 +97,10 @@ func main() {
     })
     if err := mygo.App.Run(); err != nil { log.Fatal(err) }
 }
-`, set, widget, set, e.Name, size, size, e.ID)
+`, set.Prefix, widget, set.Prefix, e.Name, size, size, e.ID)
 }
-func showIcon(c *ui.Context, set string, e entry, size float32) {
-	if set == "twemoji" {
+func showIcon(c *ui.Context, set catalog.Collection, e entry, size float32) {
+	if set.Colored {
 		ui.Image(c, e.SVG()).Size(size, size).Label(e.ID)
 	} else {
 		ui.Icon(c, e.SVG()).Size(size, size).Label(e.ID)
@@ -156,7 +161,7 @@ func (b *browser) view(c *ui.Context) {
 								delete(b.chosen, key)
 							}
 						})
-						showIcon(c, set.Prefix, e, 28)
+						showIcon(c, set, e, 28)
 						ui.Column(c).Gap(4).Children(func() { ui.Text(c, e.Name).FontSize(14); ui.Text(c, e.ID).FontSize(12) })
 					})
 				}).Height(listHeight).Shrink(0).Label("Icon results")
@@ -177,13 +182,13 @@ func (b *browser) view(c *ui.Context) {
 				if b.dark {
 					bg, ink = ui.RGB(24, 24, 24), ui.RGB(235, 235, 235)
 				}
-				ui.Column(c).Height(180).AlignItems(ui.Center).Justify(ui.Center).Background(bg).TextColor(ink).Children(func() { showIcon(c, set.Prefix, e, float32(b.size)) })
+				ui.Column(c).Height(180).AlignItems(ui.Center).Justify(ui.Center).Background(bg).TextColor(ink).Children(func() { showIcon(c, set, e, float32(b.size)) })
 				ui.Text(c, fmt.Sprintf("Preview size: %.0f px", b.size)).FontSize(14)
 				ui.Slider(c, &b.size, 16, 128).Step(1).Label("Icon size")
 				ui.Checkbox(c, &b.dark, "Dark preview background")
 				ui.Text(c, set.Prefix+"."+e.Name+"()").FontSize(14)
 				ui.Button(c, "Copy accessor").OnClick(func() { b.copy(c, set.Prefix+"."+e.Name+"()", "accessor") })
-				ui.Button(c, "Copy complete Go app").OnClick(func() { b.copy(c, usage(set.Prefix, e, int(b.size)), "complete Go app") })
+				ui.Button(c, "Copy complete Go app").OnClick(func() { b.copy(c, usage(set, e, int(b.size)), "complete Go app") })
 				ui.Text(c, "Lucide uses ui.Icon for text color. Twemoji uses ui.Image for original colors.").FontSize(14)
 			})
 		})

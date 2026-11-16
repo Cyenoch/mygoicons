@@ -85,7 +85,7 @@ jobs:
           if git diff --quiet; then
             exit 0
           fi
-          git add sources lucide twemoji examples/native/catalog_gen.go
+          git add sources lucide twemoji catalog/catalog_gen.go
           tree=$(git write-tree)
           changed=true
           if git ls-remote --exit-code origin "refs/heads/$branch" \

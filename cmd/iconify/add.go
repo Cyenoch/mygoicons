@@ -29,34 +29,39 @@ type importedSource struct {
 func add(args []string, stdout, stderr io.Writer, u *maint.Updater) error {
 	flags := flag.NewFlagSet("iconify add", flag.ContinueOnError)
 	flags.SetOutput(stderr)
-	icons := flags.String("icons", "", "comma-separated original IDs; empty selects all")
+	icons := flags.String("icons", "", `comma-separated original IDs; default: the saved selection, else every icon; "all" selects every icon`)
 	out := flags.String("out", "", "package directory; default internal/<collection>")
 	check := flags.Bool("check", false, "check saved inputs and output offline; never download or write")
 	flags.Usage = func() {
-		fmt.Fprintln(stderr, "Usage: iconify add <collection>[@version] [-icons id,id] [-out directory] [-check]")
+		fmt.Fprintln(stderr, "Usage: iconify add <collection>[@version] [-icons id,id|all] [-out directory] [-check]")
 		flags.PrintDefaults()
 	}
 	if len(args) == 0 {
 		return errors.New("use iconify add mingcute or iconify add mingcute@1.2.8")
 	}
-	if strings.HasPrefix(args[0], "-") {
-		if err := flags.Parse(args); errors.Is(err, flag.ErrHelp) {
-			return nil
+	// Flags may come before or after the collection.
+	collection := ""
+	for rest := args; ; rest = flags.Args()[1:] {
+		if err := flags.Parse(rest); err != nil {
+			if errors.Is(err, flag.ErrHelp) {
+				return nil
+			}
+			return err
 		}
-		return errors.New("put the collection before flags")
+		if flags.NArg() == 0 {
+			break
+		}
+		if collection != "" {
+			return fmt.Errorf("unexpected argument %q", flags.Arg(0))
+		}
+		collection = flags.Arg(0)
 	}
-	prefix, version, pinned := strings.Cut(args[0], "@")
+	if collection == "" {
+		return errors.New("name a collection: iconify add mingcute")
+	}
+	prefix, version, pinned := strings.Cut(collection, "@")
 	if !collectionName.MatchString(prefix) || len(prefix) > 128 || pinned && version == "" {
-		return errors.New("invalid collection; use mingcute or mingcute@1.2.8")
-	}
-	if err := flags.Parse(args[1:]); err != nil {
-		if errors.Is(err, flag.ErrHelp) {
-			return nil
-		}
-		return err
-	}
-	if flags.NArg() != 0 {
-		return errors.New("unexpected arguments")
+		return fmt.Errorf("invalid collection %q; use mingcute or mingcute@1.2.8", collection)
 	}
 	if *out == "" {
 		*out = filepath.Join("internal", prefix)
@@ -169,11 +174,12 @@ func add(args []string, stdout, stderr io.Writer, u *maint.Updater) error {
 		}
 	}
 	options := generate.Options{Package: pkg, Previous: previous, Icons: lock.Icons}
-	if *icons != "" {
+	switch *icons {
+	case "":
+	case "all":
 		options.Icons = nil
-		for name := range strings.SplitSeq(*icons, ",") {
-			options.Icons = append(options.Icons, strings.TrimSpace(name))
-		}
+	default:
+		options.Icons = iconList(*icons)
 	}
 	lock.Icons = options.Icons
 	result, err := generate.Build(files[filepath.Join("source", "icons.json")], options)
