@@ -715,6 +715,46 @@
     "sha256": "91c8a151e436656f0e61d2f4969829bdbaf937cd76105a9e6c093d3780acd5b6"
   },
   {
+    "name": "ArrowsFromAxisDashedHorizontal",
+    "id": "arrows-from-axis-dashed-horizontal",
+    "sha256": "a2c1c163f93004e41d0def5b3d52493929852ad134f92b19380b7603275e10a8"
+  },
+  {
+    "name": "ArrowsFromAxisDashedVertical",
+    "id": "arrows-from-axis-dashed-vertical",
+    "sha256": "a500276084efcf86cef0f7a6d8cb3676f5ae4f089e2920e78c54f452b0a8c761"
+  },
+  {
+    "name": "ArrowsFromAxisHorizontal",
+    "id": "arrows-from-axis-horizontal",
+    "sha256": "1ced282ed6ba02e1b6db1f8d623c40b9a559b2731c53ede1f2525554e060312c"
+  },
+  {
+    "name": "ArrowsFromAxisVertical",
+    "id": "arrows-from-axis-vertical",
+    "sha256": "cd293139d7a562b1bb103e6a70afeac400ebc1e26491581f11c0e747f4fa7ce8"
+  },
+  {
+    "name": "ArrowsToAxisDashedHorizontal",
+    "id": "arrows-to-axis-dashed-horizontal",
+    "sha256": "ab7c1a0b68a5983e80d8d7a0d85fbc63f617b24bfe46e865dbd060de68be5c9a"
+  },
+  {
+    "name": "ArrowsToAxisDashedVertical",
+    "id": "arrows-to-axis-dashed-vertical",
+    "sha256": "540ca81e85bb50e3958fe5155dab44b8d2f69b5dd9bbe0417f2b34ada863901c"
+  },
+  {
+    "name": "ArrowsToAxisHorizontal",
+    "id": "arrows-to-axis-horizontal",
+    "sha256": "e9e2e0397259000ee67cef451ddba9703674c76dab8684668688396892c0462c"
+  },
+  {
+    "name": "ArrowsToAxisVertical",
+    "id": "arrows-to-axis-vertical",
+    "sha256": "bd4986c4e55c5a52c6ab09b5d47c53d742fd2b5402459820dea6d29c350794e2"
+  },
+  {
     "name": "ArrowsUpFromLine",
     "id": "arrows-up-from-line",
     "sha256": "4ef8343b9b16bd56b25ab5fdd6c81b364bcbc28ab52933469e7d01fa20106401"
@@ -1485,14 +1525,34 @@
     "sha256": "98d283bc3d5efe3e23561691e1961d2857272c5104a9f7193361993d08552443"
   },
   {
+    "name": "BotCheck",
+    "id": "bot-check",
+    "sha256": "fc59e5b2b90a12c9020c6d39c5b7f89e0e0f592acada3383b56b3f904ec511d6"
+  },
+  {
     "name": "BotMessageSquare",
     "id": "bot-message-square",
     "sha256": "dc039d5f6c79602f1fe28df7ff2060de1dcc56456ccbbb3e0e4a24f46b4a2cf4"
   },
   {
+    "name": "BotMinus",
+    "id": "bot-minus",
+    "sha256": "df81a58c62a72e6e4ceebeed137d073c37d353029802b1850d65c6a6682a2f6b"
+  },
+  {
     "name": "BotOff",
     "id": "bot-off",
     "sha256": "153792153fba09ede3c77a407e5bf0344f8065daa1c5a407ccbf804c154dc1ff"
+  },
+  {
+    "name": "BotPlus",
+    "id": "bot-plus",
+    "sha256": "337d413db43ee829286bf305122ccf91019dbc2e4b96cb977c2a0a6dfa4152a6"
+  },
+  {
+    "name": "BotX",
+    "id": "bot-x",
+    "sha256": "a6c2a41e8e5bd725b6c0a2783c4ab56b260a0ce5dbd475ad6c690616103e33a7"
   },
   {
     "name": "BottleWine",
@@ -1895,6 +1955,11 @@
     "sha256": "298587e2eeee2ab8aec449cc3e93017c8a9881523ee47454c65ff4a580c6b436"
   },
   {
+    "name": "Cap",
+    "id": "cap",
+    "sha256": "18724859db692bce242c2a4a93ae5f2f88b15abf24b474def9e1a2326bbb92dd"
+  },
+  {
     "name": "Captions",
     "id": "captions",
     "sha256": "5e5a24f4ba9b68b7633746dc84e1151b0cffe9cd3241ad042ec1c3fb9de06172"
@@ -1933,6 +1998,46 @@
     "name": "CardSim",
     "id": "card-sim",
     "sha256": "36ea8c17e411690f61df8277e060f492fb5739063225c8b8c61adccaa54f166d"
+  },
+  {
+    "name": "CaretsFromAxisDashedHorizontal",
+    "id": "carets-from-axis-dashed-horizontal",
+    "sha256": "49e794d8ff7e246ccdd539bd81fe2ba173e3deb8a9e0950ad45a8bf8bc2db9d0"
+  },
+  {
+    "name": "CaretsFromAxisDashedVertical",
+    "id": "carets-from-axis-dashed-vertical",
+    "sha256": "410401ece6f3238287c5221bbfdf1d974d3a505e8bbaee00f739ff2787017dba"
+  },
+  {
+    "name": "CaretsFromAxisHorizontal",
+    "id": "carets-from-axis-horizontal",
+    "sha256": "ba2d8ffa20435a9e0c0f4d78017cf7b9d73264571cf784a79c306a543772fc0f"
+  },
+  {
+    "name": "CaretsFromAxisVertical",
+    "id": "carets-from-axis-vertical",
+    "sha256": "6e18dc26aa24c9e2b90d7592ae6454132e1985837b5e3633760790cb58d98179"
+  },
+  {
+    "name": "CaretsToAxisDashedHorizontal",
+    "id": "carets-to-axis-dashed-horizontal",
+    "sha256": "ebba79159d221d0b778c34ad7e2c391344e7b48f2c9558861e741ef2501c1651"
+  },
+  {
+    "name": "CaretsToAxisDashedVertical",
+    "id": "carets-to-axis-dashed-vertical",
+    "sha256": "eac6d85017d38444b4501154902935ec43accc8dc0d5cbb33634d254be9fbc4a"
+  },
+  {
+    "name": "CaretsToAxisHorizontal",
+    "id": "carets-to-axis-horizontal",
+    "sha256": "cb0d033c7507884ef04a3300638534ac3c6d7a3c074e8b1d5dcfd0eb8a6ea217"
+  },
+  {
+    "name": "CaretsToAxisVertical",
+    "id": "carets-to-axis-vertical",
+    "sha256": "24c9bdd1df3e77b7c6affaf2a3b68b0295122f4b23b13497dcec25dc3bc1ae19"
   },
   {
     "name": "Carrot",
@@ -2290,6 +2395,26 @@
     "sha256": "647ab20b3d42df13241d429a2a18c0aff2086dd09e83db101dd59760ebc09d5c"
   },
   {
+    "name": "ChevronsFromAxisDashedHorizontal",
+    "id": "chevrons-from-axis-dashed-horizontal",
+    "sha256": "67c7fe4eb88cc06de1628dc70725aa9aa5030c88288cc09c81c73129f07a2c68"
+  },
+  {
+    "name": "ChevronsFromAxisDashedVertical",
+    "id": "chevrons-from-axis-dashed-vertical",
+    "sha256": "8c721ffe8439ad4db5d8d0bbde66ba90f28c3b01074b6a8d2622bb75ab77153e"
+  },
+  {
+    "name": "ChevronsFromAxisHorizontal",
+    "id": "chevrons-from-axis-horizontal",
+    "sha256": "c39eae499a10abb44a3bde057faf714044956c031506bc05b4cde9a16eb00964"
+  },
+  {
+    "name": "ChevronsFromAxisVertical",
+    "id": "chevrons-from-axis-vertical",
+    "sha256": "63bb2effbd59198391d13facebe1168d696b852d9f741fba514afe0023e267b9"
+  },
+  {
     "name": "ChevronsLeft",
     "id": "chevrons-left",
     "sha256": "c63685efe2dffba9b88296d952620509c8da061e215deda0b6c13e4b896d6459"
@@ -2313,6 +2438,26 @@
     "name": "ChevronsRightLeft",
     "id": "chevrons-right-left",
     "sha256": "9bf2de2e709e758a41e6fbba9a0e5902ab9d81623a0aa57238d600b3e1ac0e00"
+  },
+  {
+    "name": "ChevronsToAxisDashedHorizontal",
+    "id": "chevrons-to-axis-dashed-horizontal",
+    "sha256": "baccbfeff864fd35ec82b772caf892d6dc7c2c172e1fe343d7986aa636757c96"
+  },
+  {
+    "name": "ChevronsToAxisDashedVertical",
+    "id": "chevrons-to-axis-dashed-vertical",
+    "sha256": "8ac4e13d5b09b0d0c569ad7de312f30835d6c56c37815d27f01d1de77632f601"
+  },
+  {
+    "name": "ChevronsToAxisHorizontal",
+    "id": "chevrons-to-axis-horizontal",
+    "sha256": "91b631a50342365b210b60d285dcbad670e4efab936618525b1093ee082d28a2"
+  },
+  {
+    "name": "ChevronsToAxisVertical",
+    "id": "chevrons-to-axis-vertical",
+    "sha256": "19a0af4b2d328e45d3e8c2acf5f0ab5a69845c5de16c8f8969a07c287ef110ef"
   },
   {
     "name": "ChevronsUp",
@@ -2348,6 +2493,11 @@
     "name": "CigaretteOff",
     "id": "cigarette-off",
     "sha256": "c4e4e5bee7329e0d2b06d6c009ea44eddc03e752404bed493f66046fb3fb3328"
+  },
+  {
+    "name": "Cinema",
+    "id": "cinema",
+    "sha256": "ded19c341cdef00007b17d0947e836709e7c4623c18c7a37da8c8bb7513fa466"
   },
   {
     "name": "Circle",
@@ -2418,6 +2568,11 @@
     "name": "CircleArrowUpRightExit",
     "id": "circle-arrow-up-right-exit",
     "sha256": "bc161f46d9849536a033b361079a052ef7ca08c94ec12c52e50d76f56588909e"
+  },
+  {
+    "name": "CircleBounce",
+    "id": "circle-bounce",
+    "sha256": "dccbedf87a6f2cd546f5eedc358f1b350d681401d412c9bcd02c3e5874499695"
   },
   {
     "name": "CircleCheck",
@@ -2713,6 +2868,11 @@
     "name": "CirclePercent",
     "id": "circle-percent",
     "sha256": "89f3252268b24e0fd8342c8153b5fafbd4d067bb156c1a2d77a1c03639063fa1"
+  },
+  {
+    "name": "CirclePersonArmsSpread",
+    "id": "circle-person-arms-spread",
+    "sha256": "4f874bf6709f0eaf9e2273ea40a4b656b8e8a9de19d0be037ef62d98f5964bbc"
   },
   {
     "name": "CirclePile",
@@ -3653,6 +3813,11 @@
     "name": "Dog",
     "id": "dog",
     "sha256": "66ebfdf810be4c5dae41318042a0f1ead1cd6634be2513bb6869fa4e3bffb0e2"
+  },
+  {
+    "name": "Doghouse",
+    "id": "doghouse",
+    "sha256": "bc60a69abfb76312359c4af62e5609e53f511356e38d38400e07059f621ae1cc"
   },
   {
     "name": "DollarSign",
@@ -5170,6 +5335,11 @@
     "sha256": "0864aee3f5955b43556fb64481fa4fab4ca0ab9e80ad70dd19b3e906cc0a059c"
   },
   {
+    "name": "GraphRing",
+    "id": "graph-ring",
+    "sha256": "ab600cf4ccef52302547e643f02f1cadd8f4201f736e6f246d19c8b5002a17fb"
+  },
+  {
     "name": "GraphStar",
     "id": "graph-star",
     "sha256": "05b89386bc971db51bf6f01fb810f75f84e703a939ddc51054994a6b8ee45aa2"
@@ -5333,6 +5503,11 @@
     "name": "HandPlatter",
     "id": "hand-platter",
     "sha256": "652770493a66d3fa19cf38df1b22b4c4ed57fbbe788ff24f21fa51f153bfcfd9"
+  },
+  {
+    "name": "HandTruck",
+    "id": "hand-truck",
+    "sha256": "dfda5a5f8d4424a0e5442c5fec09b33c1e89452e3fb975dd7ffd34f17282c1b3"
   },
   {
     "name": "Handbag",
@@ -5573,6 +5748,16 @@
     "name": "House",
     "id": "house",
     "sha256": "be35feb6a37bf6318f808fd8b97e16436fc6c0b31336584ef4c1e6bdc6eb6c2a"
+  },
+  {
+    "name": "HouseArrowLeft",
+    "id": "house-arrow-left",
+    "sha256": "d60aade72b6d73b855117401ec63252c8e348daeef70276752ece21b89d923c2"
+  },
+  {
+    "name": "HouseArrowRight",
+    "id": "house-arrow-right",
+    "sha256": "62f80a2bc9aec5e213bdd57099f559c968af738072f5ca82385e1fd9506aa299"
   },
   {
     "name": "HouseCog",
@@ -5993,6 +6178,11 @@
     "name": "LayoutGridCircles",
     "id": "layout-grid-circles",
     "sha256": "3a5b7b82f2c230711b8dda85fbf8364bb43f9dce1ac5658631cea1ead63f6fee"
+  },
+  {
+    "name": "LayoutGridPlus",
+    "id": "layout-grid-plus",
+    "sha256": "4473003c228322f776ac95e44bdc1ec6385cb1fb4a22ba621312a6a1bdd482cb"
   },
   {
     "name": "LayoutList",
@@ -6427,7 +6617,7 @@
   {
     "name": "LoaderPinwheel",
     "id": "loader-pinwheel",
-    "sha256": "b8dc182fbfc3cd144c8fb02b18418d1b317a1e912ca50cccba2eb289c9eff551"
+    "sha256": "006132683d9138c9d835d4234d3812f0a84e7d82f3bed2d65a6257de09f76a4d"
   },
   {
     "name": "Locate",
@@ -7403,6 +7593,11 @@
     "name": "Newspaper",
     "id": "newspaper",
     "sha256": "400f777e946d954e200d6e751ae6419244438118a1bff0ceafcd3041262860af"
+  },
+  {
+    "name": "NigerianNaira",
+    "id": "nigerian-naira",
+    "sha256": "8798d450e235845f37d786c781c12db367c6ddd8e553cdf237a73c2ed3d07a9f"
   },
   {
     "name": "NonBinary",
@@ -9645,6 +9840,26 @@
     "sha256": "afed5ec5d117524161184c482e02f9fdae811c52e9f71bd9f2f5b0fe197acace"
   },
   {
+    "name": "SquareAxisDashedHorizontal",
+    "id": "square-axis-dashed-horizontal",
+    "sha256": "daa6b0665d2f21d659cdee5447ff7e9e7cd0cabcc0746725b42a4956d6c52ea8"
+  },
+  {
+    "name": "SquareAxisDashedVertical",
+    "id": "square-axis-dashed-vertical",
+    "sha256": "a25e008931547af53f5cefd8b6340d719c049070cb1ff6566af68655317ac46e"
+  },
+  {
+    "name": "SquareAxisHorizontal",
+    "id": "square-axis-horizontal",
+    "sha256": "60d8b81c5a98338641270659fca63f27a38c9b134c3c4f7df5c30f856cde40a5"
+  },
+  {
+    "name": "SquareAxisVertical",
+    "id": "square-axis-vertical",
+    "sha256": "188276535508728af5e5a7d631de505aecc061522fbfa2793407b763ddc145c1"
+  },
+  {
     "name": "SquareBookmark",
     "id": "square-bookmark",
     "sha256": "add6d07b229e1d02bdf7fd6631c09941b2576982607c1cb658ac0e4ea4c99285"
@@ -10363,6 +10578,11 @@
     "name": "StrokeLineJoinRound",
     "id": "stroke-line-join-round",
     "sha256": "9e1757fb354dd75ee4e459579e0786cde5249f8c428fff776399b34dad237dfd"
+  },
+  {
+    "name": "StrokeWidth",
+    "id": "stroke-width",
+    "sha256": "f8038ac7ae0f7f3d3fac0d18f38ae8b3808cedd5651d64123fc1678d720c8607"
   },
   {
     "name": "Subscript",
@@ -11578,6 +11798,11 @@
     "name": "Warehouse",
     "id": "warehouse",
     "sha256": "cc117d0c1f7e96f33f6428f4c896603dd2b4cf71a69935079c0dd76ff868f20b"
+  },
+  {
+    "name": "WarehouseWaves",
+    "id": "warehouse-waves",
+    "sha256": "98fa1e6388053f9cd7edaa1322abb05321f21a1dc1e5200f8606767126d2e159"
   },
   {
     "name": "WashingMachine",
