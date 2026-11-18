@@ -6,7 +6,7 @@
 Typed [Iconify](https://iconify.design) collections for [MyGo](https://github.com/egoist/mygo), with a generator for your own collections. Import a collection, pick a name with editor completion, and pass its `*ui.SVG` to MyGo.
 
 ```sh
-go get github.com/Cyenoch/mygoicons@v0.3.0
+go get github.com/Cyenoch/mygoicons@v0.4.0
 ```
 
 Requires Go 1.27.3 or later. MyGo v0.10.0 is the minimum supported version; CI also checks the latest stable release.
@@ -44,7 +44,7 @@ Each function returns a shared SVG, parsed once on first use. Element size and c
 
 | Package | Iconify source | Version | Functions |
 | --- | --- | --- | ---: |
-| `lucide` | `@iconify-json/lucide` | 1.2.154 | 2,377 |
+| `lucide` | `@iconify-json/lucide` | 1.2.156 | 2,422 |
 | `twemoji` | `@iconify-json/twemoji` | 1.2.5 | 4,728 |
 
 Both collections include aliases and hidden names from their pinned source data. Counts describe exported names, not distinct artwork.
@@ -76,7 +76,7 @@ Calling `catalog.Lucide()` keeps all of Lucide in the executable, and only Lucid
 ## Find and preview icons
 
 ```sh
-go run github.com/Cyenoch/mygoicons/examples/native@v0.3.0
+go run github.com/Cyenoch/mygoicons/examples/native@v0.4.0
 ```
 
 The native browser switches between collections, searches Go names and original Iconify IDs, adjusts size and preview background, and copies an accessor or a complete Go application. Check multiple icons and use **Copy -icons list** for a generator selection. Each collection shows its pinned version and license. Arrow keys, Home/End and Tab support keyboard operation; checkboxes toggle with Space. Empty searches and copy actions provide feedback.
@@ -88,7 +88,7 @@ The example lists icons through package `catalog`, and its virtual list builds o
 Run the generator against a local Iconify `icons.json`, from an individual `@iconify-json/{prefix}` package or a private collection:
 
 ```sh
-go run github.com/Cyenoch/mygoicons/cmd/iconify@v0.3.0 \
+go run github.com/Cyenoch/mygoicons/cmd/iconify@v0.4.0 \
   -input /path/to/icons.json \
   -out internal/appicons/icons_gen.go
 ```
@@ -104,7 +104,7 @@ The CLI validates input before writing, refuses to overwrite handwritten files, 
 Install the CLI once, then add a collection from your application's Go module:
 
 ```sh
-go install github.com/Cyenoch/mygoicons/cmd/iconify@v0.3.0
+go install github.com/Cyenoch/mygoicons/cmd/iconify@v0.4.0
 iconify add mingcute
 ```
 
@@ -116,7 +116,7 @@ For a reproducible two-icon subset:
 iconify add mingcute@1.2.8 -icons search-line,home-1-line
 ```
 
-Without installing the CLI: `go run github.com/Cyenoch/mygoicons/cmd/iconify@v0.3.0 add mingcute`.
+Without installing the CLI: `go run github.com/Cyenoch/mygoicons/cmd/iconify@v0.4.0 add mingcute`.
 
 Import your own module path and use the generated functions:
 
