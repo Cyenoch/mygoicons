@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/Cyenoch/mygoicons/actions/workflows/ci.yml/badge.svg)](https://github.com/Cyenoch/mygoicons/actions/workflows/ci.yml)
 [![Go Reference](https://pkg.go.dev/badge/github.com/Cyenoch/mygoicons.svg)](https://pkg.go.dev/github.com/Cyenoch/mygoicons)
+[![Listed on Awesome MyGo](https://awesomemygo.dev/badge.svg)](https://awesomemygo.dev/ui)
 
 Typed [Iconify](https://iconify.design) collections for [MyGo](https://github.com/egoist/mygo), with a generator for your own collections. Import a collection, pick a name with editor completion, and pass its `*ui.SVG` to MyGo.
 
