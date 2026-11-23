@@ -1570,6 +1570,11 @@
     "sha256": "b386ba6c2d0a68bb8073f3d7627c5f03be47b0a14d78319cf5a2319424173dec"
   },
   {
+    "name": "BoxDashed",
+    "id": "box-dashed",
+    "sha256": "de3b9c6f9c0caeec307ecc3877cd694c5a66aed11eab52feac7cd429c5cf2a9b"
+  },
+  {
     "name": "BoxSelect",
     "id": "box-select",
     "sha256": "63bd4cc31a6da8ad4d1559114db1882cb7b31d7e9156cad85fd442b4357cbed0"
@@ -1827,7 +1832,7 @@
   {
     "name": "CalendarClock",
     "id": "calendar-clock",
-    "sha256": "b9991a8950be8ac51449a6dce1a3218ddb0fbaaa29f011c6cf5509d5ce59aa7f"
+    "sha256": "8b8f1cff59e15a5008d31fd3d94a29a0cdf6bfd4e6d79cb258768e2a039da6d8"
   },
   {
     "name": "CalendarCog",
@@ -2470,6 +2475,11 @@
     "sha256": "7f2ac5b43791cb3dd686402556c419e852b6fc1a1a5c175f6e5b8d0d5fe12996"
   },
   {
+    "name": "ChocolateBar",
+    "id": "chocolate-bar",
+    "sha256": "bcc38660aa97c8d32b4ea40bd6575a81253db55205be50f6ae57e705af90d571"
+  },
+  {
     "name": "Chrome",
     "id": "chrome",
     "sha256": "ad709f1986395c9bb52255635a281ed7a693046b96639369689c34bed40a2a04"
@@ -2992,7 +3002,7 @@
   {
     "name": "ClipboardClock",
     "id": "clipboard-clock",
-    "sha256": "e1f235326f8df40c688b41ef832155702ff23019b8035984a9b5d750aff82a25"
+    "sha256": "0f0a5e65df171ccddeb9484ec074443d9c112f367ded3dc6da0b0480ae336612"
   },
   {
     "name": "ClipboardCopy",
@@ -3695,6 +3705,11 @@
     "sha256": "7b38159369f46a536c043d27bb72bf6a69e1f91dec3525f62a422fafb2acd290"
   },
   {
+    "name": "DiagramSankey",
+    "id": "diagram-sankey",
+    "sha256": "ad2be8270d3cd6399d359c3af252226a2b1f003166cefd06c228272938e8bf85"
+  },
+  {
     "name": "Diameter",
     "id": "diameter",
     "sha256": "d620f3c398e653d6dafe1320752d22ccb9bc8e4e7c5f83e77cabc6d908ca7345"
@@ -4307,7 +4322,7 @@
   {
     "name": "FileClock",
     "id": "file-clock",
-    "sha256": "42c53d50bba560f06d6ee08ec131a0d205b4cf107774151d99d6dcb1cca05512"
+    "sha256": "4e8d168abca33eff2fe96a6723abd1b46ecad711d751ac1971a19a6b9b6f613f"
   },
   {
     "name": "FileCode",
@@ -4802,7 +4817,7 @@
   {
     "name": "FolderClock",
     "id": "folder-clock",
-    "sha256": "43d221a57743b0156db4ae18c427403406433cc3b772ff4e4d77d04519ac023a"
+    "sha256": "98d187854a649437e12c67021fdddf3a712c895ec0c5c3a796f02cd371447c2b"
   },
   {
     "name": "FolderClosed",
@@ -4880,6 +4895,11 @@
     "sha256": "c43998edf04045e83cb5c11166807ac689e95b71341cc88913190c3b61bbded4"
   },
   {
+    "name": "FolderNetwork",
+    "id": "folder-network",
+    "sha256": "1cdfb0b702bde1c24ccd0a0e8d2b7ee152974c6f25c6061e553c3b930f77f653"
+  },
+  {
     "name": "FolderOpen",
     "id": "folder-open",
     "sha256": "7d7fe04afd4a3b50ef14584c8ce75ec57a4d39d2a41ccb661f24b3143dc23246"
@@ -4903,6 +4923,11 @@
     "name": "FolderPlus",
     "id": "folder-plus",
     "sha256": "261e3cf5813d23753a17eca5def7232c3eb97e89c78daddd5b6d7815bf6cc52b"
+  },
+  {
+    "name": "FolderPlusCorner",
+    "id": "folder-plus-corner",
+    "sha256": "8037b86aa9e4ba66379d7c9fffe9ff23489cf4ddd68631c3ce23efc8d51f76b7"
   },
   {
     "name": "FolderRoot",
@@ -5940,6 +5965,11 @@
     "sha256": "dfe1c4095d4c01805787503281863aa50a8bbba5d4cd9beab4869e202b67db7a"
   },
   {
+    "name": "Jacket",
+    "id": "jacket",
+    "sha256": "6d07171f40e14a5d72b2766d4fade79a766e61e2d53ec3fa736a6df2834d3a95"
+  },
+  {
     "name": "JapaneseYen",
     "id": "japanese-yen",
     "sha256": "803395368cd8beec6ab418f680004cc71da1a6a9110312bbfd38ea814908b212"
@@ -6712,7 +6742,7 @@
   {
     "name": "MailClock",
     "id": "mail-clock",
-    "sha256": "1df8801f902b8e36a7490394ee57cfeb5739686edadf610154ffed95fd1cf0d0"
+    "sha256": "27e9536fd1703d933d8ca5cd7e0c489ab5315b4e19cb3be50e0eb770bfeffdfe"
   },
   {
     "name": "MailDot",
@@ -7770,6 +7800,11 @@
     "sha256": "f0823b4d35cbf8dd07a0a4f93a930f849150b323e78da0d0aabd248638be90a3"
   },
   {
+    "name": "PaintGun",
+    "id": "paint-gun",
+    "sha256": "b6f693ddcf13ded0491495d7531dc1f55a51b53b2139f4b1199f3fcd66561859"
+  },
+  {
     "name": "PaintRoller",
     "id": "paint-roller",
     "sha256": "b5a825889cabfddc1df061d88b494f659c171b31b1eb8eb7e3b0c068da58fe83"
@@ -8598,6 +8633,11 @@
     "name": "RectangleHorizontal",
     "id": "rectangle-horizontal",
     "sha256": "ab0a1dd0267c9e3b9a02223e1cb3705f986ff792a6dd7e18a9eaae78dd8e3bd9"
+  },
+  {
+    "name": "RectangleLandscapePlay",
+    "id": "rectangle-landscape-play",
+    "sha256": "865e56af246b486e2a4d92c2df6c4bd865e232e24c6c6db0d8de18a6cd72403c"
   },
   {
     "name": "RectangleVertical",
@@ -9677,7 +9717,7 @@
   {
     "name": "SprayCan",
     "id": "spray-can",
-    "sha256": "faca9bdafb73980a7a3d1ab5469f087d6d9caec0ed5916776125668b60b0dd7f"
+    "sha256": "283c6c16ec6f49e31c275571dbc777c24ba4cd0cc505607a9ef5b68f00853eee"
   },
   {
     "name": "Sprout",
@@ -11493,6 +11533,11 @@
     "name": "UserRoundCheck",
     "id": "user-round-check",
     "sha256": "3f792f6283e16346cf445ab0acc18baa1076738090f6d15901db9b429b0d682a"
+  },
+  {
+    "name": "UserRoundClock",
+    "id": "user-round-clock",
+    "sha256": "aabe3083127603455c33010d47897dea71efdcbc226192113eeeb85cff6c2e92"
   },
   {
     "name": "UserRoundCog",

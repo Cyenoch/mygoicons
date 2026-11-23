@@ -1,35 +1,35 @@
 {
   "schemaVersion": 1,
-  "retrievedAt": "2026-11-18",
+  "retrievedAt": "2026-11-23",
   "collections": [
     {
       "prefix": "lucide",
       "package": "@iconify-json/lucide",
-      "version": "1.2.156",
-      "registryMetadataURL": "https://registry.npmjs.org/@iconify-json%2Flucide/1.2.156",
-      "tarballURL": "https://registry.npmjs.org/@iconify-json/lucide/-/lucide-1.2.156.tgz",
-      "integrity": "sha512-IOB3g2X+cmpoEPcjEbGfpDWPPzXioeDW2gnYgaNxYSaVEHyM4fQqP2uz29cdRQJbQwo5CTQ8D9NJnATeCQKatQ==",
+      "version": "1.2.158",
+      "registryMetadataURL": "https://registry.npmjs.org/@iconify-json%2Flucide/1.2.158",
+      "tarballURL": "https://registry.npmjs.org/@iconify-json/lucide/-/lucide-1.2.158.tgz",
+      "integrity": "sha512-odd13G5/Jv4W+yomId3BjCQ/a1k7QemC0mi+CBvvpl18JBO+sQajKl4F3WtPvFHMnkOQ4d3/BFKShTmBlbG0dg==",
       "integrityVerified": true,
       "packageGitHead": "6744cda12837ef476527c6283c4b8d684b7efb07",
       "files": {
         "icons.json": {
-          "sha256": "01d03899e49f501bfce2e96a6b5f2ca48cf9a1fd3d164ce636bc7bbd701356ce",
-          "bytes": 685307,
+          "sha256": "dc2bc5ff88f009c8bc617497d0cc4abb52271de6e5dbaadf2b86dc0844ff86b9",
+          "bytes": 689188,
           "archivePath": "package/icons.json"
         },
         "info.json": {
-          "sha256": "b97425edf1f60617f42378d66dd30cc3a5c0acd66bfbef03d8a88a6ac31d217a",
+          "sha256": "82cde87cfc83454de00721776068e2bf0f76144c74ef57c4fc8c79d483146088",
           "bytes": 504,
           "archivePath": "package/info.json"
         },
         "package.json": {
-          "sha256": "a12a3cbce9ad2dab772eba3f6c1a7113aaffe69f535eefcc5d725b2ed5f9a197",
+          "sha256": "7f68d719be559054dccbce3f369fcb52f016d23ce686e952af334428ffcb0048",
           "bytes": 626,
           "archivePath": "package/package.json"
         }
       },
       "counts": {
-        "icons": 2175,
+        "icons": 2184,
         "aliases": 247
       },
       "license": {
@@ -43,9 +43,9 @@
           {
             "file": "LICENSE",
             "upstreamRepository": "https://github.com/lucide-icons/lucide",
-            "upstreamRevision": "149eba0aea48178a5ab1efe2c701de1da94f4be8",
+            "upstreamRevision": "e00b2b26350fe4dfb6f5273aa366f94974430903",
             "upstreamPath": "LICENSE",
-            "url": "https://raw.githubusercontent.com/lucide-icons/lucide/149eba0aea48178a5ab1efe2c701de1da94f4be8/LICENSE",
+            "url": "https://raw.githubusercontent.com/lucide-icons/lucide/e00b2b26350fe4dfb6f5273aa366f94974430903/LICENSE",
             "sha256": "b495047bd93a9b06913511076f504daba17d5bbeb3e0650f3bb53a4220329c57",
             "gitBlobSHA1": "718bb3f0e44153809972abed31839375804bf652",
             "bytes": 3208

@@ -10,9 +10,9 @@ import (
 // All returns every bundled collection.
 func All() []Collection { return []Collection{Lucide(), Twemoji()} }
 
-// Lucide returns the Lucide collection, @iconify-json/lucide 1.2.156.
+// Lucide returns the Lucide collection, @iconify-json/lucide 1.2.158.
 func Lucide() Collection {
-	return Collection{Prefix: "lucide", Title: "Lucide", Version: "1.2.156", License: "ISC; Feather-derived artwork: MIT", Colored: false, Icons: lucideIcons}
+	return Collection{Prefix: "lucide", Title: "Lucide", Version: "1.2.158", License: "ISC; Feather-derived artwork: MIT", Colored: false, Icons: lucideIcons}
 }
 
 var lucideIcons = []Icon{
@@ -330,6 +330,7 @@ var lucideIcons = []Icon{
 	{"BottleWine", "bottle-wine", "", lucide.BottleWine},
 	{"BowArrow", "bow-arrow", "", lucide.BowArrow},
 	{"Box", "box", "", lucide.Box},
+	{"BoxDashed", "box-dashed", "", lucide.BoxDashed},
 	{"BoxSelect", "box-select", "SquareDashed", lucide.BoxSelect},
 	{"Boxes", "boxes", "", lucide.Boxes},
 	{"BoxesLinked", "boxes-linked", "", lucide.BoxesLinked},
@@ -510,6 +511,7 @@ var lucideIcons = []Icon{
 	{"ChevronsToAxisVertical", "chevrons-to-axis-vertical", "", lucide.ChevronsToAxisVertical},
 	{"ChevronsUp", "chevrons-up", "", lucide.ChevronsUp},
 	{"ChevronsUpDown", "chevrons-up-down", "", lucide.ChevronsUpDown},
+	{"ChocolateBar", "chocolate-bar", "", lucide.ChocolateBar},
 	{"Chrome", "chrome", "", lucide.Chrome},
 	{"Chromium", "chromium", "", lucide.Chromium},
 	{"Church", "church", "", lucide.Church},
@@ -755,6 +757,7 @@ var lucideIcons = []Icon{
 	{"Dessert", "dessert", "", lucide.Dessert},
 	{"DiagramFlowHorizontal", "diagram-flow-horizontal", "", lucide.DiagramFlowHorizontal},
 	{"DiagramFlowVertical", "diagram-flow-vertical", "", lucide.DiagramFlowVertical},
+	{"DiagramSankey", "diagram-sankey", "", lucide.DiagramSankey},
 	{"Diameter", "diameter", "", lucide.Diameter},
 	{"Diamond", "diamond", "", lucide.Diamond},
 	{"DiamondMinus", "diamond-minus", "", lucide.DiamondMinus},
@@ -992,11 +995,13 @@ var lucideIcons = []Icon{
 	{"FolderKey", "folder-key", "", lucide.FolderKey},
 	{"FolderLock", "folder-lock", "", lucide.FolderLock},
 	{"FolderMinus", "folder-minus", "", lucide.FolderMinus},
+	{"FolderNetwork", "folder-network", "", lucide.FolderNetwork},
 	{"FolderOpen", "folder-open", "", lucide.FolderOpen},
 	{"FolderOpenDot", "folder-open-dot", "", lucide.FolderOpenDot},
 	{"FolderOutput", "folder-output", "", lucide.FolderOutput},
 	{"FolderPen", "folder-pen", "", lucide.FolderPen},
 	{"FolderPlus", "folder-plus", "", lucide.FolderPlus},
+	{"FolderPlusCorner", "folder-plus-corner", "", lucide.FolderPlusCorner},
 	{"FolderRoot", "folder-root", "", lucide.FolderRoot},
 	{"FolderSearch", "folder-search", "", lucide.FolderSearch},
 	{"FolderSearch2", "folder-search-2", "", lucide.FolderSearch2},
@@ -1204,6 +1209,7 @@ var lucideIcons = []Icon{
 	{"IterationCcw", "iteration-ccw", "", lucide.IterationCcw},
 	{"IterationCw", "iteration-cw", "", lucide.IterationCw},
 	{"IvBag", "iv-bag", "", lucide.IvBag},
+	{"Jacket", "jacket", "", lucide.Jacket},
 	{"JapaneseYen", "japanese-yen", "", lucide.JapaneseYen},
 	{"JerseyPound", "jersey-pound", "JapaneseYen", lucide.JerseyPound},
 	{"Joystick", "joystick", "", lucide.Joystick},
@@ -1570,6 +1576,7 @@ var lucideIcons = []Icon{
 	{"PackageSearch", "package-search", "", lucide.PackageSearch},
 	{"PackageX", "package-x", "", lucide.PackageX},
 	{"PaintBucket", "paint-bucket", "", lucide.PaintBucket},
+	{"PaintGun", "paint-gun", "", lucide.PaintGun},
 	{"PaintRoller", "paint-roller", "", lucide.PaintRoller},
 	{"Paintbrush", "paintbrush", "", lucide.Paintbrush},
 	{"Paintbrush2", "paintbrush-2", "PaintbrushVertical", lucide.Paintbrush2},
@@ -1736,6 +1743,7 @@ var lucideIcons = []Icon{
 	{"RectangleEllipsis", "rectangle-ellipsis", "", lucide.RectangleEllipsis},
 	{"RectangleGoggles", "rectangle-goggles", "", lucide.RectangleGoggles},
 	{"RectangleHorizontal", "rectangle-horizontal", "", lucide.RectangleHorizontal},
+	{"RectangleLandscapePlay", "rectangle-landscape-play", "", lucide.RectangleLandscapePlay},
 	{"RectangleVertical", "rectangle-vertical", "", lucide.RectangleVertical},
 	{"Recycle", "recycle", "", lucide.Recycle},
 	{"Redo", "redo", "", lucide.Redo},
@@ -2315,6 +2323,7 @@ var lucideIcons = []Icon{
 	{"UserRound", "user-round", "", lucide.UserRound},
 	{"UserRoundArrowLeft", "user-round-arrow-left", "", lucide.UserRoundArrowLeft},
 	{"UserRoundCheck", "user-round-check", "", lucide.UserRoundCheck},
+	{"UserRoundClock", "user-round-clock", "", lucide.UserRoundClock},
 	{"UserRoundCog", "user-round-cog", "", lucide.UserRoundCog},
 	{"UserRoundExclamationPoint", "user-round-exclamation-point", "", lucide.UserRoundExclamationPoint},
 	{"UserRoundGroup", "user-round-group", "", lucide.UserRoundGroup},
